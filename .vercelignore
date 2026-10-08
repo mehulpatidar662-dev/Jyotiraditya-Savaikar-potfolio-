@@ -1,0 +1,17 @@
+# Ignore backend Python server files so Vercel deploys purely as a global Static Site
+app.py
+requirements.txt
+portfolio_data.py
+qr_service.py
+
+# Ignore test & audit scripts
+test_app.py
+audit_site.py
+audit_videos.py
+verify_links.py
+build_full_portfolio.py
+export_static.py
+inspect_root.py
+
+# Ignore duplicate assets/ directory if not needed
+assets/
