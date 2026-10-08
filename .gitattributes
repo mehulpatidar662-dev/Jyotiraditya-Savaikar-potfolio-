@@ -3,3 +3,9 @@
 *.MP4 filter=lfs diff=lfs merge=lfs -text
 *.MOV filter=lfs diff=lfs merge=lfs -text
 *.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Direct binary commit for hero showreel video (5.4 MB) so Vercel & browsers load it directly without LFS
+static/videos/temple_flag_chill_showreel.mp4 -filter -diff -merge
+videos/temple_flag_chill_showreel.mp4 -filter -diff -merge
+"static/videos/Temple Flag Chill Shot0001-0250.mp4" -filter -diff -merge
+"videos/Temple Flag Chill Shot0001-0250.mp4" -filter -diff -merge
