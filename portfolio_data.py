@@ -190,7 +190,7 @@ FEATURED_PROJECTS = [
         "media_type": "video",
         "cover_image": "aditya_project/Preprod/bot and boy/IMG_4688.PNG",
         "storyboard_image": "aditya_project/Preprod/bot and boy/IMG_4689.PNG",
-        "video_file": "aditya_project/Preprod/bot and boy/Jyotiraditya_Animatic2.mov",
+        "video_file": "videos/bot_and_boy_animatic.mp4",
         "video_file_fallback": "videos/bot_and_boy_animatic.mp4",
         "tools": ["Clip Studio Paint", "Photoshop", "After Effects"],
         "description": (
@@ -340,7 +340,7 @@ FEATURED_PROJECTS = [
         "media_type": "video",
         "cover_image": "aditya_project/3D/cube/cube.png",
         "secondary_image": "aditya_project/3D/Cyberpunk/cyberpunk.png",
-        "video_file": "aditya_project/3D/cube/Cube shift Final.mov",
+        "video_file": "aditya_project/3D/cube/Cube shift Final.mp4",
         "tools": ["Blender", "After Effects", "Cinema 4D"],
         "description": (
             "Procedural isometric voxel transformation (Cube Shift), cyberpunk kinetic typography with "
@@ -820,8 +820,8 @@ FOLDER_ARCHIVES = [
                     {
                         "type": "video",
                         "title": "The Bot and the Boy — Animatic Short Reel",
-                        "file_path": "aditya_project/Preprod/bot and boy/Jyotiraditya_Animatic2.mov",
-                        "file_path_alt": "videos/bot_and_boy_animatic.mp4",
+                        "file_path": "videos/bot_and_boy_animatic.mp4",
+                        "file_path_alt": "aditya_project/Preprod/bot and boy/Jyotiraditya_Animatic2.mov",
                         "poster": "aditya_project/Preprod/bot and boy/IMG_4688.PNG",
                         "duration": "1:49 min",
                         "fps": "24 fps",
@@ -941,8 +941,8 @@ FOLDER_ARCHIVES = [
                     {
                         "type": "video",
                         "title": "Cube Shift Final — 3D Motion Animation",
-                        "file_path": "aditya_project/3D/cube/Cube shift Final.mov",
-                        "file_path_alt": "videos/rendered_shot.mp4",
+                        "file_path": "aditya_project/3D/cube/Cube shift Final.mp4",
+                        "file_path_alt": "aditya_project/3D/cube/Cube shift Final.mov",
                         "poster": "aditya_project/3D/cube/cube.png",
                         "duration": "0:15 min",
                         "fps": "24 fps",

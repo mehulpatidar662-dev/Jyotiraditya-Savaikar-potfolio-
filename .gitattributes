@@ -1,7 +1,9 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-*.mov filter=lfs diff=lfs merge=lfs -text
-*.MP4 filter=lfs diff=lfs merge=lfs -text
-*.MOV filter=lfs diff=lfs merge=lfs -text
+# All videos are optimized to crisp web H.264 MP4 with faststart (< 25 MB)
+# Direct binary commit so Vercel, GitHub Pages, and all browsers stream them immediately
+*.mp4 -filter -diff -merge
+*.MP4 -filter -diff -merge
+*.mov -filter -diff -merge
+*.MOV -filter -diff -merge
 # Direct binary commit for PDFs (< 100 MB) so in-site readers & browsers load them directly on Vercel
 *.pdf -filter -diff -merge
 *.PDF -filter -diff -merge
