@@ -13,5 +13,11 @@ build_full_portfolio.py
 export_static.py
 inspect_root.py
 
-# Ignore duplicate assets/ directory if not needed
+# Ignore duplicate root media directories (all website assets are cleanly served from static/)
 assets/
+aditya_project/
+videos/
+docs/
+images/
+audit_lfs_refs.py
+dist/
