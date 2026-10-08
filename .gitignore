@@ -1,0 +1,18 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Virtual environments & IDE
+.venv/
+venv/
+.idea/
+.vscode/
+
+# Duplicate distribution bundle (root is already static & deploy-ready)
+dist/

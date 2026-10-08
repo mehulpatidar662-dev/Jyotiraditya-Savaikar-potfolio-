@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block title %}About | {{ artist.name }} — 2D Animator & Pre-Production Artist{% endblock %}
+
+{% block content %}
+<div class="extra-page-view" style="display: block; padding-top: 40px; padding-bottom: 80px;">
+  <div class="container">
+    
+    <!-- Top Navigation Bar -->
+    <div class="back-to-home-bar" style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+      <a href="{{ url_for('home') }}" class="back-home-btn">&larr; Back to Portfolio</a>
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <a href="{{ url_for('resume') }}" class="pdf-action-btn">
+          <span>View Resume &rarr;</span>
+        </a>
+        <a href="{{ url_for('gallery_all') }}" class="pdf-action-btn primary">
+          <span>Explore Gallery &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Page Header (No labels/pills above heading) -->
+    <div style="margin-bottom: 36px; border-bottom: 2px solid var(--border-color); padding-bottom: 24px;">
+      <h1 class="section-title" style="text-align: left; margin-bottom: 8px; font-size: clamp(2.2rem, 4vw, 3.2rem);">
+        About the Artist
+      </h1>
+      <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 920px; font-size: 1.05rem; line-height: 1.65; color: var(--text-color);">
+        {{ artist.name }} &bull; 2D Animator, Motion Designer &amp; Pre-Production Artist pursuing Bachelor of Animation Design at MIT Institute of Design, Pune ('23–'27).
+      </p>
+    </div>
+
+    <!-- Spotlight Hero Card: 2-Column Grid -->
+    <div class="about-hero-card">
+      <div class="about-photo-panel">
+        <div class="about-photo-wrap" style="position: relative; display: inline-block;">
+          <img class="about-photo-large" src="{{ url_for('static', filename=artist.portrait_image) }}" alt="{{ artist.name }}" />
+          <div style="position: absolute; bottom: 12px; right: 12px; background: var(--rust); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; box-shadow: 0 4px 12px rgba(184, 62, 20, 0.4);">
+            MIT ID Pune
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 14px 0 4px 0;">
+          {{ artist.name }}
+        </h3>
+        <p style="font-size: 0.92rem; font-weight: 700; color: var(--rust); margin-bottom: 16px;">
+          Animation Designer &bull; Pune, India
+        </p>
+
+        <!-- Quick Specs List -->
+        <div class="about-quick-specs" style="width: 100%; text-align: left; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; margin-top: 8px; font-size: 0.88rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">
+            <span style="color: var(--text-dim); font-weight: 600;">Institution:</span>
+            <strong style="color: var(--heading-color);">MIT ID, Pune</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">
+            <span style="color: var(--text-dim); font-weight: 600;">Program:</span>
+            <strong style="color: var(--heading-color);">B.Des Animation ('23–'27)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">
+            <span style="color: var(--text-dim); font-weight: 600;">Core Focus:</span>
+            <strong style="color: var(--rust);">Pre-Production &amp; 2D</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-dim); font-weight: 600;">Languages:</span>
+            <strong style="color: var(--heading-color);">EN, HI, MR, KOK</strong>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px; width: 100%;">
+          <a href="{{ artist.behance_url }}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center; padding: 10px 14px; font-size: 0.88rem;">
+            <span>Behance &nearr;</span>
+          </a>
+          <a href="{{ artist.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center; padding: 10px 14px; font-size: 0.88rem;">
+            <span>LinkedIn &nearr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-narrative">
+        <h2 style="font-size: 1.85rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin-top: 0; margin-bottom: 18px;">
+          Storytelling Through Rhythm, Visuals &amp; Literature
+        </h2>
+        
+        <p style="font-size: 1.02rem; line-height: 1.75; color: var(--text-color); margin-bottom: 16px;">
+          {{ artist.about_expanded }}
+        </p>
+
+        <p style="font-size: 1.02rem; line-height: 1.75; color: var(--text-color); margin-bottom: 24px;">
+          My artistic process begins where script and imagination collide. Drawing inspiration from ancient mythologies, historical literature, and dynamic camera languages, I focus on shaping unforgettable pre-production bibles—from expressive character turnarounds and 8-expression model sheets to widescreen multi-plane street layouts and complete sequential graphic books.
+        </p>
+
+        <!-- Literature Philosophy Card -->
+        <div class="reading-habit-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 1.4rem;">📚</span>
+            <h4 style="margin: 0; font-family: 'Syne', sans-serif;">The Power of Literature &amp; Imagination</h4>
+          </div>
+          <p style="font-size: 0.96rem; line-height: 1.65; margin: 0;">
+            {{ artist.reading_philosophy }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Creative Pillars & Disciplines -->
+    <div style="margin-top: 60px; margin-bottom: 60px;">
+      <h2 class="section-title" style="text-align: left; margin-bottom: 12px; font-size: 1.85rem;">
+        Core Creative Pillars
+      </h2>
+      <p style="margin: 0 0 28px 0; color: var(--text-dim); font-size: 1rem; max-width: 820px;">
+        Three fundamental disciplines that anchor my animation, motion design, and visual development practice.
+      </p>
+
+      <div class="about-pillars-grid">
+        
+        <div class="about-pillar-card">
+          <div class="about-pillar-icon">🎬</div>
+          <h3 class="about-pillar-title">Frame-by-Frame 2D Animation</h3>
+          <p class="about-pillar-desc">
+            Crafting believable movement, emotional weight, and kinetic cadence on 2s and 24 FPS. From fluid domino chain reactions in <em>Non Narrative</em> to character walk cycles and timing charts.
+          </p>
+          <div class="about-pillar-tag">Squash &amp; Stretch &bull; Timing Charts &bull; Keyframing</div>
+        </div>
+
+        <div class="about-pillar-card">
+          <div class="about-pillar-icon">📐</div>
+          <h3 class="about-pillar-title">Cinematic Staging &amp; Layout</h3>
+          <p class="about-pillar-desc">
+            Designing ultra-widescreen multi-plane camera pans (3072x768), 3-stage camera staging blueprints, and dynamic storyboard sequences that control viewer focus and narrative tempo.
+          </p>
+          <div class="about-pillar-tag">Acme Layouts &bull; Perspective Grids &bull; Pacing</div>
+        </div>
+
+        <div class="about-pillar-card">
+          <div class="about-pillar-icon">🎨</div>
+          <h3 class="about-pillar-title">Character Design &amp; Model Sheets</h3>
+          <p class="about-pillar-desc">
+            Developing production-ready character sheets with orthographic turnarounds, 8-expression acting grids (as seen in <em>Monkesh</em>), costume breakdowns, and weapon schematics.
+          </p>
+          <div class="about-pillar-tag">Model Sheets &bull; Facial Grids &bull; Turnarounds</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 3: The 4-Stage Studio Pipeline -->
+    <div style="margin-top: 60px; margin-bottom: 60px; background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 18px; padding: 40px;">
+      <h2 class="section-title" style="text-align: left; margin-bottom: 8px; font-size: 1.85rem;">
+        Pre-Production Studio Pipeline
+      </h2>
+      <p style="margin: 0 0 32px 0; color: var(--text-dim); font-size: 1rem;">
+        How an abstract concept transitions from literary research into production-ready visual assets.
+      </p>
+
+      <div class="about-pipeline-grid">
+        
+        <div class="pipeline-step-card">
+          <div class="pipeline-step-num">01</div>
+          <h4 class="pipeline-step-title">Research &amp; Narrative Script</h4>
+          <p class="pipeline-step-desc">
+            Historical text analysis, mythological research, character motivations, and sequential beat sheets.
+          </p>
+        </div>
+
+        <div class="pipeline-step-card">
+          <div class="pipeline-step-num">02</div>
+          <h4 class="pipeline-step-title">Thumbnails &amp; Storyboards</h4>
+          <p class="pipeline-step-desc">
+            Rapid graphite sketches, camera angle explorations, screen direction, and visual continuity charts.
+          </p>
+        </div>
+
+        <div class="pipeline-step-card">
+          <div class="pipeline-step-num">03</div>
+          <h4 class="pipeline-step-title">Animatics &amp; Audio Pacing</h4>
+          <p class="pipeline-step-desc">
+            Stitching sequential panels to scratch audio tracks, testing frame holds, cuts, and cinematic rhythm at 24 FPS.
+          </p>
+        </div>
+
+        <div class="pipeline-step-card">
+          <div class="pipeline-step-num">04</div>
+          <h4 class="pipeline-step-title">Model Sheets &amp; Pitch Books</h4>
+          <p class="pipeline-step-desc">
+            Polished character sheets, environment color keys, and bound high-resolution production PDF books.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 4: Featured Works Navigation -->
+    <div style="margin-top: 60px; margin-bottom: 40px;">
+      <h2 class="section-title" style="text-align: left; margin-bottom: 8px; font-size: 1.85rem;">
+        Featured Production Case Studies
+      </h2>
+      <p style="margin: 0 0 24px 0; color: var(--text-dim); font-size: 1rem;">
+        Direct access to Jyotiraditya's hallmark projects and in-site scrollable PDF publications.
+      </p>
+
+      <div class="about-featured-strip">
+        <a href="{{ url_for('gallery_all') }}#in-site-pdf-viewer" class="about-project-pill-card">
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">📖</div>
+          <h4 style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--heading-color);">The Tale of Akkad</h4>
+          <span style="font-size: 0.8rem; color: var(--rust); font-weight: 700;">32.7 MB Pitch Bible &rarr;</span>
+        </a>
+
+        <a href="{{ url_for('gallery_all') }}#in-site-pdf-viewer" class="about-project-pill-card">
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">💥</div>
+          <h4 style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--heading-color);">Target Practise</h4>
+          <span style="font-size: 0.8rem; color: var(--rust); font-weight: 700;">84.1 MB Comic Book &rarr;</span>
+        </a>
+
+        <a href="{{ url_for('gallery_all') }}" class="about-project-pill-card">
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">🎬</div>
+          <h4 style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--heading-color);">The Bot and the Boy</h4>
+          <span style="font-size: 0.8rem; color: var(--rust); font-weight: 700;">1:49 Animatic Short &rarr;</span>
+        </a>
+
+        <a href="{{ url_for('gallery_all') }}" class="about-project-pill-card">
+          <div style="font-size: 1.6rem; margin-bottom: 8px;">🐍</div>
+          <h4 style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--heading-color);">Jaimini Title Sequence</h4>
+          <span style="font-size: 0.8rem; color: var(--rust); font-weight: 700;">Mythic Reel &amp; Model Sheet &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Call to Action Banner -->
+    <div style="background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-cream-card, var(--bg-card)) 100%); border: 2px solid var(--border-color); border-radius: 18px; padding: 40px; text-align: center; margin-top: 50px;">
+      <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 12px 0;">
+        Interested in collaborating or reviewing full production decks?
+      </h2>
+      <p style="max-width: 640px; margin: 0 auto 24px; color: var(--text-color); font-size: 1rem; line-height: 1.6;">
+        Available for studio internships, freelance storyboarding, motion design, and character visual development.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="mailto:{{ artist.email }}" class="btn-primary">
+          <span>Get in Touch via Email &rarr;</span>
+        </a>
+        <a href="{{ url_for('resume') }}" class="btn-secondary">
+          <span>Inspect Full Resume</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

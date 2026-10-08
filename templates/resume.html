@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Resume | {{ artist.name }}{% endblock %}
+
+{% block content %}
+<div class="extra-page-view" style="display: block;">
+  <div class="container">
+    
+    <div class="back-to-home-bar" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="{{ url_for('home') }}" class="back-home-btn">&larr; Back to Portfolio</a>
+      <button class="print-resume-btn" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Print / Save PDF</span>
+      </button>
+    </div>
+
+    <div class="resume-paper">
+      
+      <header class="resume-header-row">
+        <div>
+          <h1 class="resume-name">{{ artist.name | upper }}</h1>
+          <div class="resume-tagline">{{ artist.roles }}</div>
+        </div>
+        <div class="resume-contact-block">
+          <div><strong>Email:</strong> {{ artist.email }}</div>
+          <div><strong>Phone:</strong> {{ artist.phone }}</div>
+          <div><strong>Behance:</strong> <a href="{{ artist.behance_url }}" target="_blank" style="color: inherit; text-decoration: underline;">behance.net/mnkeshthewise</a></div>
+          <div><strong>LinkedIn:</strong> <a href="{{ artist.linkedin_url }}" target="_blank" style="color: inherit; text-decoration: underline;">linkedin.com/in/jyotiraditya-savaikar</a></div>
+          <div><strong>Location:</strong> {{ artist.location }}</div>
+        </div>
+      </header>
+
+      <!-- Profile Summary -->
+      <div style="margin-bottom: 28px;">
+        <h3 style="color: var(--rust); font-size: 1.25rem; border-bottom: 1.5px solid var(--rust); padding-bottom: 4px; margin-bottom: 10px;">PROFILE SUMMARY</h3>
+        <p style="font-size: 0.95rem; color: var(--brown); line-height: 1.6;">
+          Passionate 2D Animator and Pre-Production Artist currently pursuing Bachelor of Animation Design at MIT Institute of Design. Extensive proficiency in storyboarding, animatics, character model sheets, and motion design. Driven by literature-inspired narrative depth and dynamic visual pacing.
+        </p>
+      </div>
+
+      <!-- Education -->
+      <div style="margin-bottom: 28px;">
+        <h3 style="color: var(--rust); font-size: 1.25rem; border-bottom: 1.5px solid var(--rust); padding-bottom: 4px; margin-bottom: 12px;">EDUCATION</h3>
+        {% for edu in timeline.education %}
+        <div style="margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--brown-dark);">
+            <span>{{ edu.institution }}</span>
+            <span>{{ edu.period }}</span>
+          </div>
+          <div style="color: var(--rust); font-weight: 600; font-size: 0.92rem;">{{ edu.degree }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Experience -->
+      <div style="margin-bottom: 28px;">
+        <h3 style="color: var(--rust); font-size: 1.25rem; border-bottom: 1.5px solid var(--rust); padding-bottom: 4px; margin-bottom: 12px;">EXPERIENCE & LEADERSHIP</h3>
+        {% for exp in timeline.experience %}
+        <div style="margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--brown-dark);">
+            <span>{{ exp.company }} &bull; {{ exp.role }}</span>
+            <span>{{ exp.period }}</span>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--brown);">{{ exp.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Technical Skills & Languages -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div>
+          <h3 style="color: var(--rust); font-size: 1.15rem; border-bottom: 1.5px solid var(--rust); padding-bottom: 4px; margin-bottom: 10px;">TECHNICAL TOOLKIT</h3>
+          <p style="font-size: 0.88rem; color: var(--brown); line-height: 1.6;">
+            <strong>Software:</strong> {% for tool in toolkit.tools %}{{ tool.name }}{% if not loop.last %}, {% endif %}{% endfor %}.<br>
+            <strong>Skills:</strong> {% for skill in toolkit.core_skills %}{{ skill }}{% if not loop.last %}, {% endif %}{% endfor %}.
+          </p>
+        </div>
+        <div>
+          <h3 style="color: var(--rust); font-size: 1.15rem; border-bottom: 1.5px solid var(--rust); padding-bottom: 4px; margin-bottom: 10px;">LANGUAGES</h3>
+          <p style="font-size: 0.88rem; color: var(--brown); line-height: 1.6;">
+            {% for lang in toolkit.languages %}{{ lang.name }} ({{ lang.level }}){% if not loop.last %}, {% endif %}{% endfor %}.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

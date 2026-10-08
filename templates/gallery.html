@@ -1,0 +1,1195 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.title }} | {{ artist.name }} Production Archive &amp; In-Site PDFs{% endblock %}
+
+{% block content %}
+<div class="extra-page-view" style="display: block; padding-top: 100px; padding-bottom: 80px;">
+  <div class="container">
+    
+    <!-- Top Navigation Bar & Category Fast-Pills -->
+    <div class="back-to-home-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 14px;">
+      <a href="{{ url_for('home') }}#work" class="back-home-btn" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--rust); text-decoration: none; padding: 8px 18px; border: 1px solid var(--border-color); border-radius: 999px; background: var(--bg-card); transition: all 0.2s ease;">
+        &larr; Back to Portfolio Work
+      </a>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;" class="top-nav-pills">
+        <a href="#folder-explorer" class="folder-pill-link active" data-nav-target="all" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 999px; background: var(--rust); color: #fff; border: 1px solid var(--rust); text-decoration: none;">All Categories</a>
+        <a href="#cat-2d" class="folder-pill-link" data-nav-target="2d" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 600; border-radius: 999px; background: var(--bg-card); color: var(--heading-color); border: 1px solid var(--border-color); text-decoration: none;">2D (3 Projects)</a>
+        <a href="#cat-preprod" class="folder-pill-link" data-nav-target="preprod" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 600; border-radius: 999px; background: var(--bg-card); color: var(--heading-color); border: 1px solid var(--border-color); text-decoration: none;">Preprod (4 Projects)</a>
+        <a href="#cat-3d" class="folder-pill-link" data-nav-target="3d" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 600; border-radius: 999px; background: var(--bg-card); color: var(--heading-color); border: 1px solid var(--border-color); text-decoration: none;">3D (3 Projects)</a>
+        <a href="#cat-xtra-work" class="folder-pill-link" data-nav-target="xtra-work" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 600; border-radius: 999px; background: var(--bg-card); color: var(--heading-color); border: 1px solid var(--border-color); text-decoration: none;">Xtra work (1 Project)</a>
+        <a href="#in-site-pdf-viewer" class="folder-pill-link" data-nav-target="pdf" style="padding: 6px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 999px; background: rgba(185, 28, 28, 0.1); color: var(--rust); border: 1px solid var(--rust); text-decoration: none;">📖 In-Site PDF Viewer</a>
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 24px; margin-bottom: 36px;">
+      <h1 class="section-title" style="text-align: left; margin-bottom: 10px; font-size: clamp(2rem, 3.6vw, 2.8rem);">
+        Production Gallery &amp; Project Catalog Explorer
+      </h1>
+      <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 900px; font-size: 1.02rem; line-height: 1.6;">
+        Explore Jyotiraditya's complete portfolio across the 4 core production categories (<code>2D</code>, <code>Preprod</code>, <code>3D</code>, <code>Xtra work</code>). Read and scroll through the complete high-resolution production books and comic publications directly inside the website.
+      </p>
+    </div>
+
+    <!-- =======================================================================
+         FEATURE 1: INTERACTIVE FOLDER-IN-FOLDER ARCHIVE EXPLORER
+         ======================================================================= -->
+    <section class="folder-browser-section" id="folder-explorer">
+      
+      <!-- Interactive Master Breadcrumb & Navigation Strip -->
+      <div class="folder-browser-header">
+        <div class="folder-breadcrumbs-row">
+          <nav class="folder-breadcrumbs" id="folder-breadcrumbs" aria-label="Breadcrumb Navigation">
+            <button class="folder-crumb-btn active" id="crumb-root" data-action="go-root">
+              <span>My Projects</span>
+            </button>
+            <span class="folder-crumb-sep" id="crumb-sep-cat" style="display: none;">/</span>
+            <button class="folder-crumb-btn" id="crumb-cat" data-action="go-cat" style="display: none;">
+              <span id="crumb-cat-text">Category</span>
+            </button>
+            <span class="folder-crumb-sep" id="crumb-sep-sub" style="display: none;">/</span>
+            <button class="folder-crumb-btn" id="crumb-sub" data-action="go-sub" style="display: none;">
+              <span id="crumb-sub-text">Project</span>
+            </button>
+          </nav>
+
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="folder-stats-badge" id="folder-stats-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+              <span id="folder-stats-text">11 Projects &bull; 4 Categories &bull; 30 Assets</span>
+            </span>
+
+            <button class="folder-view-mode-toggle" id="view-mode-toggle" title="Switch between list view and category cards">
+              <span id="toggle-icon">▦</span>
+              <span id="toggle-text">Category Cards</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Jump Category Pills -->
+        <div class="folder-tabs-strip">
+          <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Filter Projects:</span>
+          <button class="folder-tab-btn active" data-tab-folder="root">
+            <span>All Projects (11)</span>
+          </button>
+          <button class="folder-tab-btn" data-tab-folder="2d">
+            <span>2D (3 Projects)</span>
+          </button>
+          <button class="folder-tab-btn" data-tab-folder="preprod">
+            <span>Preprod (4 Projects)</span>
+          </button>
+          <button class="folder-tab-btn" data-tab-folder="3d">
+            <span>3D (3 Projects)</span>
+          </button>
+          <button class="folder-tab-btn" data-tab-folder="xtra-work">
+            <span>Xtra work (1 Project)</span>
+          </button>
+          <a href="#in-site-pdf-viewer" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
+            <span>📖 In-Site PDF Viewer</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           LEVEL 0: ROOT DIRECTORY (All Projects in List View)
+           "when we open gallery we see project show them in list view type"
+           =================================================================== -->
+      <div class="folder-view-level active" id="view-level-root">
+        <div style="margin-bottom: 22px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 style="font-size: 1.45rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 4px 0;">
+              Production Projects
+            </h2>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--text-dim);">
+              Select any project below in list view to inspect videos, beat boards, and in-site PDF books.
+            </p>
+          </div>
+        </div>
+
+        <!-- LIST VIEW OF PROJECTS (Active & Displayed by Default) -->
+        <div class="project-list-container" id="projects-list-view">
+          {% for folder in folder_archives %}
+            {% for sub in folder.subfolders %}
+            <div class="project-list-item" 
+                 data-open-sub="{{ sub.id }}" 
+                 data-parent-cat="{{ folder.id }}" 
+                 data-cat="{{ folder.id }}" 
+                 tabindex="0" 
+                 role="button" 
+                 aria-label="View {{ sub.folder_name }}">
+              
+              <div class="project-list-thumb">
+                {% if sub.cover_image %}
+                <img src="{{ url_for('static', filename=sub.cover_image) }}" alt="{{ sub.folder_name }}" loading="lazy" />
+                {% endif %}
+                <div class="project-list-thumb-badge">
+                  {% if sub.has_pdf %}
+                  <span>📖 {{ sub.pdf_embed.file_size }} PDF Book</span>
+                  {% elif 'Video' in sub.badge or 'Reel' in sub.badge or 'Render' in sub.badge or 'Animation' in sub.badge %}
+                  <span>🎬 {{ sub['items'][0].duration if sub['items'] and sub['items'][0].duration else 'Video Reel' }}</span>
+                  {% else %}
+                  <span>🎨 {{ sub['items']|length }} Artworks</span>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="project-list-info">
+                <h3 class="project-list-title">{{ sub.folder_name }}</h3>
+                <div class="project-list-meta-row">
+                  <span class="project-list-cat-tag">{{ folder.name }} &bull; {{ sub.category }}</span>
+                  <span class="project-list-assets-tag">{{ sub['items']|length }} Files</span>
+                  {% if sub.has_pdf %}
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
+                  {% endif %}
+                </div>
+                <p class="project-list-desc">{{ sub.description }}</p>
+
+                {% if sub.tools %}
+                <div class="project-list-chips">
+                  <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                  {% for tool in sub.tools %}
+                  <span class="project-list-chip">{{ tool }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+
+              <div class="project-list-action">
+                <button class="project-list-btn" type="button">
+                  <span>{{ 'Read PDF Book' if sub.has_pdf else 'Open Project Gallery' }}</span>
+                  <span class="project-list-btn-arrow">&rarr;</span>
+                </button>
+              </div>
+
+            </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+
+        <!-- CATEGORIES OVERVIEW GRID (Toggled via toggle button) -->
+        <div class="folder-grid" id="categories-grid-view" style="display: none;">
+          {% for folder in folder_archives %}
+          <div class="folder-card" data-open-cat="{{ folder.id }}">
+            {% if folder.cover_image %}
+            <div class="folder-card-cover">
+              <img src="{{ url_for('static', filename=folder.cover_image) }}" alt="{{ folder.title }}" loading="lazy" />
+            </div>
+            {% endif %}
+
+            <h3 class="folder-card-title">{{ folder.name }}</h3>
+            <div class="folder-card-subtitle">{{ folder.title }}</div>
+            <p class="folder-card-desc">{{ folder.description }}</p>
+
+            <div class="folder-subchips">
+              {% for sub in folder.subfolders %}
+              <span class="folder-subchip">{{ sub.folder_name }}</span>
+              {% endfor %}
+            </div>
+
+            <div class="folder-card-footer">
+              <span>Explore {{ folder.name }} ({{ folder.subfolders|length }} Projects)</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           LEVEL 1: CATEGORY VIEWS (Projects within selected Category in List View)
+           =================================================================== -->
+      <div class="folder-view-level" id="view-level-cat">
+        {% for folder in folder_archives %}
+        <div class="category-subfolder-container" id="cat-container-{{ folder.id }}" style="display: none;">
+          
+          <div class="subfolder-header-box">
+            <div class="subfolder-header-top">
+              <div>
+                <h2 class="subfolder-header-title">{{ folder.name }} &mdash; {{ folder.title }}</h2>
+                <div class="subfolder-header-meta">Category: <strong>{{ folder.name }}</strong> &bull; {{ folder.title }}</div>
+              </div>
+              <button class="pdf-action-btn" data-action="go-root">
+                <span>&larr; Back to All Projects</span>
+              </button>
+            </div>
+            <p class="subfolder-header-desc">{{ folder.description }}</p>
+            <div style="margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: var(--rust);">
+              Select any project below to inspect videos, beat boards, and PDF books:
+            </div>
+          </div>
+
+          <div class="project-list-container">
+            {% for sub in folder.subfolders %}
+            <div class="project-list-item" 
+                 data-open-sub="{{ sub.id }}" 
+                 data-parent-cat="{{ folder.id }}" 
+                 data-cat="{{ folder.id }}" 
+                 tabindex="0" 
+                 role="button" 
+                 aria-label="View {{ sub.folder_name }}">
+              
+              <div class="project-list-thumb">
+                {% if sub.cover_image %}
+                <img src="{{ url_for('static', filename=sub.cover_image) }}" alt="{{ sub.folder_name }}" loading="lazy" />
+                {% endif %}
+                <div class="project-list-thumb-badge">
+                  {% if sub.has_pdf %}
+                  <span>📖 {{ sub.pdf_embed.file_size }} PDF Book</span>
+                  {% elif 'Video' in sub.badge or 'Reel' in sub.badge or 'Render' in sub.badge or 'Animation' in sub.badge %}
+                  <span>🎬 {{ sub['items'][0].duration if sub['items'] and sub['items'][0].duration else 'Video Reel' }}</span>
+                  {% else %}
+                  <span>🎨 {{ sub['items']|length }} Artworks</span>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="project-list-info">
+                <h3 class="project-list-title">{{ sub.folder_name }}</h3>
+                <div class="project-list-meta-row">
+                  <span class="project-list-cat-tag">{{ folder.name }} &bull; {{ sub.category }}</span>
+                  <span class="project-list-assets-tag">{{ sub['items']|length }} Files</span>
+                  {% if sub.has_pdf %}
+                  <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
+                  {% endif %}
+                </div>
+                <p class="project-list-desc">{{ sub.description }}</p>
+
+                {% if sub.tools %}
+                <div class="project-list-chips">
+                  <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                  {% for tool in sub.tools %}
+                  <span class="project-list-chip">{{ tool }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+
+              <div class="project-list-action">
+                <button class="project-list-btn" type="button">
+                  <span>{{ 'Read PDF Book' if sub.has_pdf else 'Open Project Gallery' }}</span>
+                  <span class="project-list-btn-arrow">&rarr;</span>
+                </button>
+              </div>
+
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- ===================================================================
+           LEVEL 2: SUBFOLDER CONTENT VIEWS (Files inside each Project)
+           =================================================================== -->
+      <div class="folder-view-level" id="view-level-sub">
+        {% for folder in folder_archives %}
+          {% for sub in folder.subfolders %}
+          <div class="subfolder-content-container" id="sub-container-{{ sub.id }}" data-parent-cat="{{ folder.id }}" style="display: none;">
+            
+            <!-- Subfolder Info Banner -->
+            <div class="subfolder-header-box">
+              <div class="subfolder-header-top">
+                <div>
+                  <h2 class="subfolder-header-title">{{ sub.folder_name }}</h2>
+                  <div class="subfolder-header-meta">
+                    Project: <strong>{{ sub.folder_name }}</strong> &bull; {{ sub.category }}
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="{{ folder.id }}">
+                    <span>&larr; Back to {{ folder.name }}</span>
+                  </button>
+                  <button class="pdf-action-btn" data-action="go-root">
+                    <span>All Categories</span>
+                  </button>
+                </div>
+              </div>
+
+              <p class="subfolder-header-desc">{{ sub.description }}</p>
+
+              {% if sub.tools %}
+              <div class="subfolder-tools-list">
+                <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em;">Software &amp; Tools:</span>
+                {% for tool in sub.tools %}
+                <span style="font-size: 0.78rem; font-weight: 700; background: var(--bg-primary); border: 1px solid var(--border-color); padding: 3px 10px; border-radius: 6px; color: var(--heading-color);">{{ tool }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- If Subfolder contains an in-site scrollable PDF (Akkad or Target Practise) -->
+            {% if sub.has_pdf and sub.pdf_embed %}
+            <div class="in-site-pdf-container" id="{{ sub.pdf_embed.id }}">
+              
+              <!-- PDF Toolbar -->
+              <div class="in-site-pdf-toolbar">
+                <div class="pdf-toolbar-left">
+                  <div class="pdf-status-pill">
+                    <span class="pdf-status-dot"></span>
+                    <span>In-Site Scrollable PDF Active</span>
+                  </div>
+                  <div class="pdf-doc-meta">
+                    <span class="pdf-doc-title">{{ sub.pdf_embed.title }}</span>
+                    <span class="pdf-doc-sub">{{ sub.pdf_embed.format }} &bull; <strong style="color: var(--rust);">{{ sub.pdf_embed.file_size }}</strong></span>
+                  </div>
+                </div>
+
+                <div class="pdf-toolbar-actions">
+                  <button class="pdf-action-btn toggle-pdf-height-btn" data-target="{{ sub.pdf_embed.id }}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18m0-18l-4 4m4-4l4 4m0 10l-4 4m0 0l-4-4"/></svg>
+                    <span>Expand Height</span>
+                  </button>
+
+                  <button class="pdf-action-btn toggle-pdf-fullscreen-btn" data-target="{{ sub.pdf_embed.id }}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    <span>Fullscreen</span>
+                  </button>
+
+                  <a href="{{ url_for('static', filename=sub.pdf_embed.file_path) }}" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    <span>Open in Tab</span>
+                  </a>
+
+                  <a href="{{ url_for('static', filename=sub.pdf_embed.file_path) }}" download class="pdf-action-btn primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download ({{ sub.pdf_embed.file_size }})</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Live Scrollable PDF Frame Viewport -->
+              <div class="in-site-pdf-stage">
+                <iframe src="{{ url_for('static', filename=sub.pdf_embed.file_path) }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+                        class="in-site-pdf-iframe" 
+                        title="{{ sub.pdf_embed.title }}"
+                        loading="lazy">
+                </iframe>
+              </div>
+
+              <!-- PDF Highlights Footer -->
+              <div class="in-site-pdf-footer-info">
+                <div>
+                  <div style="font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--rust); margin-bottom: 8px;">
+                    What's Inside This Publication:
+                  </div>
+                  <div class="pdf-highlights-list">
+                    {% for hl in sub.pdf_embed.highlights %}
+                    <span>&bull; {{ hl }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-align: right;">
+                  Use mouse wheel or touch gesture to scroll pages vertically directly in the frame.
+                </div>
+              </div>
+
+            </div>
+            {% endif %}
+
+            <!-- Media Items (Videos, Layouts, Model Sheets, Artworks) -->
+            <div class="folder-asset-grid">
+              {% for item in sub['items'] %}
+                {% if item.type == 'video' %}
+                <!-- Video Media Card -->
+                <div class="folder-media-card">
+                  <div class="folder-video-box">
+                    <video controls playsinline preload="metadata" poster="{{ url_for('static', filename=item.poster) }}" style="width: 100%; max-height: 420px; object-fit: contain; display: block; margin: 0 auto; background: #000;">
+                      <source src="{{ url_for('static', filename=item.file_path) }}" type="{{ 'video/quicktime' if item.file_path.endswith('.mov') else 'video/mp4' }}">
+                      {% if item.file_path_alt %}
+                      <source src="{{ url_for('static', filename=item.file_path_alt) }}" type="video/mp4">
+                      {% endif %}
+                      Your browser does not support HTML5 video.
+                    </video>
+                    <span class="folder-media-type-badge">{{ item.badge }}</span>
+                  </div>
+                  <div class="folder-media-body">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                      <h4 class="folder-media-title" style="margin: 0;">{{ item.title }}</h4>
+                      <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); background: var(--rust-soft); padding: 2px 8px; border-radius: 4px;">{{ item.duration }}</span>
+                    </div>
+                    <p class="folder-media-caption">{{ item.caption }}</p>
+                    <div class="folder-media-meta">FPS: {{ item.fps }} &bull; Source: <code>{{ item.file_path }}</code></div>
+                  </div>
+                </div>
+
+                {% elif item.type == 'image' %}
+                <!-- Image Plate Card with Zoom Trigger -->
+                <div class="folder-media-card gallery-zoom-trigger"
+                     data-lightbox-trigger
+                     data-lightbox-src="{{ url_for('static', filename=item.file_path) }}"
+                     data-lightbox-title="{{ item.title }}"
+                     data-lightbox-badge="{{ item.badge }}"
+                     data-lightbox-desc="{{ item.caption }}"
+                     data-lightbox-specs="PATH: {{ item.file_path }}">
+                  <div class="folder-media-preview-box" style="background: {{ item.bg or '#12151e' }};">
+                    <img src="{{ url_for('static', filename=item.file_path) }}" alt="{{ item.title }}" class="folder-media-preview-img" style="object-fit: {{ item.aspect or 'contain' }};" loading="lazy" />
+                    <span class="folder-media-type-badge">{{ item.badge }}</span>
+                    <span class="folder-media-zoom-pill">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                      Zoom
+                    </span>
+                  </div>
+                  <div class="folder-media-body">
+                    <h4 class="folder-media-title">{{ item.title }}</h4>
+                    <p class="folder-media-caption">{{ item.caption }}</p>
+                    <div class="folder-media-meta">File: <code>{{ item.file_path.split('/')[-1] }}</code></div>
+                  </div>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+          </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+
+      <!-- ===================================================================
+           LEVEL 3: EXPAND ALL DIRECTORY VIEW (For instant panoramic browsing)
+           =================================================================== -->
+      <div class="folder-view-level" id="view-level-all">
+        <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 30px;">
+          <h2 style="font-size: 1.45rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 6px 0;">
+            All Projects Expanded View
+          </h2>
+          <p style="margin: 0; font-size: 0.9rem; color: var(--text-dim);">
+            Complete continuous index of all 4 categories and 11 projects.
+          </p>
+        </div>
+
+        {% for folder in folder_archives %}
+        <div class="expanded-cat-section" id="cat-{{ folder.id }}" style="margin-bottom: 48px; border-bottom: 2px dashed var(--border-color); padding-bottom: 40px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h3 style="font-size: 1.6rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0;">
+                {{ folder.name }} &mdash; {{ folder.title }}
+              </h3>
+            </div>
+            <button class="pdf-action-btn" data-open-cat="{{ folder.id }}">
+              <span>Focus on {{ folder.name }} &rarr;</span>
+            </button>
+          </div>
+
+          {% for sub in folder.subfolders %}
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <h4 style="font-size: 1.25rem; font-weight: 800; color: var(--heading-color); margin: 0 0 4px 0;">{{ sub.folder_name }}</h4>
+                <span style="font-size: 0.74rem; font-weight: 800; color: var(--rust); text-transform: uppercase;">{{ sub.category }}</span>
+              </div>
+              <button class="pdf-action-btn" data-open-sub="{{ sub.id }}" data-parent-cat="{{ folder.id }}">
+                <span>View Project &rarr;</span>
+              </button>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-color); margin-bottom: 16px;">{{ sub.description }}</p>
+
+            <div class="folder-subchips" style="margin-bottom: 0;">
+              {% for item in sub['items'] %}
+              <span class="folder-subchip">{{ '📄 ' + item.file_size if item.type == 'pdf' else ('🎬 ' + item.title if item.type == 'video' else '🖼️ ' + item.title) }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         FEATURE 2: DEDICATED IN-SITE SCROLLABLE PDF READER SECTION
+         "make pdf scroll able and viewable in site"
+         ======================================================================= -->
+    <section class="in-site-pdf-showcase-section" id="in-site-pdf-viewer" style="margin-top: 60px; margin-bottom: 60px;">
+      
+      <div style="margin-bottom: 24px;">
+        <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 8px 0;">
+          📖 Scrollable Production Books &amp; Comic Storyboards
+        </h2>
+        <p style="margin: 0; font-size: 1rem; color: var(--text-dim); max-width: 860px; line-height: 1.6;">
+          Read, inspect, and scroll through the complete multi-page publications directly inside the viewer below. Toggle between <em>The Tale of Akkad</em> (32.7 MB) and <em>Target Practise</em> (84.1 MB) with zero redirects.
+        </p>
+      </div>
+
+      <div class="in-site-pdf-container" id="master-in-site-pdf-viewer">
+        
+        <!-- Viewer Control Toolbar -->
+        <div class="in-site-pdf-toolbar">
+          <div class="pdf-toolbar-left">
+            <div class="pdf-status-pill">
+              <span class="pdf-status-dot"></span>
+              <span id="master-pdf-status-text">Scrollable In-Site Reader Active</span>
+            </div>
+            
+            <div class="pdf-doc-meta">
+              <span class="pdf-doc-title" id="master-pdf-title">The Tale of Akkad — Full Production Art &amp; Storyboard Book</span>
+              <span class="pdf-doc-sub" id="master-pdf-sub">Interactive Scrollable PDF Publication &bull; <strong style="color: var(--rust);" id="master-pdf-size">32.7 MB</strong></span>
+            </div>
+          </div>
+
+          <div class="pdf-toolbar-actions">
+            <button class="pdf-action-btn" id="master-pdf-height-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18m0-18l-4 4m4-4l4 4m0 10l-4 4m0 0l-4-4"/></svg>
+              <span id="master-height-text">Expand (1200px)</span>
+            </button>
+
+            <button class="pdf-action-btn" id="master-pdf-fullscreen-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              <span>Fullscreen</span>
+            </button>
+
+            <a href="{{ url_for('static', filename='aditya_project/Preprod/Akkad/Akkad.pdf') }}" id="master-pdf-open-btn" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span>Open in Tab</span>
+            </a>
+
+            <a href="{{ url_for('static', filename='aditya_project/Preprod/Akkad/Akkad.pdf') }}" id="master-pdf-download-btn" download class="pdf-action-btn primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span id="master-download-text">Download (32.7 MB)</span>
+            </a>
+          </div>
+
+          <!-- Document Switcher Tabs -->
+          <div class="pdf-switcher-tabs">
+            <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); display: flex; align-items: center; margin-right: 6px;">Select Document:</span>
+            
+            <button class="pdf-switch-btn active" id="tab-pdf-akkad"
+                    data-pdf-src="{{ url_for('static', filename='aditya_project/Preprod/Akkad/Akkad.pdf') }}"
+                    data-pdf-title="The Tale of Akkad — Full Production Art &amp; Storyboard Book"
+                    data-pdf-size="32.7 MB"
+                    data-pdf-format="Interactive Scrollable PDF Publication &bull; Mesopotamian Fantasy"
+                    data-pdf-summary="Comprehensive visual development pitch bible containing historical character silhouettes, full archery lesson beat board sequence, and Mesopotamian worldbuilding color keys."
+                    data-pdf-highlights="Full Archery Lesson Beat Boards Sequence,Mesopotamian Worldbuilding &amp; Color Keys,Anatomical Poses &amp; Archery Mechanics,Cinematic 2.39:1 Composition Studies">
+              <span>📖 Akkad.pdf (32.7 MB) &mdash; Preprod</span>
+            </button>
+
+            <button class="pdf-switch-btn" id="tab-pdf-target"
+                    data-pdf-src="{{ url_for('static', filename='aditya_project/2D/Target Practise/TARGET PRACTISE.pdf') }}"
+                    data-pdf-title="Target Practise — Action Comic Storyboard Book"
+                    data-pdf-size="84.1 MB"
+                    data-pdf-format="Interactive Scrollable PDF Publication &bull; 600 DPI Inks"
+                    data-pdf-summary="Complete 84.1 MB sequential black-and-white comic book publication exploring extreme camera choreography, split-blast rifle ballistics, and high-contrast manga inking."
+                    data-pdf-highlights="Complete High-Resolution B&amp;W Storyboard Comic (84.1 MB),MDC Split-Blast Rifle Ballistics Blueprint,Extreme Perspective &amp; Tactical Staging,Dynamic Speedline Motion &amp; Inking Choreography">
+              <span>📖 TARGET PRACTISE.pdf (84.1 MB) &mdash; 2D Comic</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- The In-Site Scrollable Iframe -->
+        <div class="in-site-pdf-stage">
+          <iframe id="master-pdf-iframe" 
+                  src="{{ url_for('static', filename='aditya_project/Preprod/Akkad/Akkad.pdf') }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+                  class="in-site-pdf-iframe"
+                  title="In-Site Scrollable PDF Viewer"
+                  loading="lazy">
+          </iframe>
+        </div>
+
+        <!-- Technical Dossier Details -->
+        <div class="in-site-pdf-footer-info">
+          <div style="flex: 1; min-width: 280px;">
+            <div style="font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--rust); margin-bottom: 6px;">
+              Active Document Summary:
+            </div>
+            <p id="master-pdf-summary-text" style="font-size: 0.88rem; line-height: 1.55; color: var(--text-color); margin: 0 0 12px 0;">
+              Comprehensive visual development pitch bible containing historical character silhouettes, full archery lesson beat board sequence, and Mesopotamian worldbuilding color keys.
+            </p>
+            <div class="pdf-highlights-list" id="master-pdf-highlights-box">
+              <span>&bull; Full Archery Lesson Beat Boards Sequence</span>
+              <span>&bull; Mesopotamian Worldbuilding &amp; Color Keys</span>
+              <span>&bull; Anatomical Poses &amp; Archery Mechanics</span>
+              <span>&bull; Cinematic 2.39:1 Composition Studies</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+            <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-dim);">
+              Direct in-site vertical scrolling enabled
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <a href="{{ artist.behance_url }}" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+                <span>View on Behance &nearr;</span>
+              </a>
+              <a href="{{ artist.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+                <span>LinkedIn &nearr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// =============================================================================
+// FOLDER-IN-FOLDER ARCHIVE CONTROLLER & IN-SITE SCROLLABLE PDF SYSTEM
+// =============================================================================
+(function() {
+  // Elements
+  const viewRoot = document.getElementById('view-level-root');
+  const viewCat = document.getElementById('view-level-cat');
+  const viewSub = document.getElementById('view-level-sub');
+  const viewAll = document.getElementById('view-level-all');
+
+  const crumbRoot = document.getElementById('crumb-root');
+  const crumbSepCat = document.getElementById('crumb-sep-cat');
+  const crumbCat = document.getElementById('crumb-cat');
+  const crumbCatText = document.getElementById('crumb-cat-text');
+  const crumbSepSub = document.getElementById('crumb-sep-sub');
+  const crumbSub = document.getElementById('crumb-sub');
+  const crumbSubText = document.getElementById('crumb-sub-text');
+
+  const statsBadge = document.getElementById('folder-stats-text');
+  const toggleBtn = document.getElementById('view-mode-toggle');
+  const toggleText = document.getElementById('toggle-text');
+  const toggleIcon = document.getElementById('toggle-icon');
+
+  // State
+  let currentLevel = 'root'; // 'root' | 'cat' | 'sub' | 'all'
+  let activeCatId = null;
+  let activeSubId = null;
+
+  // Folder names mapping
+  const categoryNames = {
+    '2d': '2D',
+    'preprod': 'Preprod',
+    '3d': '3D',
+    'xtra-work': 'Xtra work'
+  };
+
+  const subfolderNames = {
+    'jaimini': 'Jaimini Title Sequence',
+    'non-narrative': 'Non Narrative',
+    'target-practise': 'Target Practise',
+    'akkad': 'Akkad',
+    'beavis': 'Beavis',
+    'bot-and-boy': 'bot and boy',
+    'monkesh': 'Monkesh',
+    'cube': 'cube',
+    'cyberpunk': 'Cyberpunk',
+    'wine': 'Wine',
+    'illustrations': 'Extra Work'
+  };
+
+  // Switch to Level 0: Root (List View of all projects active by default)
+  function showRoot() {
+    currentLevel = 'root';
+    activeCatId = null;
+    activeSubId = null;
+
+    if (viewRoot) viewRoot.classList.add('active');
+    if (viewCat) viewCat.classList.remove('active');
+    if (viewSub) viewSub.classList.remove('active');
+    if (viewAll) viewAll.classList.remove('active');
+
+    // Ensure List View is visible and all 11 projects are shown
+    const listView = document.getElementById('projects-list-view');
+    const catGrid = document.getElementById('categories-grid-view');
+    if (listView) {
+      listView.style.display = 'flex';
+      listView.querySelectorAll('.project-list-item').forEach(item => {
+        item.style.display = 'flex';
+      });
+    }
+    if (catGrid) catGrid.style.display = 'none';
+
+    if (toggleText) toggleText.textContent = 'Category Cards';
+    if (toggleIcon) toggleIcon.textContent = '▦';
+
+    if (crumbRoot) {
+      crumbRoot.classList.add('active');
+      crumbRoot.style.display = 'inline-flex';
+    }
+    if (crumbSepCat) crumbSepCat.style.display = 'none';
+    if (crumbCat) crumbCat.style.display = 'none';
+    if (crumbSepSub) crumbSepSub.style.display = 'none';
+    if (crumbSub) crumbSub.style.display = 'none';
+
+    if (statsBadge) statsBadge.textContent = '11 Projects • 4 Categories • 30 Assets';
+    updatePills('root');
+  }
+
+  // Filter projects inside the list view by category
+  function filterProjectsList(catId) {
+    const listView = document.getElementById('projects-list-view');
+    const catGrid = document.getElementById('categories-grid-view');
+    if (!listView) return;
+
+    if (catGrid) catGrid.style.display = 'none';
+    listView.style.display = 'flex';
+
+    if (toggleText) toggleText.textContent = 'Category Cards';
+    if (toggleIcon) toggleIcon.textContent = '▦';
+
+    const items = listView.querySelectorAll('.project-list-item');
+    let visibleCount = 0;
+    items.forEach(item => {
+      if (catId === 'root' || catId === 'all' || item.dataset.parentCat === catId || item.dataset.cat === catId) {
+        item.style.display = 'flex';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    const catName = categoryNames[catId] || catId;
+    if (statsBadge) {
+      statsBadge.textContent = catId === 'root' ? '11 Projects • 4 Categories • 30 Assets' : catName + ' (' + visibleCount + ' Projects)';
+    }
+  }
+
+  // Toggle between List View and Categories Grid
+  function toggleViewMode() {
+    const listView = document.getElementById('projects-list-view');
+    const catGrid = document.getElementById('categories-grid-view');
+    if (!listView || !catGrid) return;
+
+    if (listView.style.display !== 'none') {
+      listView.style.display = 'none';
+      catGrid.style.display = 'grid';
+      if (toggleText) toggleText.textContent = 'List View';
+      if (toggleIcon) toggleIcon.textContent = '☰';
+      if (statsBadge) statsBadge.textContent = 'Categories Overview (4 Categories)';
+    } else {
+      catGrid.style.display = 'none';
+      listView.style.display = 'flex';
+      if (toggleText) toggleText.textContent = 'Category Cards';
+      if (toggleIcon) toggleIcon.textContent = '▦';
+      if (statsBadge) statsBadge.textContent = '11 Projects • 4 Categories • 30 Assets';
+    }
+  }
+
+  // Switch to Level 1: Category
+  function showCategory(catId) {
+    if (!catId) return showRoot();
+    currentLevel = 'cat';
+    activeCatId = catId;
+    activeSubId = null;
+
+    if (viewRoot) viewRoot.classList.remove('active');
+    if (viewCat) viewCat.classList.add('active');
+    if (viewSub) viewSub.classList.remove('active');
+    if (viewAll) viewAll.classList.remove('active');
+
+    // Hide all category containers, show only this one
+    document.querySelectorAll('.category-subfolder-container').forEach(el => {
+      el.style.display = 'none';
+    });
+    const target = document.getElementById('cat-container-' + catId);
+    if (target) target.style.display = 'block';
+
+    // Update breadcrumbs
+    if (crumbRoot) crumbRoot.classList.remove('active');
+    if (crumbSepCat) crumbSepCat.style.display = 'inline';
+    if (crumbCat) {
+      crumbCat.style.display = 'inline-flex';
+      crumbCat.classList.add('active');
+      crumbCat.dataset.catId = catId;
+      if (crumbCatText) crumbCatText.textContent = categoryNames[catId] || catId;
+    }
+    if (crumbSepSub) crumbSepSub.style.display = 'none';
+    if (crumbSub) crumbSub.style.display = 'none';
+
+    if (statsBadge) statsBadge.textContent = 'Category: ' + (categoryNames[catId] || catId);
+    updatePills(catId);
+  }
+
+  // Switch to Level 2: Subfolder
+  function showSubfolder(subId, parentCatId) {
+    if (!subId) return showRoot();
+    currentLevel = 'sub';
+    activeSubId = subId;
+    activeCatId = parentCatId || activeCatId;
+
+    if (viewRoot) viewRoot.classList.remove('active');
+    if (viewCat) viewCat.classList.remove('active');
+    if (viewSub) viewSub.classList.add('active');
+    if (viewAll) viewAll.classList.remove('active');
+
+    // Hide all sub containers, show only this one
+    document.querySelectorAll('.subfolder-content-container').forEach(el => {
+      el.style.display = 'none';
+    });
+    const target = document.getElementById('sub-container-' + subId);
+    if (target) {
+      target.style.display = 'block';
+      if (!activeCatId && target.dataset.parentCat) {
+        activeCatId = target.dataset.parentCat;
+      }
+    }
+
+    // Update breadcrumbs
+    if (crumbRoot) crumbRoot.classList.remove('active');
+    if (crumbSepCat) crumbSepCat.style.display = 'inline';
+    if (crumbCat) {
+      crumbCat.style.display = 'inline-flex';
+      crumbCat.classList.remove('active');
+      crumbCat.dataset.catId = activeCatId;
+      if (crumbCatText) crumbCatText.textContent = categoryNames[activeCatId] || activeCatId;
+    }
+    if (crumbSepSub) crumbSepSub.style.display = 'inline';
+    if (crumbSub) {
+      crumbSub.style.display = 'inline-flex';
+      crumbSub.classList.add('active');
+      if (crumbSubText) crumbSubText.textContent = subfolderNames[subId] || subId;
+    }
+
+    if (statsBadge) statsBadge.textContent = 'Project: ' + (subfolderNames[subId] || subId);
+    updatePills(activeCatId);
+  }
+
+  function updatePills(activeId) {
+    document.querySelectorAll('.folder-tab-btn').forEach(btn => {
+      if (btn.dataset.tabFolder === activeId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  // Event Listeners for Breadcrumbs
+  if (crumbRoot) crumbRoot.addEventListener('click', () => showRoot());
+  if (crumbCat) crumbCat.addEventListener('click', () => {
+    if (activeCatId) showCategory(activeCatId);
+  });
+  if (toggleBtn) toggleBtn.addEventListener('click', toggleViewMode);
+
+  // Event Listeners for category cards and list items
+  document.addEventListener('click', (e) => {
+    // Open Category Card
+    const catCard = e.target.closest('[data-open-cat]');
+    if (catCard) {
+      const catId = catCard.dataset.openCat;
+      showCategory(catId);
+      window.scrollTo({ top: document.getElementById('folder-explorer').offsetTop - 80, behavior: 'smooth' });
+      return;
+    }
+
+    // Open Subfolder / Project Card (List item or thumbnail click)
+    const subCard = e.target.closest('[data-open-sub]');
+    if (subCard) {
+      if (subCard.dataset.dragged === 'true') {
+        subCard.removeAttribute('data-dragged');
+        return;
+      }
+      const subId = subCard.dataset.openSub;
+      const parentCat = subCard.dataset.parentCat;
+      showSubfolder(subId, parentCat);
+      window.scrollTo({ top: document.getElementById('folder-explorer').offsetTop - 80, behavior: 'smooth' });
+      return;
+    }
+
+    // Back to Category action
+    const backCatBtn = e.target.closest('[data-action="go-parent-cat"]');
+    if (backCatBtn) {
+      const catId = backCatBtn.dataset.parentCat || activeCatId;
+      showCategory(catId);
+      window.scrollTo({ top: document.getElementById('folder-explorer').offsetTop - 80, behavior: 'smooth' });
+      return;
+    }
+
+    // Back to Root action
+    const backRootBtn = e.target.closest('[data-action="go-root"]');
+    if (backRootBtn) {
+      showRoot();
+      window.scrollTo({ top: document.getElementById('folder-explorer').offsetTop - 80, behavior: 'smooth' });
+      return;
+    }
+
+    // Tab buttons in pills strip
+    const tabBtn = e.target.closest('[data-tab-folder]');
+    if (tabBtn) {
+      const target = tabBtn.dataset.tabFolder;
+      if (target === 'root') {
+        showRoot();
+      } else {
+        showRoot();
+        filterProjectsList(target);
+        updatePills(target);
+      }
+      return;
+    }
+  });
+
+  // Initialize Project Scrolling Tracks (Mouse drag, mouse wheel, scroll arrows, and filters)
+  function initScrollTracks() {
+    document.querySelectorAll('.projects-scroll-container').forEach(track => {
+      let isDown = false;
+      let startX = 0;
+      let scrollLeftPos = 0;
+      let hasMoved = false;
+
+      track.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        isDown = true;
+        hasMoved = false;
+        track.classList.add('is-dragging');
+        startX = e.pageX - track.offsetLeft;
+        scrollLeftPos = track.scrollLeft;
+      });
+
+      track.addEventListener('mouseleave', () => {
+        isDown = false;
+        track.classList.remove('is-dragging');
+      });
+
+      track.addEventListener('mouseup', () => {
+        isDown = false;
+        track.classList.remove('is-dragging');
+        if (hasMoved) {
+          setTimeout(() => {
+            track.querySelectorAll('.project-scroll-card').forEach(c => c.removeAttribute('data-dragged'));
+          }, 100);
+        }
+      });
+
+      track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        if (Math.abs(walk) > 8) {
+          hasMoved = true;
+          track.querySelectorAll('.project-scroll-card').forEach(c => c.setAttribute('data-dragged', 'true'));
+        }
+        track.scrollLeft = scrollLeftPos - walk;
+      });
+
+      // Wheel horizontal scroll
+      track.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          const canLeft = track.scrollLeft > 0;
+          const canRight = track.scrollLeft < (track.scrollWidth - track.clientWidth - 2);
+          if ((e.deltaY < 0 && canLeft) || (e.deltaY > 0 && canRight)) {
+            track.scrollLeft += e.deltaY;
+            e.preventDefault();
+          }
+        }
+      }, { passive: false });
+    });
+
+    // Arrow buttons for master project scroll track
+    const scrollPrevBtn = document.getElementById('scroll-prev-btn');
+    const scrollNextBtn = document.getElementById('scroll-next-btn');
+    const masterScrollTrack = document.getElementById('projects-scroll-track');
+    if (scrollPrevBtn && masterScrollTrack) {
+      scrollPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        masterScrollTrack.scrollBy({ left: -360, behavior: 'smooth' });
+      });
+    }
+    if (scrollNextBtn && masterScrollTrack) {
+      scrollNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        masterScrollTrack.scrollBy({ left: 360, behavior: 'smooth' });
+      });
+    }
+
+    // Arrow buttons for category scroll tracks
+    document.querySelectorAll('.cat-scroll-prev').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetId = btn.dataset.target;
+        const track = document.getElementById(targetId);
+        if (track) track.scrollBy({ left: -340, behavior: 'smooth' });
+      });
+    });
+    document.querySelectorAll('.cat-scroll-next').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetId = btn.dataset.target;
+        const track = document.getElementById(targetId);
+        if (track) track.scrollBy({ left: 340, behavior: 'smooth' });
+      });
+    });
+
+    // Category filter pills in master scrolling section
+    document.querySelectorAll('#project-scroll-filters .project-filter-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('#project-scroll-filters .project-filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+        if (!masterScrollTrack) return;
+        const cards = masterScrollTrack.querySelectorAll('.project-scroll-card');
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        masterScrollTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  initScrollTracks();
+
+  // ===========================================================================
+  // IN-SITE SCROLLABLE PDF VIEWER CONTROLLER
+  // ===========================================================================
+  const masterIframe = document.getElementById('master-pdf-iframe');
+  const masterTitle = document.getElementById('master-pdf-title');
+  const masterSub = document.getElementById('master-pdf-sub');
+  const masterSize = document.getElementById('master-pdf-size');
+  const masterOpenBtn = document.getElementById('master-pdf-open-btn');
+  const masterDownloadBtn = document.getElementById('master-pdf-download-btn');
+  const masterDownloadText = document.getElementById('master-download-text');
+  const masterSummaryText = document.getElementById('master-pdf-summary-text');
+  const masterHighlightsBox = document.getElementById('master-pdf-highlights-box');
+  const masterHeightBtn = document.getElementById('master-pdf-height-btn');
+  const masterHeightText = document.getElementById('master-height-text');
+  const masterFullscreenBtn = document.getElementById('master-pdf-fullscreen-btn');
+  const masterContainer = document.getElementById('master-in-site-pdf-viewer');
+
+  const tabAkkad = document.getElementById('tab-pdf-akkad');
+  const tabTarget = document.getElementById('tab-pdf-target');
+
+  function switchMasterPdf(tabEl) {
+    if (!tabEl || !masterIframe) return;
+    document.querySelectorAll('.pdf-switch-btn').forEach(btn => btn.classList.remove('active'));
+    tabEl.classList.add('active');
+
+    const src = tabEl.dataset.pdfSrc;
+    const title = tabEl.dataset.pdfTitle;
+    const size = tabEl.dataset.pdfSize;
+    const format = tabEl.dataset.pdfFormat;
+    const summary = tabEl.dataset.pdfSummary;
+    const highlights = (tabEl.dataset.pdfHighlights || '').split(',');
+
+    masterIframe.src = src + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH';
+    if (masterTitle) masterTitle.textContent = title;
+    if (masterSize) masterSize.textContent = size;
+    if (masterSub) masterSub.innerHTML = format + ' &bull; <strong style="color: var(--rust);">' + size + '</strong>';
+    if (masterOpenBtn) masterOpenBtn.href = src;
+    if (masterDownloadBtn) masterDownloadBtn.href = src;
+    if (masterDownloadText) masterDownloadText.textContent = 'Download (' + size + ')';
+    if (masterSummaryText) masterSummaryText.textContent = summary;
+
+    if (masterHighlightsBox) {
+      masterHighlightsBox.innerHTML = '';
+      highlights.forEach(hl => {
+        const span = document.createElement('span');
+        span.innerHTML = '&bull; ' + hl.trim();
+        masterHighlightsBox.appendChild(span);
+      });
+    }
+  }
+
+  if (tabAkkad) tabAkkad.addEventListener('click', () => switchMasterPdf(tabAkkad));
+  if (tabTarget) tabTarget.addEventListener('click', () => switchMasterPdf(tabTarget));
+
+  // Toggle Height (800px <-> 1200px)
+  if (masterHeightBtn && masterContainer) {
+    masterHeightBtn.addEventListener('click', () => {
+      masterContainer.classList.toggle('expanded');
+      const isExp = masterContainer.classList.contains('expanded');
+      if (masterHeightText) masterHeightText.textContent = isExp ? 'Compact (800px)' : 'Expand (1200px)';
+    });
+  }
+
+  // Fullscreen Viewer Container
+  if (masterFullscreenBtn && masterContainer) {
+    masterFullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        masterContainer.requestFullscreen().catch(err => {
+          console.warn('Fullscreen request failed:', err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
+  }
+
+  // In-subfolder PDF toggles
+  document.querySelectorAll('.toggle-pdf-height-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const el = document.getElementById(targetId);
+      if (el) el.classList.toggle('expanded');
+    });
+  });
+
+  document.querySelectorAll('.toggle-pdf-fullscreen-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const el = document.getElementById(targetId);
+      if (el) {
+        if (!document.fullscreenElement) {
+          el.requestFullscreen().catch(e => console.warn(e));
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+  });
+
+  // URL Query Parameters / Deep-Linking Support
+  // e.g. ?sub=jaimini, ?project=akkad, ?cat=3d, ?category=preprod
+  const urlParams = new URLSearchParams(window.location.search);
+  const folderParam = urlParams.get('folder') || urlParams.get('category') || urlParams.get('cat');
+  const subParam = urlParams.get('sub') || urlParams.get('project');
+  const projectParam = urlParams.get('project') || urlParams.get('sub');
+
+  const projectFolderMap = {
+    'jaimini': { cat: '2d', sub: 'jaimini' },
+    'jaimini-title-sequence': { cat: '2d', sub: 'jaimini' },
+    'title-sequences': { cat: '2d', sub: 'jaimini' },
+    'non-narrative': { cat: '2d', sub: 'non-narrative' },
+    'target-practise': { cat: '2d', sub: 'target-practise' },
+    'comic-storyboards': { cat: '2d', sub: 'target-practise' },
+    'the-tale-of-akkad': { cat: 'preprod', sub: 'akkad' },
+    'akkad': { cat: 'preprod', sub: 'akkad' },
+    'beavis': { cat: 'preprod', sub: 'beavis' },
+    'scene-layout': { cat: 'preprod', sub: 'beavis' },
+    'bot-and-boy': { cat: 'preprod', sub: 'bot-and-boy' },
+    'the-bot-and-the-boy': { cat: 'preprod', sub: 'bot-and-boy' },
+    'storyboarding': { cat: 'preprod', sub: 'bot-and-boy' },
+    'monkesh': { cat: 'preprod', sub: 'monkesh' },
+    'character-design': { cat: 'preprod', sub: 'monkesh' },
+    '3d-motion': { cat: '3d', sub: 'cube' },
+    'cube': { cat: '3d', sub: 'cube' },
+    'cyberpunk': { cat: '3d', sub: 'cyberpunk' },
+    'wine': { cat: '3d', sub: 'wine' },
+    'xtra-work': { cat: 'xtra-work', sub: 'illustrations' },
+    'illustrations': { cat: 'xtra-work', sub: 'illustrations' },
+    'extra-work': { cat: 'xtra-work', sub: 'illustrations' }
+  };
+
+  if (folderParam && subParam) {
+    showSubfolder(subParam, folderParam);
+  } else if (projectParam && projectFolderMap[projectParam]) {
+    const map = projectFolderMap[projectParam];
+    showSubfolder(map.sub, map.cat);
+  } else if (subParam && projectFolderMap[subParam]) {
+    const map = projectFolderMap[subParam];
+    showSubfolder(map.sub, map.cat);
+  } else if (subParam) {
+    showSubfolder(subParam);
+  } else if (folderParam) {
+    showCategory(folderParam);
+  }
+
+  // Hash direct jump support
+  const hash = window.location.hash;
+  if (hash === '#in-site-pdf-viewer') {
+    setTimeout(() => {
+      const el = document.getElementById('in-site-pdf-viewer');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  }
+
+})();
+</script>
+{% endblock %}
