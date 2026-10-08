@@ -2683,6 +2683,11 @@ class PortfolioApp {
         const target = section.querySelector('#sub-container-' + subId);
         if (target) {
           target.style.display = 'block';
+          target.querySelectorAll('iframe[data-pdf-src]').forEach(iframe => {
+            if (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('.pdf')) {
+              iframe.src = iframe.dataset.pdfSrc;
+            }
+          });
           if (!activeCatId && target.dataset.parentCat) {
             activeCatId = target.dataset.parentCat;
           }
@@ -2998,6 +3003,31 @@ class PortfolioApp {
 
     if (tabAkkad) tabAkkad.addEventListener('click', () => switchMasterPdf(tabAkkad));
     if (tabTarget) tabTarget.addEventListener('click', () => switchMasterPdf(tabTarget));
+
+    // IntersectionObserver to lazy load master PDF viewer when viewport reaches section
+    if (masterContainer && masterIframe) {
+      if ('IntersectionObserver' in window) {
+        const pdfObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
+                masterIframe.src = masterIframe.dataset.pdfSrc;
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '300px' });
+        pdfObserver.observe(masterContainer);
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
+              masterIframe.src = masterIframe.dataset.pdfSrc;
+            }
+          }, 1500);
+        });
+      }
+    }
 
     // Handle quick-jump buttons to specific PDFs
     document.addEventListener('click', (e) => {

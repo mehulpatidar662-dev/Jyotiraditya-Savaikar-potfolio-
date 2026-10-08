@@ -351,7 +351,7 @@
             </div>
 
             <div class="in-site-pdf-stage">
-              <iframe src="{{ url_for('static', filename=sub.pdf_embed.file_path) }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+              <iframe data-pdf-src="{{ url_for('static', filename=sub.pdf_embed.file_path) }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
                       class="in-site-pdf-iframe" 
                       title="{{ sub.pdf_embed.title }}"
                       loading="lazy">
@@ -383,7 +383,7 @@
               {% if item.type == 'video' %}
               <div class="folder-media-card">
                 <div class="folder-video-box">
-                  <video controls playsinline preload="metadata" poster="{{ url_for('static', filename=item.poster) }}" style="width: 100%; max-height: 420px; object-fit: contain; display: block; margin: 0 auto; background: #000;">
+                  <video controls playsinline preload="none" poster="{{ url_for('static', filename=item.poster) }}" style="width: 100%; max-height: 420px; object-fit: contain; display: block; margin: 0 auto; background: #000;">
                     <source src="{{ url_for('static', filename=item.file_path) }}" type="{{ 'video/quicktime' if item.file_path.endswith('.mov') else 'video/mp4' }}">
                     {% if item.file_path_alt %}
                     <source src="{{ url_for('static', filename=item.file_path_alt) }}" type="video/mp4">

@@ -81,7 +81,9 @@ def build_portfolio():
             print(f"  [+] Mirrored static/{sub} -> ./{sub}")
 
     # Ensure aditya_project exists in root
-    if os.path.exists(os.path.join("static", "aditya_project")) and not os.path.exists("aditya_project"):
+    if os.path.exists(os.path.join("static", "aditya_project")):
+        if os.path.exists("aditya_project"):
+            shutil.rmtree("aditya_project")
         shutil.copytree(os.path.join("static", "aditya_project"), "aditya_project")
         print("  [+] Mirrored static/aditya_project -> ./aditya_project")
 
@@ -97,8 +99,11 @@ def build_portfolio():
             shutil.copytree(src, dst)
             print(f"  [+] Mirrored static/{sub} -> dist/static/{sub}")
 
-    if os.path.exists(os.path.join("static", "aditya_project")) and not os.path.exists(os.path.join("dist", "static", "aditya_project")):
-        shutil.copytree(os.path.join("static", "aditya_project"), os.path.join("dist", "static", "aditya_project"))
+    if os.path.exists(os.path.join("static", "aditya_project")):
+        dst_aditya = os.path.join("dist", "static", "aditya_project")
+        if os.path.exists(dst_aditya):
+            shutil.rmtree(dst_aditya)
+        shutil.copytree(os.path.join("static", "aditya_project"), dst_aditya)
         print("  [+] Mirrored static/aditya_project -> dist/static/aditya_project")
 
     routes = [
