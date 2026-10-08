@@ -32,6 +32,7 @@ def make_relative(html_content, current_page):
     s = re.sub(r'data-video-src=["\']/static/([^"\']+)["\']', r'data-video-src="static/\1"', s)
     s = re.sub(r'data-lightbox-src=["\']/static/([^"\']+)["\']', r'data-lightbox-src="static/\1"', s)
     s = re.sub(r'data-pdf-src=["\']/static/([^"\']+)["\']', r'data-pdf-src="static/\1"', s)
+    s = re.sub(r'data-pdf-url=["\']/static/([^"\']+)["\']', r'data-pdf-url="static/\1"', s)
 
     # 2. Main route links (supporting URL hash fragments)
     s = re.sub(r'href=["\']/about(#.*?)?["\']', r'href="about.html\1"', s)
@@ -53,6 +54,7 @@ def make_relative(html_content, current_page):
 
     # 5. Fix spaces in PDF names
     s = s.replace("TARGET PRACTISE.pdf", "TARGET_PRACTISE.pdf")
+    s = s.replace("TARGET%20PRACTISE.pdf", "TARGET_PRACTISE.pdf")
 
     # 6. Ensure View Gallery buttons on category cards go to dedicated gallery pages
     # <a href="#gallery-{{ cat.slug }}" class="category-view-btn" data-gallery-target="{{ cat.slug }}">View Gallery &rarr;</a>

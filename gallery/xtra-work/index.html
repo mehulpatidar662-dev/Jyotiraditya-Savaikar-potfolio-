@@ -1792,12 +1792,12 @@
                     <span>Fullscreen</span>
                   </button>
 
-                  <a href="static/aditya_project/2D/Target%20Practise/TARGET%20PRACTISE.pdf" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+                  <a href="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     <span>Open in Tab</span>
                   </a>
 
-                  <a href="static/aditya_project/2D/Target%20Practise/TARGET%20PRACTISE.pdf" download class="pdf-action-btn primary">
+                  <a href="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf" download class="pdf-action-btn primary">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     <span>Download (84.1 MB)</span>
                   </a>
@@ -1805,11 +1805,21 @@
               </div>
 
               <!-- Live Scrollable PDF Frame Viewport -->
-              <div class="in-site-pdf-stage">
-                <iframe data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET%20PRACTISE.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+              <div class="in-site-pdf-stage"
+                   id="gallery-pdf-stage-pdf-target-practise-reader"
+                   data-pdf-url="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+                   data-pdf-title="Target Practise — Action Comic Storyboard Book"
+                   style="position: relative; background: #12151e; min-height: 400px;">
+                <div class="pdf-loading-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 1; pointer-events: none;">
+                  <div class="pdf-spinner" style="width: 38px; height: 38px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--rust, #e05638); border-radius: 50%; animation: pdfSpin 0.8s linear infinite;"></div>
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">Rendering Interactive Document...</div>
+                  <div style="font-size: 0.78rem; color: #a0aec0;">84.1 MB publication &bull; Scrollable In-Site</div>
+                </div>
+                <iframe data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
                         class="in-site-pdf-iframe" 
                         title="Target Practise — Action Comic Storyboard Book"
-                        loading="lazy">
+                        style="position: relative; z-index: 2; width: 100%; height: 800px; border: none; display: block; background: #1b1e28;"
+                        onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
                 </iframe>
               </div>
 
@@ -1929,11 +1939,21 @@
               </div>
 
               <!-- Live Scrollable PDF Frame Viewport -->
-              <div class="in-site-pdf-stage">
+              <div class="in-site-pdf-stage"
+                   id="gallery-pdf-stage-pdf-akkad-reader"
+                   data-pdf-url="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+                   data-pdf-title="The Tale of Akkad — Full Production Art &amp; Storyboard Book"
+                   style="position: relative; background: #12151e; min-height: 400px;">
+                <div class="pdf-loading-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 1; pointer-events: none;">
+                  <div class="pdf-spinner" style="width: 38px; height: 38px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--rust, #e05638); border-radius: 50%; animation: pdfSpin 0.8s linear infinite;"></div>
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">Rendering Interactive Document...</div>
+                  <div style="font-size: 0.78rem; color: #a0aec0;">32.7 MB publication &bull; Scrollable In-Site</div>
+                </div>
                 <iframe data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
                         class="in-site-pdf-iframe" 
                         title="The Tale of Akkad — Full Production Art &amp; Storyboard Book"
-                        loading="lazy">
+                        style="position: relative; z-index: 2; width: 100%; height: 800px; border: none; display: block; background: #1b1e28;"
+                        onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
                 </iframe>
               </div>
 
@@ -3267,7 +3287,7 @@
             </button>
 
             <button class="pdf-switch-btn" id="tab-pdf-target"
-                    data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET%20PRACTISE.pdf"
+                    data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf"
                     data-pdf-title="Target Practise — Action Comic Storyboard Book"
                     data-pdf-size="84.1 MB"
                     data-pdf-format="Interactive Scrollable PDF Publication &bull; 600 DPI Inks"
@@ -3279,12 +3299,22 @@
         </div>
 
         <!-- The In-Site Scrollable Iframe -->
-        <div class="in-site-pdf-stage">
+        <div class="in-site-pdf-stage" 
+             id="master-pdf-stage"
+             data-pdf-url="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+             data-pdf-title="The Tale of Akkad — Full Production Art & Storyboard Book"
+             style="position: relative; background: #12151e; min-height: 400px;">
+          <div class="pdf-loading-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 1; pointer-events: none;">
+            <div class="pdf-spinner" style="width: 38px; height: 38px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--rust, #e05638); border-radius: 50%; animation: pdfSpin 0.8s linear infinite;"></div>
+            <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">Rendering Master Document...</div>
+            <div style="font-size: 0.78rem; color: #a0aec0;">High-Resolution Publication &bull; Scrollable In-Site</div>
+          </div>
           <iframe id="master-pdf-iframe" 
                   data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
                   class="in-site-pdf-iframe"
                   title="In-Site Scrollable PDF Viewer"
-                  loading="lazy">
+                  style="position: relative; z-index: 2; width: 100%; height: 800px; border: none; display: block; background: #1b1e28;"
+                  onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
           </iframe>
         </div>
 
@@ -3450,7 +3480,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js"></script>
+  <script src="static/js/bundle.js?v=20261009_3"></script>
   
 <script>
 // =============================================================================
@@ -3646,8 +3676,10 @@
     if (target) {
       target.style.display = 'block';
       target.querySelectorAll('iframe[data-pdf-src]').forEach(iframe => {
-        if (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('.pdf')) {
-          iframe.src = iframe.dataset.pdfSrc;
+        const pUrl = iframe.getAttribute('data-pdf-src') || iframe.dataset.pdfSrc;
+        if (pUrl && (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('.pdf'))) {
+          iframe.removeAttribute('loading');
+          iframe.src = pUrl;
         }
       });
       if (!activeCatId && target.dataset.parentCat) {
