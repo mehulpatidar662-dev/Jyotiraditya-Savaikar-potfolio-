@@ -6298,12 +6298,11 @@ button:focus-visible {
 }
 
 .subfolder-header-box.sticky-bar {
-  position: sticky;
-  top: 72px;
-  z-index: 90;
+  position: static !important;
+  top: auto;
+  z-index: auto;
   background: var(--bg-card);
-  border-left: 4px solid var(--rust);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
 
