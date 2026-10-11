@@ -22,12 +22,9 @@
 
     <!-- Header Section -->
     <div style="border-bottom: 2px solid var(--border-color); padding-bottom: 24px; margin-bottom: 36px;">
-      <h1 class="section-title" style="text-align: left; margin-bottom: 10px; font-size: clamp(2rem, 3.6vw, 2.8rem);">
+      <h1 class="section-title" style="text-align: left; margin-bottom: 0; font-size: clamp(2rem, 3.6vw, 2.8rem);">
         Production Gallery &amp; Project Catalog Explorer
       </h1>
-      <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 900px; font-size: 1.02rem; line-height: 1.6;">
-        Explore Jyotiraditya's complete portfolio across the 3 core production categories (<code>2D</code>, <code>Preprod</code>, <code>Xtra work</code>). Read and scroll through the complete high-resolution production books and comic publications directly inside the website.
-      </p>
     </div>
 
     <!-- =======================================================================
@@ -52,23 +49,10 @@
               <span id="crumb-sub-text">Project</span>
             </button>
           </nav>
-
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-            <span class="folder-stats-badge" id="folder-stats-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-              <span id="folder-stats-text">3 Categories &bull; 8 Projects &bull; 27 Assets</span>
-            </span>
-
-            <button class="folder-view-mode-toggle" id="view-mode-toggle" title="Switch between list view and category cards">
-              <span id="toggle-icon">▦</span>
-              <span id="toggle-text">Category Cards</span>
-            </button>
-          </div>
         </div>
 
         <!-- Quick Jump Category Pills -->
         <div class="folder-tabs-strip">
-          <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Filter Projects:</span>
           <button class="folder-tab-btn active" data-tab-folder="root">
             <span>✨ All Projects (8)</span>
           </button>
@@ -458,12 +442,9 @@
            =================================================================== -->
       <div class="folder-view-level" id="view-level-all">
         <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 30px;">
-          <h2 style="font-size: 1.45rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 6px 0;">
+          <h2 style="font-size: 1.45rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0;">
             All Projects Expanded View
           </h2>
-          <p style="margin: 0; font-size: 0.9rem; color: var(--text-dim);">
-            Complete continuous index of all 4 categories and 11 projects.
-          </p>
         </div>
 
         {% for folder in folder_archives %}
