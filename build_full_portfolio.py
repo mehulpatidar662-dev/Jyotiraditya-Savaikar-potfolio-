@@ -83,6 +83,10 @@ def bundle_javascript():
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
                 content = f.read()
+            # Cleanly strip ES module import/export keywords for universal browser script compatibility
+            content = re.sub(r'^\s*import\s+.*?;\s*$', '', content, flags=re.MULTILINE)
+            content = re.sub(r'^\s*export\s+default\s+', 'const DefaultExport = ', content, flags=re.MULTILINE)
+            content = re.sub(r'^\s*export\s+', '', content, flags=re.MULTILINE)
             parts.append(f'/* ==================== MODULE: {mod} ==================== */\n\n' + content + '\n\n')
     bundle_content = ''.join(parts)
     out_path = os.path.join("static", "js", "bundle.js")

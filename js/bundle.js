@@ -8,8 +8,7 @@
 
 // Indian Folk-Art Decorations & Kolam Ornaments
 // Generates scalable SVG Kolam motifs, repeating diamond borders, and Indian folk accents
-
-export const FolkArt = {
+const FolkArt = {
   // Repeating diamond border strip (Red/Black/Green motifs)
   renderDiamondBorder(containerId) {
     const containers = document.querySelectorAll(containerId || '.folk-border-strip');
@@ -117,8 +116,7 @@ export const FolkArt = {
 /* ==================== MODULE: icons.js ==================== */
 
 // Professional SVG Icons for Toolkit & UI Elements
-
-export const Icons = {
+const Icons = {
   blender: `
     <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
       <path d="M12.518 0c-3.197 0-5.836 2.4-6.236 5.488l-4.526 2.62a1.35 1.35 0 0 0-.486 1.848 1.35 1.35 0 0 0 1.848.486l4.234-2.45c.815.772 1.884 1.288 3.072 1.43v5.042a1.35 1.35 0 0 0 2.7 0V9.422c1.188-.142 2.257-.658 3.072-1.43l4.234 2.45a1.35 1.35 0 0 0 1.848-.486 1.35 1.35 0 0 0-.486-1.848l-4.526-2.62C16.26 2.4 13.621 0 10.424 0h2.094zm-.094 2.7c1.99 0 3.6 1.61 3.6 3.6s-1.61 3.6-3.6 3.6-3.6-1.61-3.6-3.6 1.61-3.6 3.6-3.6zm0 1.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm-1.8 10.8a5.4 5.4 0 1 0 0 10.8 5.4 5.4 0 0 0 0-10.8zm0 2.7a2.7 2.7 0 1 1 0 5.4 2.7 2.7 0 0 1 0-5.4z"/>
@@ -177,8 +175,7 @@ export const Icons = {
 
 // QR Code Generator for Behance, LinkedIn, Phone, and Custom Links
 // Implements standard QR matrix calculation or high-contrast crisp vector QR display
-
-export const QRHelper = {
+const QRHelper = {
   // Generates a sharp, beautiful SVG QR representation styled to match the warm Indian aesthetic
   generateQRCodeSvg(data, size = 160, color = "#1F1712", bgColor = "#FFF8EA") {
     // Generate deterministic pseudo-matrix based on data hash with authentic QR corners (finder patterns)
@@ -357,8 +354,7 @@ export const QRHelper = {
 
 // 3D Animated Voxel Cube & Logo Reveal Component
 // Pure HTML5 Canvas 3D isometric/perspective voxel engine with dynamic lighting, logo reveal, and physics
-
-export class VoxelCube {
+class VoxelCube {
   constructor(canvasId) {
     this.canvas = typeof canvasId === 'string' ? document.getElementById(canvasId) : canvasId;
     if (!this.canvas) return;
@@ -712,8 +708,7 @@ export class VoxelCube {
 // Interactive Media Player & Artwork Generator
 // Provides interactive animatic previewers, animated scene canvases,
 // frame steppers for storyboards, and drop-in support for real video files.
-
-export const MediaPlayer = {
+const MediaPlayer = {
   activeCanvases: new Map(),
 
   // Initialize all interactive media players on the page
@@ -1997,11 +1992,10 @@ export const MediaPlayer = {
 /* ==================== MODULE: app.js ==================== */
 
 // Main Application Logic & SPA Routing
-import { FolkArt } from './folk-art.js';
-import { QRHelper } from './qr-generator.js';
-import { VoxelCube } from './voxel-cube.js';
-import { MediaPlayer } from './media-player.js';
-import { Icons } from './icons.js';
+
+
+
+
 
 class PortfolioApp {
   constructor() {
@@ -2293,7 +2287,7 @@ class PortfolioApp {
           window.location.hash = targetId;
           const categorySlug = targetId.startsWith('gallery-') ? targetId.replace('gallery-', '') : 'all';
           this.filterGallery(categorySlug);
-          const gallerySection = document.getElementById('gallery');
+          const gallerySection = document.getElementById('gallery') || document.getElementById('work') || document.getElementById('folder-explorer');
           if (gallerySection) {
             gallerySection.scrollIntoView({ behavior: 'smooth' });
           }
@@ -2375,11 +2369,10 @@ class PortfolioApp {
 
   // First-Class Dark Mode Toggle & System Preference Detection
   setupThemeSwitcher() {
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     let savedTheme = localStorage.getItem('jyoti-theme');
 
     if (!savedTheme) {
-      savedTheme = systemPrefersDark ? 'dark' : 'light';
+      savedTheme = 'dark';
     }
 
     const applyTheme = (themeName) => {

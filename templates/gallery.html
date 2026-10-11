@@ -33,6 +33,7 @@
     <!-- =======================================================================
          FEATURE 1: INTERACTIVE FOLDER-IN-FOLDER ARCHIVE EXPLORER
          ======================================================================= -->
+    <div id="gallery" style="position: relative; top: -80px; visibility: hidden;"></div>
     <section class="folder-browser-section" id="folder-explorer">
       
       <!-- Interactive Master Breadcrumb & Navigation Strip -->
@@ -870,7 +871,13 @@
     if (e.key === 'Escape') {
       const lightboxModal = document.getElementById('lightbox-modal');
       if (lightboxModal && lightboxModal.classList.contains('active')) {
-        lightboxModal.classList.remove('active');
+        const closeBtn = document.getElementById('lightbox-close');
+        if (closeBtn) {
+          closeBtn.click();
+        } else {
+          lightboxModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
         return;
       }
       if (currentLevel === 'sub' || currentLevel === 'cat') {

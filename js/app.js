@@ -295,7 +295,7 @@ class PortfolioApp {
           window.location.hash = targetId;
           const categorySlug = targetId.startsWith('gallery-') ? targetId.replace('gallery-', '') : 'all';
           this.filterGallery(categorySlug);
-          const gallerySection = document.getElementById('gallery');
+          const gallerySection = document.getElementById('gallery') || document.getElementById('work') || document.getElementById('folder-explorer');
           if (gallerySection) {
             gallerySection.scrollIntoView({ behavior: 'smooth' });
           }
@@ -377,11 +377,10 @@ class PortfolioApp {
 
   // First-Class Dark Mode Toggle & System Preference Detection
   setupThemeSwitcher() {
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     let savedTheme = localStorage.getItem('jyoti-theme');
 
     if (!savedTheme) {
-      savedTheme = systemPrefersDark ? 'dark' : 'light';
+      savedTheme = 'dark';
     }
 
     const applyTheme = (themeName) => {

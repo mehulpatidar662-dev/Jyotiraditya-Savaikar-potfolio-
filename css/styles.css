@@ -13,61 +13,70 @@
      Iconic 2D Animator Carmine Red & Non-Photo Blue Drafting Aesthetic
      100% WCAG AAA High Contrast & Crystal Clear Text Legibility
      ======================================================================== */
-  --bg-cream: #F8FAFC; /* Crisp drafting paper / cool alabaster */
-  --bg-cream-light: #FFFFFF; /* Pure crisp white canvas */
-  --bg-cream-dark: #EDF2F7; /* Gentle cool slate contrast tracks */
-  --bg-cream-card: #FFFFFF; /* Clean white card surfaces */
+  --bg-primary: #F8FAFC; /* Crisp drafting paper / cool alabaster */
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF; /* Clean white card surfaces */
+  --bg-card-hover: #F1F5F9;
+  --bg-cream: #F8FAFC;
+  --bg-cream-light: #FFFFFF;
+  --bg-cream-dark: #EDF2F7;
+  --bg-cream-card: #FFFFFF;
 
   /* Primary Studio Red & Deep Maroon (Animation Keyframes & Accent Highlights) */
-  --red: #B91C1C; /* Rich Studio Red / Maroon - 100% true red, zero pink */
-  --red-hover: #991B1B; /* Deep Maroon Hover */
-  --red-light: #DC2626; /* Vivid Pure Red */
-  --red-dark: #7F1D1D; /* Deep Classic Maroon */
-  --red-soft: rgba(185, 28, 28, 0.08);
-  --rust: #B91C1C;
-  --rust-hover: #991B1B;
-  --rust-light: #DC2626;
-  --rust-dark: #7F1D1D;
-  --rust-soft: rgba(185, 28, 28, 0.08);
-  --maroon: #7F1D1D;
+  --red: #C2410C;
+  --red-hover: #9A3412;
+  --red-light: #EA580C;
+  --red-dark: #7C2D12;
+  --red-soft: rgba(194, 65, 12, 0.08);
+  --rust: #C2410C;
+  --rust-hover: #9A3412;
+  --rust-light: #EA580C;
+  --rust-dark: #7C2D12;
+  --rust-soft: rgba(194, 65, 12, 0.08);
+  --rust-glow: rgba(194, 65, 12, 0.22);
+  --maroon: #7C2D12;
   --maroon-dark: #450A0A;
 
   /* Primary Cobalt Blue (Animation Rough Pencils & Pre-Production) */
-  --blue: #1D4ED8; /* Rich Royal Sapphire / Cobalt Blue */
+  --blue: #1D4ED8;
   --blue-hover: #1E40AF;
   --blue-light: #3B82F6;
   --blue-dark: #1E3A8A;
-  --blue-cyan: #0284C7; /* Luminous Cyan Accent */
+  --blue-cyan: #0284C7;
   --blue-soft: rgba(29, 78, 216, 0.08);
-  --lime: #1D4ED8; /* High-contrast blue headers/badges */
-  --lime-accent: #0284C7; /* Electric Cyan */
-  --lime-glow: rgba(2, 132, 199, 0.3);
+  --lime: #1D4ED8;
+  --lime-accent: #0284C7;
+  --lime-glow: rgba(2, 132, 199, 0.25);
   --lime-soft: rgba(2, 132, 199, 0.08);
 
   /* Highlight Saffron Gold */
-  --gold: #F59E0B;
-  --gold-light: #FBBF24;
-  --gold-glow: rgba(245, 158, 11, 0.25);
+  --gold: #D97706;
+  --gold-light: #F59E0B;
+  --gold-glow: rgba(217, 119, 6, 0.22);
 
   /* Text & Typography: Guaranteed Razor Sharp 100% Contrast */
-  --brown: #1E293B; /* Deep Slate Navy body text - 100% visible & crisp */
-  --brown-dark: #0F172A; /* Obsidian Ink headings - maximum clarity */
+  --heading-color: #0F172A; /* Obsidian Ink headings - maximum clarity */
+  --text-color: #1E293B; /* Deep Slate Navy body text - 100% visible & crisp */
+  --text-dim: #64748B; /* Clean slate for metadata */
+  --text-muted: #64748B;
+  --brown: #1E293B;
+  --brown-dark: #0F172A;
   --brown-light: #475569;
-  --text-muted: #64748B; /* Clean slate for metadata */
+  --banner-heading: #FFFFFF;
 
   --dark-charcoal: #0F172A;
   --dark-surface: #070B14;
   --warm-white: #FFFFFF;
 
-  --heading-color: #0F172A;
-  --banner-heading: #FFFFFF;
-
   /* Subtle Borders & Dividers */
+  --border-color: rgba(15, 23, 42, 0.12);
+  --border-hover: rgba(194, 65, 12, 0.4);
   --border-subtle: rgba(15, 23, 42, 0.08);
   --border-medium: rgba(15, 23, 42, 0.16);
 
   /* Typography */
   --font-display: 'Syne', 'Unbounded', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Syne', 'Unbounded', sans-serif;
   --font-chunky: 'Unbounded', 'Syne', sans-serif;
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
@@ -76,7 +85,7 @@
   --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
   --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.08);
   --shadow-xl: 0 24px 50px rgba(15, 23, 42, 0.12);
-  --shadow-rust: 0 12px 32px rgba(185, 28, 28, 0.22);
+  --shadow-rust: 0 12px 32px rgba(194, 65, 12, 0.2);
 
   /* Transitions */
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -93,27 +102,32 @@
 }
 
 /* --------------------------------------------------------------------------
-   PALETTE 2: FIRST-CLASS DARK MODE (Cyber Crimson & Neon Cyan Studio)
-   Deep Midnight Studio Navy, Glowing Scarlet Red, Electric Animation Blue
+   PALETTE 2: FIRST-CLASS DARK MODE (Cinema Studio Dark & Glowing Vermilion)
+   Deep Midnight Studio Charcoal, Glowing Terracotta Vermilion, Cyan Pencils
    -------------------------------------------------------------------------- */
 [data-theme="dark"],
 [data-theme="midnight"] {
-  --bg-cream: #090D16; /* Deep midnight studio navy */
-  --bg-cream-light: #111827; /* Dark slate card surfaces */
-  --bg-cream-dark: #162032; /* Elevated navy surfaces */
-  --bg-cream-card: #111827; /* Dark card surfaces */
+  --bg-primary: #07090E; /* Deep midnight studio charcoal */
+  --bg-surface: #0C1019;
+  --bg-card: #111622; /* Dark elevated studio card surfaces */
+  --bg-card-hover: #171E2E;
+  --bg-cream: #07090E;
+  --bg-cream-light: #111622;
+  --bg-cream-dark: #162032;
+  --bg-cream-card: #111622;
 
-  /* Crisp Studio Red & Maroon Accent (No Pink) */
-  --red: #EF4444; /* Clean High-Contrast True Red */
-  --red-hover: #DC2626;
+  /* Crisp Studio Vermilion & Terracotta Accent (No Pink) */
+  --red: #E25B39;
+  --red-hover: #F06A48;
   --red-light: #F87171;
-  --red-dark: #991B1B; /* Deep Studio Maroon */
-  --red-soft: rgba(239, 68, 68, 0.15);
-  --rust: #EF4444;
-  --rust-hover: #DC2626;
-  --rust-light: #F87171;
-  --rust-dark: #991B1B;
-  --rust-soft: rgba(239, 68, 68, 0.15);
+  --red-dark: #C2410C;
+  --red-soft: rgba(226, 91, 57, 0.14);
+  --rust: #E25B39;
+  --rust-hover: #F06A48;
+  --rust-light: #FB7185;
+  --rust-dark: #C2410C;
+  --rust-soft: rgba(226, 91, 57, 0.14);
+  --rust-glow: rgba(226, 91, 57, 0.35);
   --maroon: #991B1B;
 
   /* Luminous Electric Cyan & Sky Blue */
@@ -122,56 +136,75 @@
   --blue-light: #7DD3FC;
   --blue-dark: #0284C7;
   --blue-cyan: #38BDF8;
-  --blue-soft: rgba(56, 189, 248, 0.15);
+  --blue-soft: rgba(56, 189, 248, 0.14);
   --lime: #38BDF8;
   --lime-accent: #38BDF8;
-  --lime-glow: rgba(56, 189, 248, 0.45);
-  --lime-soft: rgba(56, 189, 248, 0.15);
+  --lime-glow: rgba(56, 189, 248, 0.35);
+  --lime-soft: rgba(56, 189, 248, 0.14);
 
   /* Gold Accent */
   --gold: #F59E0B;
   --gold-light: #FBBF24;
+  --gold-glow: rgba(245, 158, 11, 0.25);
 
   /* Text & Typography: 100% High Contrast on Dark */
-  --brown: #E2E8F0; /* Crisp light slate body text - 100% visible on dark */
-  --brown-dark: #F8FAFC; /* Pure bright white headings - 100% visible */
-  --brown-light: #CBD5E1;
+  --heading-color: #F8FAFC; /* Pure bright white headings */
+  --text-color: #CBD5E1; /* Crisp light slate body text - 100% visible on dark */
+  --text-dim: #94A3B8;
   --text-muted: #94A3B8;
+  --brown: #CBD5E1;
+  --brown-dark: #F8FAFC;
+  --brown-light: #E2E8F0;
+  --banner-heading: #F8FAFC;
 
-  --dark-charcoal: #090D16;
+  --dark-charcoal: #07090E;
   --dark-surface: #04070D;
   --warm-white: #FFFFFF;
 
-  --heading-color: #F8FAFC;
-  --banner-heading: #F8FAFC;
+  --font-heading: 'Syne', 'Unbounded', sans-serif;
 
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(226, 91, 57, 0.5);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.18);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.7);
   --shadow-xl: 0 24px 50px rgba(0, 0, 0, 0.8);
-  --shadow-rust: 0 12px 32px rgba(220, 38, 38, 0.25);
+  --shadow-rust: 0 12px 32px rgba(226, 91, 57, 0.28);
 }
 
 /* System Dark Mode preference (when user hasn't explicitly set data-theme) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg-cream: #090D16;
-    --bg-cream-light: #111827;
+    --bg-primary: #07090E;
+    --bg-surface: #0C1019;
+    --bg-card: #111622;
+    --bg-card-hover: #171E2E;
+    --bg-cream: #07090E;
+    --bg-cream-light: #111622;
     --bg-cream-dark: #162032;
-    --bg-cream-card: #111827;
+    --bg-cream-card: #111622;
 
-    --red: #EF4444;
-    --red-hover: #DC2626;
+    --heading-color: #F8FAFC;
+    --text-color: #CBD5E1;
+    --text-dim: #94A3B8;
+    --text-muted: #94A3B8;
+    --brown: #CBD5E1;
+    --brown-dark: #F8FAFC;
+
+    --rust: #E25B39;
+    --rust-hover: #F06A48;
+    --rust-light: #FB7185;
+    --rust-dark: #C2410C;
+    --rust-soft: rgba(226, 91, 57, 0.14);
+    --rust-glow: rgba(226, 91, 57, 0.35);
+
+    --red: #E25B39;
+    --red-hover: #F06A48;
     --red-light: #F87171;
-    --red-dark: #991B1B;
-    --rust: #EF4444;
-    --rust-hover: #DC2626;
-    --rust-light: #F87171;
-    --rust-dark: #991B1B;
-    --maroon: #991B1B;
+    --red-dark: #C2410C;
 
     --blue: #38BDF8;
     --blue-hover: #0EA5E9;
@@ -179,17 +212,15 @@
     --lime: #38BDF8;
     --lime-accent: #38BDF8;
 
-    --brown: #E2E8F0;
-    --brown-dark: #F8FAFC;
-    --brown-light: #CBD5E1;
-    --text-muted: #94A3B8;
+    --gold: #F59E0B;
+    --gold-light: #FBBF24;
 
-    --dark-charcoal: #090D16;
-    --dark-surface: #04070D;
-    --warm-white: #FFFFFF;
+    --border-color: rgba(255, 255, 255, 0.12);
+    --border-hover: rgba(226, 91, 57, 0.5);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-medium: rgba(255, 255, 255, 0.18);
 
-    --heading-color: #F8FAFC;
-    --banner-heading: #F8FAFC;
+    --font-heading: 'Syne', 'Unbounded', sans-serif;
   }
 }
 

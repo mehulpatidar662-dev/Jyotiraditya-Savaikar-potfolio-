@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -149,7 +149,8 @@
 <!-- =======================================================================
      2. FEATURED WORK & PRE-PRODUCTION (CATALOG DIRECTORY VIEW)
      ======================================================================= -->
-<section class="section-padding folder-browser-section" id="work">
+<div id="gallery" style="position: relative; top: -80px; visibility: hidden;"></div>
+<section class="section-padding folder-browser-section" id="work" data-section="gallery">
   <div class="container">
     
     <!-- Section Title & Description Matching User's Exact Specification -->
@@ -3498,7 +3499,13 @@
     if (e.key === 'Escape') {
       const lightboxModal = document.getElementById('lightbox-modal');
       if (lightboxModal && lightboxModal.classList.contains('active')) {
-        lightboxModal.classList.remove('active');
+        const closeBtn = document.getElementById('lightbox-close');
+        if (closeBtn) {
+          closeBtn.click();
+        } else {
+          lightboxModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
         return;
       }
       if (currentLevel === 'sub') {
