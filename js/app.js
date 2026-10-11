@@ -629,9 +629,9 @@ class PortfolioApp {
 
       currentItems = visibleTriggers.map(el => ({
         src: el.dataset.lightboxSrc || (el.querySelector('img') ? el.querySelector('img').src : ''),
-        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4, .folder-media-title-inline') ? el.querySelector('h3, h4, .folder-media-title-inline').textContent : 'Production Artwork'),
+        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline') ? el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline').textContent.trim() : 'Production Artwork'),
         badge: el.dataset.lightboxBadge || 'PRODUCTION PLATE',
-        desc: el.dataset.lightboxDesc || (el.querySelector('p') ? el.querySelector('p').textContent : ''),
+        desc: el.dataset.lightboxDesc || (el.querySelector('p, .cinema-caption') ? el.querySelector('p, .cinema-caption').textContent.trim() : ''),
         specs: el.dataset.lightboxSpecs || ''
       }));
 
@@ -666,7 +666,11 @@ class PortfolioApp {
           return;
         }
         e.preventDefault();
+        const startZoomed = !!e.target.closest('.cinema-zoom-btn');
         openLightbox(trigger);
+        if (startZoomed) {
+          setTimeout(() => toggleZoom(), 80);
+        }
       }
     });
 

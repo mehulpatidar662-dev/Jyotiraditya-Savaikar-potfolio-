@@ -466,35 +466,61 @@
               </div>
 
               {% elif item.type == 'image' %}
-              <div class="folder-media-card image-media-card gallery-zoom-trigger"
+              <!-- Full-Width Cinema Layout for Posters, Panels & Artwork -->
+              <div class="folder-media-card image-media-card poster-media-card-full cinema-panel-card gallery-zoom-trigger"
                    data-lightbox-trigger
                    data-lightbox-src="{{ url_for('static', filename=item.file_path) }}"
                    data-lightbox-title="{{ item.title }}"
                    data-lightbox-badge="{{ item.badge }}"
                    data-lightbox-desc="{{ item.caption or '' }}"
                    data-lightbox-specs="PATH: {{ item.file_path }}">
-                <div class="folder-image-header">
-                  <span class="folder-media-title-inline">{{ item.title }}</span>
-                  <span class="image-fullscreen-pill">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                    <span>Full Screen</span>
+                
+                <div class="folder-cinema-header">
+                  <div class="cinema-header-left">
+                    <span class="cinema-status-dot"></span>
+                    <h4 class="cinema-media-title">{{ item.title }}</h4>
+                    <span class="cinema-badge">{{ item.badge }}</span>
+                  </div>
+                  <div class="cinema-header-actions">
+                    <button class="cinema-action-btn primary image-action-fullscreen-btn" type="button" title="Full Screen Cinema Mode">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                      <span>Full Screen</span>
+                    </button>
+                    <button class="cinema-action-btn cinema-zoom-btn" type="button" title="Inspect 1:1 Details">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                      <span>Inspect</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="folder-cinema-stage folder-media-preview-box" style="background: {{ item.bg or '#070a13' }};">
+                  <img src="{{ url_for('static', filename=item.file_path) }}" 
+                       alt="{{ item.title }}" 
+                       class="folder-cinema-img folder-media-preview-img" 
+                       style="object-fit: {{ item.aspect or 'contain' }};" 
+                       loading="lazy" />
+                  <span class="cinema-stage-badge">{{ item.badge }}</span>
+                  <span class="cinema-stage-zoom-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    <span>Click to Expand Full-Screen Cinema</span>
                   </span>
                 </div>
-                <div class="folder-media-preview-box" style="background: {{ item.bg or '#0c0f17' }};">
-                  <img src="{{ url_for('static', filename=item.file_path) }}" alt="{{ item.title }}" class="folder-media-preview-img" style="object-fit: {{ item.aspect or 'contain' }};" loading="lazy" />
-                  <span class="folder-media-type-badge">{{ item.badge }}</span>
-                  <span class="folder-media-zoom-pill">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                    <span>Click to Full Screen</span>
-                  </span>
+
+                <div class="folder-cinema-footer">
+                  <div class="cinema-footer-info">
+                    {% if item.caption %}
+                    <p class="cinema-caption">{{ item.caption }}</p>
+                    {% endif %}
+                    <span class="cinema-hint">💡 Double-click or click Full Screen for 4K edge-to-edge viewing &amp; 1:1 pixel zoom</span>
+                  </div>
+                  <div class="cinema-footer-action">
+                    <button class="cinema-action-btn primary image-action-fullscreen-btn" type="button" title="View Full Screen">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                      <span>⛶ Open Cinema</span>
+                    </button>
+                  </div>
                 </div>
-                <div class="folder-media-body" style="padding: 12px 18px; display: flex; justify-content: space-between; align-items: center;">
-                  <h4 class="folder-media-title" style="margin: 0; font-size: 0.95rem;">{{ item.title }}</h4>
-                  <button class="image-action-fullscreen-btn" type="button" title="View Full Screen">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                    <span>Full Screen</span>
-                  </button>
-                </div>
+
               </div>
               {% endif %}
             {% endfor %}
