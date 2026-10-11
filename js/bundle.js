@@ -2664,13 +2664,15 @@ class PortfolioApp {
 
       if (isVideo) {
         if (imgEl) {
-          imgEl.style.display = 'none';
+          imgEl.classList.add('lightbox-hidden');
+          imgEl.style.setProperty('display', 'none', 'important');
           imgEl.src = '';
         }
         if (zoomBtn) zoomBtn.style.display = 'none';
         if (speedBtn) speedBtn.style.display = 'inline-flex';
         if (videoEl) {
-          videoEl.style.display = 'block';
+          videoEl.classList.remove('lightbox-hidden');
+          videoEl.style.setProperty('display', 'block', 'important');
           const targetSrc = item.videoSrc || item.src;
           if (videoEl.src !== targetSrc) {
             videoEl.src = targetSrc;
@@ -2688,12 +2690,15 @@ class PortfolioApp {
         if (videoEl) {
           videoEl.pause();
           videoEl.removeAttribute('src');
-          videoEl.style.display = 'none';
+          videoEl.load();
+          videoEl.classList.add('lightbox-hidden');
+          videoEl.style.setProperty('display', 'none', 'important');
         }
         if (zoomBtn) zoomBtn.style.display = 'inline-flex';
         if (speedBtn) speedBtn.style.display = 'none';
         if (imgEl) {
-          imgEl.style.display = 'block';
+          imgEl.classList.remove('lightbox-hidden');
+          imgEl.style.setProperty('display', 'block', 'important');
           imgEl.src = item.src;
           imgEl.alt = item.title;
         }
@@ -2739,11 +2744,17 @@ class PortfolioApp {
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       resetZoom();
-      if (imgEl) imgEl.src = '';
+      if (imgEl) {
+        imgEl.src = '';
+        imgEl.classList.add('lightbox-hidden');
+        imgEl.style.setProperty('display', 'none', 'important');
+      }
       if (videoEl) {
         videoEl.pause();
         videoEl.removeAttribute('src');
-        videoEl.style.display = 'none';
+        videoEl.load();
+        videoEl.classList.add('lightbox-hidden');
+        videoEl.style.setProperty('display', 'none', 'important');
       }
       showCinemaHUD('Cinema Lightbox Closed', '✕');
     };

@@ -4320,12 +4320,11 @@ body.is-intro-mode #view-intro {
 }
 
 .lightbox-media-wrap img {
-  max-width: 98vw !important;
-  max-height: 92vh !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block !important;
+  max-width: 98vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: 4px;
   filter: drop-shadow(0 16px 50px rgba(0, 0, 0, 0.85));
   cursor: zoom-in;
@@ -4351,14 +4350,27 @@ body.is-intro-mode #view-intro {
 }
 
 .lightbox-media-wrap video {
-  max-width: 98vw !important;
-  max-height: 90vh !important;
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block !important;
+  max-width: 98vw;
+  max-height: 90vh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   background: #000000;
   border-radius: 6px;
+}
+
+/* Ensure completely hidden elements never occupy layout or render beside active media */
+#lightbox-img.lightbox-hidden,
+#lightbox-video.lightbox-hidden,
+.lightbox-media-wrap .lightbox-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
 }
 
 .lightbox-nav-btn {
