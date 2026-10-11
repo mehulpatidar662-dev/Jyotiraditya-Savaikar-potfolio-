@@ -69,8 +69,32 @@ def make_relative(html_content, current_page):
 
     return s
 
+def bundle_javascript():
+    """Concatenates standalone JS modules into a pristine single bundle.js"""
+    modules = ['folk-art.js', 'icons.js', 'qr-generator.js', 'voxel-cube.js', 'media-player.js', 'app.js']
+    header = '''/**
+ * Jyotiraditya Savaikar Portfolio - Universal Standalone Bundle
+ * Plain JavaScript - Zero external framework dependencies
+ * Compatible with file:/// double-click and standard HTTP servers
+ */\n\n'''
+    parts = [header]
+    for mod in modules:
+        path = os.path.join("static", "js", mod)
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                content = f.read()
+            parts.append(f'/* ==================== MODULE: {mod} ==================== */\n\n' + content + '\n\n')
+    bundle_content = ''.join(parts)
+    out_path = os.path.join("static", "js", "bundle.js")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(bundle_content)
+    print(f"  [+] Bundled JS modules -> static/js/bundle.js ({len(bundle_content)} chars)")
+
 def build_portfolio():
     print("[*] Starting Full Portfolio Static Generation...")
+
+    # First, bundle JS
+    bundle_javascript()
 
     # Ensure static subfolders mirror to root
     for sub in ["css", "js", "images", "videos", "docs"]:

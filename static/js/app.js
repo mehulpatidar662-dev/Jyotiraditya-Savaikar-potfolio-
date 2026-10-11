@@ -534,6 +534,7 @@ class PortfolioApp {
     if (!modal) return;
 
     const imgEl = document.getElementById('lightbox-img');
+    const videoEl = document.getElementById('lightbox-video');
     const badgeEl = document.getElementById('lightbox-badge');
     const titleEl = document.getElementById('lightbox-title');
     const descEl = document.getElementById('lightbox-desc');
@@ -542,15 +543,75 @@ class PortfolioApp {
     const backdrop = document.getElementById('lightbox-backdrop');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
+    const zoomBtn = document.getElementById('lightbox-zoom-toggle');
+    const zoomText = document.getElementById('lightbox-zoom-text');
+    const browserFsBtn = document.getElementById('lightbox-browser-fullscreen');
+    const mediaWrap = document.getElementById('lightbox-media-container');
 
     let currentItems = [];
     let currentIndex = 0;
 
+    const resetZoom = () => {
+      if (imgEl) imgEl.classList.remove('is-zoomed');
+      if (mediaWrap) mediaWrap.classList.remove('is-zoomed-wrap');
+      if (zoomText) zoomText.textContent = 'Fit / Zoom';
+    };
+
+    const toggleZoom = () => {
+      if (!imgEl) return;
+      const isZoomed = imgEl.classList.toggle('is-zoomed');
+      if (mediaWrap) mediaWrap.classList.toggle('is-zoomed-wrap', isZoomed);
+      if (zoomText) zoomText.textContent = isZoomed ? 'Fit Screen' : 'Zoom In';
+    };
+
+    if (zoomBtn) {
+      zoomBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleZoom();
+      });
+    }
+
+    if (imgEl) {
+      imgEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleZoom();
+      });
+    }
+
+    if (browserFsBtn) {
+      browserFsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          const docEl = document.documentElement;
+          if (docEl.requestFullscreen) {
+            docEl.requestFullscreen().catch(err => console.warn(err));
+          } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(err => console.warn(err));
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      });
+    }
+
     const updateLightbox = (idx) => {
       if (!currentItems[idx]) return;
       currentIndex = idx;
+      resetZoom();
       const item = currentItems[idx];
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+        videoEl.style.display = 'none';
+      }
       if (imgEl) {
+        imgEl.style.display = 'block';
         imgEl.src = item.src;
         imgEl.alt = item.title;
       }
@@ -568,7 +629,7 @@ class PortfolioApp {
 
       currentItems = visibleTriggers.map(el => ({
         src: el.dataset.lightboxSrc || (el.querySelector('img') ? el.querySelector('img').src : ''),
-        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4') ? el.querySelector('h3, h4').textContent : 'Production Artwork'),
+        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4, .folder-media-title-inline') ? el.querySelector('h3, h4, .folder-media-title-inline').textContent : 'Production Artwork'),
         badge: el.dataset.lightboxBadge || 'PRODUCTION PLATE',
         desc: el.dataset.lightboxDesc || (el.querySelector('p') ? el.querySelector('p').textContent : ''),
         specs: el.dataset.lightboxSpecs || ''
@@ -587,7 +648,13 @@ class PortfolioApp {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      resetZoom();
       if (imgEl) imgEl.src = '';
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+        videoEl.style.display = 'none';
+      }
     };
 
     // Bind triggers using event delegation
@@ -637,6 +704,10 @@ class PortfolioApp {
           const newIdx = (currentIndex + 1) % currentItems.length;
           updateLightbox(newIdx);
         }
+      } else if (e.key === 'f' || e.key === 'F') {
+        if (browserFsBtn) browserFsBtn.click();
+      } else if (e.key === 'z' || e.key === 'Z') {
+        toggleZoom();
       }
     });
   }

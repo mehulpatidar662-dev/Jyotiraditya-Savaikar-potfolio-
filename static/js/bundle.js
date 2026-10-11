@@ -4,13 +4,12 @@
  * Compatible with file:/// double-click and standard HTTP servers
  */
 
-
 /* ==================== MODULE: folk-art.js ==================== */
 
 // Indian Folk-Art Decorations & Kolam Ornaments
 // Generates scalable SVG Kolam motifs, repeating diamond borders, and Indian folk accents
 
-const FolkArt = {
+export const FolkArt = {
   // Repeating diamond border strip (Red/Black/Green motifs)
   renderDiamondBorder(containerId) {
     const containers = document.querySelectorAll(containerId || '.folk-border-strip');
@@ -119,7 +118,7 @@ const FolkArt = {
 
 // Professional SVG Icons for Toolkit & UI Elements
 
-const Icons = {
+export const Icons = {
   blender: `
     <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
       <path d="M12.518 0c-3.197 0-5.836 2.4-6.236 5.488l-4.526 2.62a1.35 1.35 0 0 0-.486 1.848 1.35 1.35 0 0 0 1.848.486l4.234-2.45c.815.772 1.884 1.288 3.072 1.43v5.042a1.35 1.35 0 0 0 2.7 0V9.422c1.188-.142 2.257-.658 3.072-1.43l4.234 2.45a1.35 1.35 0 0 0 1.848-.486 1.35 1.35 0 0 0-.486-1.848l-4.526-2.62C16.26 2.4 13.621 0 10.424 0h2.094zm-.094 2.7c1.99 0 3.6 1.61 3.6 3.6s-1.61 3.6-3.6 3.6-3.6-1.61-3.6-3.6 1.61-3.6 3.6-3.6zm0 1.8a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm-1.8 10.8a5.4 5.4 0 1 0 0 10.8 5.4 5.4 0 0 0 0-10.8zm0 2.7a2.7 2.7 0 1 1 0 5.4 2.7 2.7 0 0 1 0-5.4z"/>
@@ -179,7 +178,7 @@ const Icons = {
 // QR Code Generator for Behance, LinkedIn, Phone, and Custom Links
 // Implements standard QR matrix calculation or high-contrast crisp vector QR display
 
-const QRHelper = {
+export const QRHelper = {
   // Generates a sharp, beautiful SVG QR representation styled to match the warm Indian aesthetic
   generateQRCodeSvg(data, size = 160, color = "#1F1712", bgColor = "#FFF8EA") {
     // Generate deterministic pseudo-matrix based on data hash with authentic QR corners (finder patterns)
@@ -278,9 +277,78 @@ const QRHelper = {
     `;
   },
 
-  // Direct link opener (QR codes and QR modal removed per user specification)
-  openQRModal({ url } = {}) {
-    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  // Open modal with QR Code and Link Details
+  openQRModal({ title, url, subtitle, type = 'behance' }) {
+    let modal = document.getElementById('qr-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'qr-modal';
+      modal.className = 'qr-modal-backdrop';
+      modal.innerHTML = `
+        <div class="qr-modal-card">
+          <button class="qr-modal-close" aria-label="Close modal">&times;</button>
+          <div class="qr-modal-header">
+            <span class="qr-badge-type"></span>
+            <h3 class="qr-modal-title"></h3>
+            <p class="qr-modal-subtitle"></p>
+          </div>
+          <div class="qr-modal-body">
+            <div class="qr-code-wrapper"></div>
+            <div class="qr-scan-instruction">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
+              <span>Scan with mobile camera to view instantly</span>
+            </div>
+            <div class="qr-link-box">
+              <input type="text" class="qr-url-input" readonly value="" />
+              <button class="qr-copy-btn">Copy Link</button>
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="qr-action-btn">Open Link Directly &rarr;</a>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      modal.querySelector('.qr-modal-close').addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+
+      const copyBtn = modal.querySelector('.qr-copy-btn');
+      copyBtn.addEventListener('click', () => {
+        const input = modal.querySelector('.qr-url-input');
+        input.select();
+        const markCopied = () => {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy Link';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(input.value).then(markCopied).catch(() => {
+            document.execCommand('copy');
+            markCopied();
+          });
+        } else {
+          document.execCommand('copy');
+          markCopied();
+        }
+      });
+    }
+
+    modal.querySelector('.qr-modal-title').textContent = title;
+    modal.querySelector('.qr-modal-subtitle').textContent = subtitle || 'Official Portfolio Link';
+    modal.querySelector('.qr-badge-type').textContent = type.toUpperCase();
+    modal.querySelector('.qr-url-input').value = url;
+    modal.querySelector('.qr-action-btn').href = url;
+    modal.querySelector('.qr-code-wrapper').innerHTML = this.generateQRCodeSvg(url, 180);
+
+    modal.classList.add('active');
   }
 };
 
@@ -290,7 +358,7 @@ const QRHelper = {
 // 3D Animated Voxel Cube & Logo Reveal Component
 // Pure HTML5 Canvas 3D isometric/perspective voxel engine with dynamic lighting, logo reveal, and physics
 
-class VoxelCube {
+export class VoxelCube {
   constructor(canvasId) {
     this.canvas = typeof canvasId === 'string' ? document.getElementById(canvasId) : canvasId;
     if (!this.canvas) return;
@@ -645,7 +713,7 @@ class VoxelCube {
 // Provides interactive animatic previewers, animated scene canvases,
 // frame steppers for storyboards, and drop-in support for real video files.
 
-const MediaPlayer = {
+export const MediaPlayer = {
   activeCanvases: new Map(),
 
   // Initialize all interactive media players on the page
@@ -1929,6 +1997,11 @@ const MediaPlayer = {
 /* ==================== MODULE: app.js ==================== */
 
 // Main Application Logic & SPA Routing
+import { FolkArt } from './folk-art.js';
+import { QRHelper } from './qr-generator.js';
+import { VoxelCube } from './voxel-cube.js';
+import { MediaPlayer } from './media-player.js';
+import { Icons } from './icons.js';
 
 class PortfolioApp {
   constructor() {
@@ -1977,9 +2050,6 @@ class PortfolioApp {
 
     // 13. Setup Floating Back to Top Button
     this.setupBackToTop();
-
-    // 14. Setup Interactive Folder-in-Folder Archive & In-Site Scrollable PDF System
-    this.setupFolderExplorer();
   }
 
   // Floating Back to Top smooth scroll
@@ -2128,25 +2198,44 @@ class PortfolioApp {
     });
   }
 
-  // Direct link handlers (QR codes removed per user specification)
+  // Setup Behance and LinkedIn QR Code popups
   setupQREvents() {
+    // Project Behance triggers
     document.querySelectorAll('[data-qr-trigger]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
+        const project = btn.dataset.project || 'Project';
         const url = btn.dataset.url || 'https://www.behance.net/mnkeshthewise';
-        window.open(url, '_blank', 'noopener,noreferrer');
+        QRHelper.openQRModal({
+          title: `${project} on Behance`,
+          subtitle: 'Scan to explore high-res project breakdown & animatic',
+          url: url,
+          type: 'behance'
+        });
       });
     });
 
+    // Explicit QR modal triggers if requested
     document.querySelectorAll('[data-open-qr]').forEach(el => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         const type = el.dataset.openQr;
-        const url = (type === 'linkedin')
-          ? 'https://www.linkedin.com/in/jyotiraditya-savaikar-435852273/'
-          : 'https://www.behance.net/mnkeshthewise';
-        window.open(url, '_blank', 'noopener,noreferrer');
+        if (type === 'behance') {
+          QRHelper.openQRModal({
+            title: 'Jyotiraditya Savaikar on Behance',
+            subtitle: '@mnkeshthewise • Animation & Storyboards',
+            url: 'https://www.behance.net/mnkeshthewise',
+            type: 'behance'
+          });
+        } else if (type === 'linkedin') {
+          QRHelper.openQRModal({
+            title: 'Jyotiraditya Savaikar on LinkedIn',
+            subtitle: 'Professional Animation & Pre-Production Network',
+            url: 'https://www.linkedin.com/in/jyotiraditya-savaikar-435852273/',
+            type: 'linkedin'
+          });
+        }
       });
     });
   }
@@ -2443,6 +2532,7 @@ class PortfolioApp {
     if (!modal) return;
 
     const imgEl = document.getElementById('lightbox-img');
+    const videoEl = document.getElementById('lightbox-video');
     const badgeEl = document.getElementById('lightbox-badge');
     const titleEl = document.getElementById('lightbox-title');
     const descEl = document.getElementById('lightbox-desc');
@@ -2451,15 +2541,75 @@ class PortfolioApp {
     const backdrop = document.getElementById('lightbox-backdrop');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
+    const zoomBtn = document.getElementById('lightbox-zoom-toggle');
+    const zoomText = document.getElementById('lightbox-zoom-text');
+    const browserFsBtn = document.getElementById('lightbox-browser-fullscreen');
+    const mediaWrap = document.getElementById('lightbox-media-container');
 
     let currentItems = [];
     let currentIndex = 0;
 
+    const resetZoom = () => {
+      if (imgEl) imgEl.classList.remove('is-zoomed');
+      if (mediaWrap) mediaWrap.classList.remove('is-zoomed-wrap');
+      if (zoomText) zoomText.textContent = 'Fit / Zoom';
+    };
+
+    const toggleZoom = () => {
+      if (!imgEl) return;
+      const isZoomed = imgEl.classList.toggle('is-zoomed');
+      if (mediaWrap) mediaWrap.classList.toggle('is-zoomed-wrap', isZoomed);
+      if (zoomText) zoomText.textContent = isZoomed ? 'Fit Screen' : 'Zoom In';
+    };
+
+    if (zoomBtn) {
+      zoomBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleZoom();
+      });
+    }
+
+    if (imgEl) {
+      imgEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleZoom();
+      });
+    }
+
+    if (browserFsBtn) {
+      browserFsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          const docEl = document.documentElement;
+          if (docEl.requestFullscreen) {
+            docEl.requestFullscreen().catch(err => console.warn(err));
+          } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(err => console.warn(err));
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      });
+    }
+
     const updateLightbox = (idx) => {
       if (!currentItems[idx]) return;
       currentIndex = idx;
+      resetZoom();
       const item = currentItems[idx];
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+        videoEl.style.display = 'none';
+      }
       if (imgEl) {
+        imgEl.style.display = 'block';
         imgEl.src = item.src;
         imgEl.alt = item.title;
       }
@@ -2477,7 +2627,7 @@ class PortfolioApp {
 
       currentItems = visibleTriggers.map(el => ({
         src: el.dataset.lightboxSrc || (el.querySelector('img') ? el.querySelector('img').src : ''),
-        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4') ? el.querySelector('h3, h4').textContent : 'Production Artwork'),
+        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4, .folder-media-title-inline') ? el.querySelector('h3, h4, .folder-media-title-inline').textContent : 'Production Artwork'),
         badge: el.dataset.lightboxBadge || 'PRODUCTION PLATE',
         desc: el.dataset.lightboxDesc || (el.querySelector('p') ? el.querySelector('p').textContent : ''),
         specs: el.dataset.lightboxSpecs || ''
@@ -2496,7 +2646,13 @@ class PortfolioApp {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      if (imgEl) imgEl.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
+      resetZoom();
+      if (imgEl) imgEl.src = '';
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+        videoEl.style.display = 'none';
+      }
     };
 
     // Bind triggers using event delegation
@@ -2546,555 +2702,12 @@ class PortfolioApp {
           const newIdx = (currentIndex + 1) % currentItems.length;
           updateLightbox(newIdx);
         }
+      } else if (e.key === 'f' || e.key === 'F') {
+        if (browserFsBtn) browserFsBtn.click();
+      } else if (e.key === 'z' || e.key === 'Z') {
+        toggleZoom();
       }
     });
-  }
-
-  // =========================================================================
-  // 14. INTERACTIVE FOLDER-IN-FOLDER ARCHIVE SYSTEM & IN-SITE SCROLLABLE PDF
-  // =========================================================================
-  setupFolderExplorer() {
-    const explorerSections = document.querySelectorAll('.folder-browser-section');
-    if (!explorerSections.length) return;
-
-    explorerSections.forEach(section => {
-      const viewRoot = section.querySelector('#view-level-root');
-      const viewCat = section.querySelector('#view-level-cat');
-      const viewSub = section.querySelector('#view-level-sub');
-      const viewAll = section.querySelector('#view-level-all');
-
-      const crumbRoot = section.querySelector('#crumb-root');
-      const crumbSepCat = section.querySelector('#crumb-sep-cat');
-      const crumbCat = section.querySelector('#crumb-cat');
-      const crumbCatText = section.querySelector('#crumb-cat-text');
-      const crumbSepSub = section.querySelector('#crumb-sep-sub');
-      const crumbSub = section.querySelector('#crumb-sub');
-      const crumbSubText = section.querySelector('#crumb-sub-text');
-
-      const statsBadge = section.querySelector('#folder-stats-text');
-      const toggleBtn = section.querySelector('#view-mode-toggle');
-      const toggleText = section.querySelector('#toggle-text');
-      const toggleIcon = section.querySelector('#toggle-icon');
-
-      let currentLevel = 'root';
-      let activeCatId = null;
-      let activeSubId = null;
-
-      const categoryNames = {
-        '2d': '2D',
-        'preprod': 'Preprod',
-        '3d': '3D',
-        'xtra-work': 'Xtra work'
-      };
-
-      const subfolderNames = {
-        'jaimini': 'Jaimini Title Sequence',
-        'non-narrative': 'Non Narrative',
-        'target-practise': 'Target Practise',
-        'akkad': 'Akkad',
-        'beavis': 'Beavis',
-        'bot-and-boy': 'bot and boy',
-        'monkesh': 'Monkesh',
-        'cube': 'cube',
-        'cyberpunk': 'Cyberpunk',
-        'wine': 'Wine',
-        'illustrations': 'Extra Work'
-      };
-
-      const updatePills = (activeId) => {
-        section.querySelectorAll('.folder-tab-btn').forEach(btn => {
-          if (btn.dataset.tabFolder === activeId) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
-        });
-      };
-
-      const showRoot = () => {
-        currentLevel = 'root';
-        activeCatId = null;
-        activeSubId = null;
-
-        if (viewRoot) viewRoot.classList.add('active');
-        if (viewCat) viewCat.classList.remove('active');
-        if (viewSub) viewSub.classList.remove('active');
-        if (viewAll) viewAll.classList.remove('active');
-
-        if (crumbRoot) {
-          crumbRoot.classList.add('active');
-          crumbRoot.style.display = 'inline-flex';
-        }
-        if (crumbSepCat) crumbSepCat.style.display = 'none';
-        if (crumbCat) crumbCat.style.display = 'none';
-        if (crumbSepSub) crumbSepSub.style.display = 'none';
-        if (crumbSub) crumbSub.style.display = 'none';
-
-        if (statsBadge) statsBadge.textContent = '4 Categories • 11 Projects • 30 Assets';
-        updatePills('root');
-      };
-
-      const showCategory = (catId) => {
-        if (!catId) return showRoot();
-        currentLevel = 'cat';
-        activeCatId = catId;
-        activeSubId = null;
-
-        if (viewRoot) viewRoot.classList.remove('active');
-        if (viewCat) viewCat.classList.add('active');
-        if (viewSub) viewSub.classList.remove('active');
-        if (viewAll) viewAll.classList.remove('active');
-
-        section.querySelectorAll('.category-subfolder-container').forEach(el => {
-          el.style.display = 'none';
-        });
-        const target = section.querySelector('#cat-container-' + catId);
-        if (target) target.style.display = 'block';
-
-        if (crumbRoot) crumbRoot.classList.remove('active');
-        if (crumbSepCat) crumbSepCat.style.display = 'inline';
-        if (crumbCat) {
-          crumbCat.style.display = 'inline-flex';
-          crumbCat.classList.add('active');
-          crumbCat.dataset.catId = catId;
-          if (crumbCatText) crumbCatText.textContent = categoryNames[catId] || catId;
-        }
-        if (crumbSepSub) crumbSepSub.style.display = 'none';
-        if (crumbSub) crumbSub.style.display = 'none';
-
-        if (statsBadge) statsBadge.textContent = 'Category: ' + (categoryNames[catId] || catId);
-        updatePills(catId);
-      };
-
-      const showSubfolder = (subId, parentCatId) => {
-        if (!subId) return showRoot();
-        currentLevel = 'sub';
-        activeSubId = subId;
-        activeCatId = parentCatId || activeCatId;
-
-        if (viewRoot) viewRoot.classList.remove('active');
-        if (viewCat) viewCat.classList.remove('active');
-        if (viewSub) viewSub.classList.add('active');
-        if (viewAll) viewAll.classList.remove('active');
-
-        section.querySelectorAll('.subfolder-content-container').forEach(el => {
-          el.style.display = 'none';
-        });
-        const target = section.querySelector('#sub-container-' + subId);
-        if (target) {
-          target.style.display = 'block';
-          target.querySelectorAll('iframe[data-pdf-src]').forEach(iframe => {
-            const pUrl = iframe.getAttribute('data-pdf-src') || iframe.dataset.pdfSrc;
-            if (pUrl && (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('.pdf'))) {
-              iframe.removeAttribute('loading');
-              iframe.src = pUrl;
-            }
-          });
-          if (!activeCatId && target.dataset.parentCat) {
-            activeCatId = target.dataset.parentCat;
-          }
-        }
-
-        if (crumbRoot) crumbRoot.classList.remove('active');
-        if (crumbSepCat) crumbSepCat.style.display = 'inline';
-        if (crumbCat) {
-          crumbCat.style.display = 'inline-flex';
-          crumbCat.classList.remove('active');
-          crumbCat.dataset.catId = activeCatId;
-          if (crumbCatText) crumbCatText.textContent = categoryNames[activeCatId] || activeCatId;
-        }
-        if (crumbSepSub) crumbSepSub.style.display = 'inline';
-        if (crumbSub) {
-          crumbSub.style.display = 'inline-flex';
-          crumbSub.classList.add('active');
-          if (crumbSubText) crumbSubText.textContent = subfolderNames[subId] || subId;
-        }
-
-        if (statsBadge) statsBadge.textContent = 'Project: ' + (subfolderNames[subId] || subId);
-        updatePills(activeCatId);
-      };
-
-      const toggleViewAll = () => {
-        if (currentLevel === 'all') {
-          showRoot();
-          if (toggleText) toggleText.textContent = 'Expand All Projects';
-          if (toggleIcon) toggleIcon.textContent = '⊞';
-        } else {
-          currentLevel = 'all';
-          if (viewRoot) viewRoot.classList.remove('active');
-          if (viewCat) viewCat.classList.remove('active');
-          if (viewSub) viewSub.classList.remove('active');
-          if (viewAll) viewAll.classList.add('active');
-
-          if (crumbRoot) crumbRoot.classList.add('active');
-          if (crumbSepCat) crumbSepCat.style.display = 'none';
-          if (crumbCat) crumbCat.style.display = 'none';
-          if (crumbSepSub) crumbSepSub.style.display = 'none';
-          if (crumbSub) crumbSub.style.display = 'none';
-
-          if (toggleText) toggleText.textContent = 'Catalog View';
-          if (toggleIcon) toggleIcon.textContent = '▦';
-          if (statsBadge) statsBadge.textContent = 'Expanded View (All 11 Projects)';
-        }
-      };
-
-      if (crumbRoot) crumbRoot.addEventListener('click', () => showRoot());
-      if (crumbCat) crumbCat.addEventListener('click', () => {
-        if (activeCatId) showCategory(activeCatId);
-      });
-      if (toggleBtn) toggleBtn.addEventListener('click', toggleViewAll);
-
-      section.addEventListener('click', (e) => {
-        const catCard = e.target.closest('[data-open-cat]');
-        if (catCard) {
-          const catId = catCard.dataset.openCat;
-          showCategory(catId);
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
-        const subCard = e.target.closest('[data-open-sub]');
-        if (subCard) {
-          if (subCard.dataset.dragged === 'true') {
-            subCard.removeAttribute('data-dragged');
-            return;
-          }
-          const subId = subCard.dataset.openSub;
-          const parentCat = subCard.dataset.parentCat;
-          showSubfolder(subId, parentCat);
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
-        const backCatBtn = e.target.closest('[data-action="go-parent-cat"]');
-        if (backCatBtn) {
-          const catId = backCatBtn.dataset.parentCat || activeCatId;
-          showCategory(catId);
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
-        const backRootBtn = e.target.closest('[data-action="go-root"]');
-        if (backRootBtn) {
-          showRoot();
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
-        const tabBtn = e.target.closest('[data-tab-folder]');
-        if (tabBtn) {
-          const target = tabBtn.dataset.tabFolder;
-          if (target === 'root') {
-            showRoot();
-          } else {
-            showCategory(target);
-          }
-          return;
-        }
-      });
-
-      // Initialize Project Scrolling Tracks (Mouse drag, mouse wheel, scroll arrows, and filters)
-      const initScrollTracks = () => {
-        section.querySelectorAll('.projects-scroll-container').forEach(track => {
-          let isDown = false;
-          let startX = 0;
-          let scrollLeftPos = 0;
-          let hasMoved = false;
-
-          track.addEventListener('mousedown', (e) => {
-            if (e.target.closest('button') || e.target.closest('a')) return;
-            isDown = true;
-            hasMoved = false;
-            track.classList.add('is-dragging');
-            startX = e.pageX - track.offsetLeft;
-            scrollLeftPos = track.scrollLeft;
-          });
-
-          track.addEventListener('mouseleave', () => {
-            isDown = false;
-            track.classList.remove('is-dragging');
-          });
-
-          track.addEventListener('mouseup', () => {
-            isDown = false;
-            track.classList.remove('is-dragging');
-            if (hasMoved) {
-              setTimeout(() => {
-                track.querySelectorAll('.project-scroll-card').forEach(c => c.removeAttribute('data-dragged'));
-              }, 100);
-            }
-          });
-
-          track.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            if (Math.abs(walk) > 8) {
-              hasMoved = true;
-              track.querySelectorAll('.project-scroll-card').forEach(c => c.setAttribute('data-dragged', 'true'));
-            }
-            track.scrollLeft = scrollLeftPos - walk;
-          });
-
-          // Wheel horizontal scroll
-          track.addEventListener('wheel', (e) => {
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-              const canLeft = track.scrollLeft > 0;
-              const canRight = track.scrollLeft < (track.scrollWidth - track.clientWidth - 2);
-              if ((e.deltaY < 0 && canLeft) || (e.deltaY > 0 && canRight)) {
-                track.scrollLeft += e.deltaY;
-                e.preventDefault();
-              }
-            }
-          }, { passive: false });
-        });
-
-        // Arrow buttons for master project scroll track
-        const scrollPrevBtn = section.querySelector('#scroll-prev-btn');
-        const scrollNextBtn = section.querySelector('#scroll-next-btn');
-        const masterScrollTrack = section.querySelector('#projects-scroll-track');
-        if (scrollPrevBtn && masterScrollTrack) {
-          scrollPrevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            masterScrollTrack.scrollBy({ left: -360, behavior: 'smooth' });
-          });
-        }
-        if (scrollNextBtn && masterScrollTrack) {
-          scrollNextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            masterScrollTrack.scrollBy({ left: 360, behavior: 'smooth' });
-          });
-        }
-
-        // Arrow buttons for category scroll tracks
-        section.querySelectorAll('.cat-scroll-prev').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const targetId = btn.dataset.target;
-            const track = section.querySelector('#' + targetId);
-            if (track) track.scrollBy({ left: -340, behavior: 'smooth' });
-          });
-        });
-        section.querySelectorAll('.cat-scroll-next').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const targetId = btn.dataset.target;
-            const track = section.querySelector('#' + targetId);
-            if (track) track.scrollBy({ left: 340, behavior: 'smooth' });
-          });
-        });
-
-        // Category filter pills in master scrolling section
-        section.querySelectorAll('#project-scroll-filters .project-filter-pill').forEach(pill => {
-          pill.addEventListener('click', (e) => {
-            e.stopPropagation();
-            section.querySelectorAll('#project-scroll-filters .project-filter-pill').forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            const filter = pill.dataset.filter;
-            if (!masterScrollTrack) return;
-            const cards = masterScrollTrack.querySelectorAll('.project-scroll-card');
-            cards.forEach(card => {
-              if (filter === 'all' || card.dataset.cat === filter) {
-                card.style.display = 'flex';
-              } else {
-                card.style.display = 'none';
-              }
-            });
-            masterScrollTrack.scrollTo({ left: 0, behavior: 'smooth' });
-          });
-        });
-      };
-
-      initScrollTracks();
-
-      // Check URL parameters for deep-linking (robust against sub, project, folder, category)
-      const urlParams = new URLSearchParams(window.location.search);
-      const folderParam = urlParams.get('folder') || urlParams.get('category') || urlParams.get('cat');
-      const subParam = urlParams.get('sub') || urlParams.get('project');
-      const projectParam = urlParams.get('project') || urlParams.get('sub');
-
-      const projectFolderMap = {
-        'jaimini': { cat: '2d', sub: 'jaimini' },
-        'jaimini-title-sequence': { cat: '2d', sub: 'jaimini' },
-        'title-sequences': { cat: '2d', sub: 'jaimini' },
-        'non-narrative': { cat: '2d', sub: 'non-narrative' },
-        'target-practise': { cat: '2d', sub: 'target-practise' },
-        'comic-storyboards': { cat: '2d', sub: 'target-practise' },
-        'the-tale-of-akkad': { cat: 'preprod', sub: 'akkad' },
-        'akkad': { cat: 'preprod', sub: 'akkad' },
-        'beavis': { cat: 'preprod', sub: 'beavis' },
-        'scene-layout': { cat: 'preprod', sub: 'beavis' },
-        'bot-and-boy': { cat: 'preprod', sub: 'bot-and-boy' },
-        'the-bot-and-the-boy': { cat: 'preprod', sub: 'bot-and-boy' },
-        'storyboarding': { cat: 'preprod', sub: 'bot-and-boy' },
-        'monkesh': { cat: 'preprod', sub: 'monkesh' },
-        'character-design': { cat: 'preprod', sub: 'monkesh' },
-        '3d-motion': { cat: '3d', sub: 'cube' },
-        'cube': { cat: '3d', sub: 'cube' },
-        'cyberpunk': { cat: '3d', sub: 'cyberpunk' },
-        'wine': { cat: '3d', sub: 'wine' },
-        'xtra-work': { cat: 'xtra-work', sub: 'illustrations' },
-        'illustrations': { cat: 'xtra-work', sub: 'illustrations' },
-        'extra-work': { cat: 'xtra-work', sub: 'illustrations' }
-      };
-
-      if (folderParam && subParam) {
-        showSubfolder(subParam, folderParam);
-      } else if (projectParam && projectFolderMap[projectParam]) {
-        const map = projectFolderMap[projectParam];
-        showSubfolder(map.sub, map.cat);
-      } else if (subParam && projectFolderMap[subParam]) {
-        const map = projectFolderMap[subParam];
-        showSubfolder(map.sub, map.cat);
-      } else if (subParam) {
-        showSubfolder(subParam);
-      } else if (folderParam) {
-        showCategory(folderParam);
-      }
-    });
-
-    // In-Site PDF Viewer Global Setup
-    const masterIframe = document.getElementById('master-pdf-iframe');
-    const masterTitle = document.getElementById('master-pdf-title');
-    const masterSub = document.getElementById('master-pdf-sub');
-    const masterSize = document.getElementById('master-pdf-size');
-    const masterOpenBtn = document.getElementById('master-pdf-open-btn');
-    const masterDownloadBtn = document.getElementById('master-pdf-download-btn');
-    const masterDownloadText = document.getElementById('master-download-text');
-    const masterSummaryText = document.getElementById('master-pdf-summary-text');
-    const masterHighlightsBox = document.getElementById('master-pdf-highlights-box');
-    const masterHeightBtn = document.getElementById('master-pdf-height-btn');
-    const masterHeightText = document.getElementById('master-height-text');
-    const masterFullscreenBtn = document.getElementById('master-pdf-fullscreen-btn');
-    const masterContainer = document.getElementById('master-in-site-pdf-viewer');
-
-    const tabAkkad = document.getElementById('tab-pdf-akkad');
-    const tabTarget = document.getElementById('tab-pdf-target');
-
-    const switchMasterPdf = (tabEl) => {
-      if (!tabEl || !masterIframe) return;
-      document.querySelectorAll('.pdf-switch-btn').forEach(btn => btn.classList.remove('active'));
-      tabEl.classList.add('active');
-
-      const src = tabEl.dataset.pdfSrc;
-      const title = tabEl.dataset.pdfTitle;
-      const size = tabEl.dataset.pdfSize;
-      const format = tabEl.dataset.pdfFormat;
-      const summary = tabEl.dataset.pdfSummary;
-      const highlights = (tabEl.dataset.pdfHighlights || '').split(',');
-
-      masterIframe.src = src + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH';
-      if (masterTitle) masterTitle.textContent = title;
-      if (masterSize) masterSize.textContent = size;
-      if (masterSub) masterSub.innerHTML = format + ' &bull; <strong style="color: var(--rust);">' + size + '</strong>';
-      if (masterOpenBtn) masterOpenBtn.href = src;
-      if (masterDownloadBtn) masterDownloadBtn.href = src;
-      if (masterDownloadText) masterDownloadText.textContent = 'Download (' + size + ')';
-      if (masterSummaryText) masterSummaryText.textContent = summary;
-
-      if (masterHighlightsBox) {
-        masterHighlightsBox.innerHTML = '';
-        highlights.forEach(hl => {
-          const span = document.createElement('span');
-          span.innerHTML = '&bull; ' + hl.trim();
-          masterHighlightsBox.appendChild(span);
-        });
-      }
-    };
-
-    if (tabAkkad) tabAkkad.addEventListener('click', () => switchMasterPdf(tabAkkad));
-    if (tabTarget) tabTarget.addEventListener('click', () => switchMasterPdf(tabTarget));
-
-    // IntersectionObserver to lazy load master PDF viewer when viewport reaches section
-    if (masterContainer && masterIframe) {
-      if ('IntersectionObserver' in window) {
-        const pdfObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const mUrl = masterIframe.getAttribute('data-pdf-src') || masterIframe.dataset.pdfSrc;
-              if (mUrl && (!masterIframe.src || !masterIframe.src.includes('.pdf'))) {
-                masterIframe.removeAttribute('loading');
-                masterIframe.src = mUrl;
-              }
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '300px' });
-        pdfObserver.observe(masterContainer);
-      } else {
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            const mUrl = masterIframe.getAttribute('data-pdf-src') || masterIframe.dataset.pdfSrc;
-            if (mUrl && (!masterIframe.src || !masterIframe.src.includes('.pdf'))) {
-              masterIframe.removeAttribute('loading');
-              masterIframe.src = mUrl;
-            }
-          }, 1500);
-        });
-      }
-    }
-
-    // Handle quick-jump buttons to specific PDFs
-    document.addEventListener('click', (e) => {
-      const pdfBtn = e.target.closest('[data-select-pdf]');
-      if (pdfBtn) {
-        const docId = pdfBtn.dataset.selectPdf;
-        if (docId === 'akkad' && tabAkkad) {
-          switchMasterPdf(tabAkkad);
-        } else if ((docId === 'target-practise' || docId === 'target') && tabTarget) {
-          switchMasterPdf(tabTarget);
-        }
-      }
-    });
-
-    if (masterHeightBtn && masterContainer) {
-      masterHeightBtn.addEventListener('click', () => {
-        masterContainer.classList.toggle('expanded');
-        const isExp = masterContainer.classList.contains('expanded');
-        if (masterHeightText) masterHeightText.textContent = isExp ? 'Compact (800px)' : 'Expand (1200px)';
-      });
-    }
-
-    if (masterFullscreenBtn && masterContainer) {
-      masterFullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-          masterContainer.requestFullscreen().catch(err => {
-            console.warn('Fullscreen request failed:', err);
-          });
-        } else {
-          document.exitFullscreen();
-        }
-      });
-    }
-
-    // In-subfolder PDF toggles
-    document.querySelectorAll('.toggle-pdf-height-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.dataset.target;
-        const el = document.getElementById(targetId);
-        if (el) el.classList.toggle('expanded');
-      });
-    });
-
-    document.querySelectorAll('.toggle-pdf-fullscreen-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.dataset.target;
-        const el = document.getElementById(targetId);
-        if (el) {
-          if (!document.fullscreenElement) {
-            el.requestFullscreen().catch(e => console.warn(e));
-          } else {
-            document.exitFullscreen();
-          }
-        }
-      });
-    });
-
-    if (window.location.hash === '#in-site-pdf-viewer') {
-      const el = document.getElementById('in-site-pdf-viewer');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 }
 
@@ -3102,3 +2715,5 @@ class PortfolioApp {
 document.addEventListener('DOMContentLoaded', () => {
   window.portfolioApp = new PortfolioApp();
 });
+
+

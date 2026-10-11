@@ -32,7 +32,14 @@
     <!-- Spotlight Hero Card: 2-Column Grid -->
     <div class="about-hero-card">
       <div class="about-photo-panel">
-        <div class="about-photo-wrap" style="position: relative; display: inline-block;">
+        <div class="about-photo-wrap gallery-zoom-trigger"
+             data-lightbox-trigger
+             data-lightbox-src="{{ url_for('static', filename=artist.portrait_image) }}"
+             data-lightbox-title="{{ artist.name }} — 2D Animator &amp; Pre-Production Artist"
+             data-lightbox-badge="ARTIST PORTRAIT"
+             data-lightbox-desc="Jyotiraditya Savaikar &bull; Bachelor of Animation Design, MIT Institute of Design, Pune"
+             style="position: relative; display: inline-block; cursor: pointer;"
+             title="Click to view full screen">
           <img class="about-photo-large" src="{{ url_for('static', filename=artist.portrait_image) }}" alt="{{ artist.name }}" />
           <div style="position: absolute; bottom: 12px; right: 12px; background: var(--rust); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; box-shadow: 0 4px 12px rgba(184, 62, 20, 0.4);">
             MIT ID Pune

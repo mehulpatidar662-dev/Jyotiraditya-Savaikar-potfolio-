@@ -284,21 +284,42 @@
   <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
     <div class="lightbox-dialog">
-      <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
-      <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Previous Artwork">&#10094;</button>
-      <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Next Artwork">&#10095;</button>
+      
+      <!-- Top Floating Controls Bar -->
+      <div class="lightbox-top-bar">
+        <div class="lightbox-meta-pill">
+          <span class="lightbox-badge" id="lightbox-badge">PRODUCTION PLATE</span>
+          <span class="lightbox-title-text" id="lightbox-title">Artwork Title</span>
+        </div>
+        <div class="lightbox-actions">
+          <button class="lightbox-action-btn" id="lightbox-zoom-toggle" type="button" title="Toggle 1:1 Pixel Zoom / Fit to Screen">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            <span id="lightbox-zoom-text">Fit / Zoom</span>
+          </button>
+          <button class="lightbox-action-btn" id="lightbox-browser-fullscreen" type="button" title="Toggle True Fullscreen Browser Mode">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Full Screen</span>
+          </button>
+          <button class="lightbox-close-btn" id="lightbox-close" type="button" aria-label="Close Lightbox">&times;</button>
+        </div>
+      </div>
 
-      <div class="lightbox-media-wrap">
+      <!-- Navigation Arrows -->
+      <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous Artwork">&#10094;</button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" type="button" aria-label="Next Artwork">&#10095;</button>
+
+      <!-- Center Artwork Container (Edge-to-Edge Fullscreen) -->
+      <div class="lightbox-media-wrap" id="lightbox-media-container">
         <img id="lightbox-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="High-Resolution Production Artwork" />
-        <video id="lightbox-video" controls playsinline style="display: none; width: 100%; max-width: 95vw; max-height: 82vh; background: #000; border-radius: 8px; outline: none;"></video>
+        <video id="lightbox-video" controls playsinline style="display: none; width: 100%; max-width: 98vw; max-height: 90vh; background: #000; border-radius: 6px; outline: none;"></video>
       </div>
 
-      <div class="lightbox-info">
-        <h3 class="lightbox-title" id="lightbox-title">Artwork Title</h3>
-        <span class="lightbox-badge" id="lightbox-badge">PRODUCTION PLATE</span>
-        <p class="lightbox-desc" id="lightbox-desc" style="display: none;"></p>
-        <div class="lightbox-specs" id="lightbox-specs" style="display: none;"></div>
+      <!-- Floating Bottom Caption -->
+      <div class="lightbox-info-float" id="lightbox-info" style="display: none;">
+        <span class="lightbox-desc" id="lightbox-desc"></span>
+        <span class="lightbox-specs" id="lightbox-specs" style="display: none;"></span>
       </div>
+
     </div>
   </div>
 
