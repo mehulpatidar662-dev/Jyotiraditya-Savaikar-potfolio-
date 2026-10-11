@@ -177,7 +177,6 @@
 
           <h3 class="folder-card-title">{{ folder.name }}</h3>
           <div class="folder-card-subtitle">{{ folder.title }}</div>
-          <p class="folder-card-desc">{{ folder.description }}</p>
 
           <div class="folder-subchips">
             {% for sub in folder.subfolders %}
@@ -208,10 +207,6 @@
             <button class="pdf-action-btn" data-action="go-root">
               <span>&larr; Back to All Categories</span>
             </button>
-          </div>
-          <p class="subfolder-header-desc">{{ folder.description }}</p>
-          <div style="margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: var(--rust);">
-            Select any project below to inspect videos, beat boards, and PDF books:
           </div>
         </div>
 
@@ -249,7 +244,6 @@
                 <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
                 {% endif %}
               </div>
-              <p class="project-list-desc">{{ sub.description }}</p>
 
               {% if sub.tools %}
               <div class="project-list-chips">
@@ -299,8 +293,6 @@
                 </button>
               </div>
             </div>
-
-            <p class="subfolder-header-desc">{{ sub.description }}</p>
 
             {% if sub.tools %}
             <div class="subfolder-tools-list">
@@ -367,23 +359,6 @@
                       onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
               </iframe>
             </div>
-
-            <div class="in-site-pdf-footer-info">
-              <div>
-                <div style="font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--rust); margin-bottom: 8px;">
-                  What's Inside This Publication:
-                </div>
-                <div class="pdf-highlights-list">
-                  {% for hl in sub.pdf_embed.highlights %}
-                  <span>&bull; {{ hl }}</span>
-                  {% endfor %}
-                </div>
-              </div>
-
-              <div style="font-size: 0.8rem; color: var(--text-dim); text-align: right;">
-                Use mouse wheel or touch gesture to scroll pages vertically directly in the frame.
-              </div>
-            </div>
           </div>
           {% endif %}
 
@@ -403,12 +378,10 @@
                   <span class="folder-media-type-badge">{{ item.badge }}</span>
                 </div>
                 <div class="folder-media-body">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h4 class="folder-media-title" style="margin: 0;">{{ item.title }}</h4>
                     <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); background: var(--rust-soft); padding: 2px 8px; border-radius: 4px;">{{ item.duration }}</span>
                   </div>
-                  <p class="folder-media-caption">{{ item.caption }}</p>
-                  <div class="folder-media-meta">FPS: {{ item.fps }} &bull; Source: <code>{{ item.file_path }}</code></div>
                 </div>
               </div>
 
@@ -418,7 +391,7 @@
                    data-lightbox-src="{{ url_for('static', filename=item.file_path) }}"
                    data-lightbox-title="{{ item.title }}"
                    data-lightbox-badge="{{ item.badge }}"
-                   data-lightbox-desc="{{ item.caption }}"
+                   data-lightbox-desc=""
                    data-lightbox-specs="PATH: {{ item.file_path }}">
                 <div class="folder-media-preview-box" style="background: {{ item.bg or '#12151e' }};">
                   <img src="{{ url_for('static', filename=item.file_path) }}" alt="{{ item.title }}" class="folder-media-preview-img" style="object-fit: {{ item.aspect or 'contain' }};" loading="lazy" />
@@ -429,9 +402,7 @@
                   </span>
                 </div>
                 <div class="folder-media-body">
-                  <h4 class="folder-media-title">{{ item.title }}</h4>
-                  <p class="folder-media-caption">{{ item.caption }}</p>
-                  <div class="folder-media-meta">File: <code>{{ item.file_path.split('/')[-1] }}</code></div>
+                  <h4 class="folder-media-title" style="margin: 0;">{{ item.title }}</h4>
                 </div>
               </div>
               {% endif %}
@@ -478,7 +449,6 @@
               <span>View Project &rarr;</span>
             </button>
           </div>
-          <p style="font-size: 0.88rem; color: var(--text-color); margin-bottom: 16px;">{{ sub.description }}</p>
 
           <div class="folder-subchips" style="margin-bottom: 0;">
             {% for item in sub['items'] %}
@@ -590,7 +560,6 @@
               <span class="timeline-period">{{ item.period }}</span>
               <span class="timeline-badge">{{ item.badge }}</span>
             </div>
-            <p class="timeline-desc">{{ item.description }}</p>
           </div>
           {% endfor %}
         </div>
@@ -612,7 +581,6 @@
               <span class="timeline-period">{{ item.period }}</span>
               <span class="timeline-badge">{{ item.badge }}</span>
             </div>
-            <p class="timeline-desc">{{ item.description }}</p>
           </div>
           {% endfor %}
         </div>
