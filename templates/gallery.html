@@ -104,7 +104,7 @@
               
               <div class="project-list-thumb">
                 {% if sub.cover_image %}
-                <img src="{{ url_for('static', filename=sub.cover_image) }}" alt="{{ sub.folder_name }}" loading="lazy" />
+                <img src="{{ url_for('static', filename=sub.cover_image) }}" alt="{{ sub.folder_name }}" loading="lazy" decoding="async" />
                 {% endif %}
                 <div class="project-list-thumb-badge">
                   {% if sub.has_pdf %}
@@ -425,7 +425,8 @@
                          alt="{{ item.title }}" 
                          class="in-site-main-video in-site-main-photo" 
                          style="object-fit: {{ item.aspect or 'contain' }}; cursor: zoom-in;" 
-                         loading="lazy" />
+                         loading="lazy" 
+                         decoding="async" />
                   </div>
                 </div>
                 {% endif %}
