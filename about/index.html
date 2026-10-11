@@ -6,6 +6,40 @@
   <title>About | Jyotiraditya Savaikar — 2D Animator & Pre-Production Artist</title>
   <meta name="description" content="Portfolio of Jyotiraditya Savaikar – 2D Animator | Motion Designer | Pre-Production Artist based in Pune, Maharashtra, India.">
   <link rel="stylesheet" href="static/css/styles.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('jyoti-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+        window.toggleTheme = function() {
+          var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+          var next = (cur === 'dark' || cur === 'midnight') ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try { localStorage.setItem('jyoti-theme', next); } catch(e){}
+          updateThemeButtons(next);
+        };
+        function updateThemeButtons(theme) {
+          var isDark = (theme === 'dark' || theme === 'midnight');
+          var buttons = document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn');
+          buttons.forEach(function(btn) {
+            var icon = btn.querySelector('.theme-icon');
+            var text = btn.querySelector('.theme-label-text, .theme-name');
+            if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+            if (text) text.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+            btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            updateThemeButtons(document.documentElement.getAttribute('data-theme') || 'dark');
+          });
+        } else {
+          updateThemeButtons(saved);
+        }
+      } catch(e) {}
+    })();
+  </script>
   
 </head>
 <body>
@@ -30,9 +64,9 @@
         </ul>
       </nav>
       <div style="display: flex; align-items: center; gap: 14px;">
-        <button class="dark-mode-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark or Light Mode">
-          <span class="theme-icon">🌙</span>
-          <span class="theme-label-text">Dark Mode</span>
+        <button class="dark-mode-toggle-btn" id="theme-toggle" onclick="window.toggleTheme ? window.toggleTheme() : null" aria-label="Toggle Dark Mode" title="Toggle Dark or Light Mode">
+          <span class="theme-icon">☀️</span>
+          <span class="theme-label-text">Light Mode</span>
         </button>
 
         <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">

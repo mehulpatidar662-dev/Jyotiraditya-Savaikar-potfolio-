@@ -2004,46 +2004,46 @@ class PortfolioApp {
   }
 
   init() {
-    // 1. Initialize Indian Folk-Art Decorations & Borders
-    FolkArt.renderDiamondBorder();
-    FolkArt.initKolamTitles();
+    // 1. Setup Theme Switcher FIRST
+    try { this.setupThemeSwitcher(); } catch(e) { console.warn(e); }
 
-    // 2. Inject Tool Icons into DOM
-    this.populateToolIcons();
+    // 2. Initialize Indian Folk-Art Decorations & Borders
+    try { FolkArt.renderDiamondBorder(); } catch(e) { console.warn(e); }
+    try { FolkArt.initKolamTitles(); } catch(e) { console.warn(e); }
 
-    // 3. Initialize Media Players & Canvas Animators
-    MediaPlayer.init();
+    // 3. Inject Tool Icons into DOM
+    try { this.populateToolIcons(); } catch(e) { console.warn(e); }
 
-    // 4. Initialize 3D Voxel Cube for Motion Graphics
-    this.initVoxelCube();
+    // 4. Initialize Media Players & Canvas Animators
+    try { MediaPlayer.init(); } catch(e) { console.warn(e); }
 
-    // 5. Setup Carousel
-    this.setupCarousel();
+    // 5. Initialize 3D Voxel Cube for Motion Graphics
+    try { this.initVoxelCube(); } catch(e) { console.warn(e); }
 
-    // 6. Setup QR Code Triggers
-    this.setupQREvents();
+    // 6. Setup Carousel
+    try { this.setupCarousel(); } catch(e) { console.warn(e); }
 
-    // 7. Setup SPA Hash Router & Navigation
-    this.setupRouter();
-    this.setupNavigation();
+    // 7. Setup QR Code Triggers
+    try { this.setupQREvents(); } catch(e) { console.warn(e); }
 
-    // 8. Setup Scroll Animations & Interactions
-    this.setupScrollEffects();
+    // 8. Setup SPA Hash Router & Navigation
+    try { this.setupRouter(); } catch(e) { console.warn(e); }
+    try { this.setupNavigation(); } catch(e) { console.warn(e); }
 
-    // 9. Setup Attractive Color Theme Switcher
-    this.setupThemeSwitcher();
+    // 9. Setup Scroll Animations & Interactions
+    try { this.setupScrollEffects(); } catch(e) { console.warn(e); }
 
     // 10. Setup Copy Email & Toast Notification
-    this.setupCopyActions();
+    try { this.setupCopyActions(); } catch(e) { console.warn(e); }
 
     // 11. Setup Interactive Gallery Filters & Categories
-    this.setupGalleryFilters();
+    try { this.setupGalleryFilters(); } catch(e) { console.warn(e); }
 
     // 12. Setup High-Resolution Cinema Lightbox Modal
-    this.setupLightbox();
+    try { this.setupLightbox(); } catch(e) { console.warn(e); }
 
     // 13. Setup Floating Back to Top Button
-    this.setupBackToTop();
+    try { this.setupBackToTop(); } catch(e) { console.warn(e); }
   }
 
   // Floating Back to Top smooth scroll
@@ -2369,16 +2369,12 @@ class PortfolioApp {
 
   // First-Class Dark Mode Toggle & System Preference Detection
   setupThemeSwitcher() {
-    let savedTheme = localStorage.getItem('jyoti-theme');
-
-    if (!savedTheme) {
-      savedTheme = 'dark';
-    }
+    let savedTheme = localStorage.getItem('jyoti-theme') || 'dark';
 
     const applyTheme = (themeName) => {
       const isDark = (themeName === 'dark' || themeName === 'midnight');
       document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      localStorage.setItem('jyoti-theme', isDark ? 'dark' : 'light');
+      try { localStorage.setItem('jyoti-theme', isDark ? 'dark' : 'light'); } catch(e){}
 
       // Update all toggle buttons in DOM
       document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn').forEach(btn => {
@@ -2387,6 +2383,7 @@ class PortfolioApp {
         if (iconEl) iconEl.textContent = isDark ? '☀️' : '🌙';
         if (textEl) textEl.textContent = isDark ? 'Light Mode' : 'Dark Mode';
         btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+        btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
       });
     };
 
@@ -2394,10 +2391,15 @@ class PortfolioApp {
 
     // Bind click handlers
     document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const isCurrentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        applyTheme(isCurrentlyDark ? 'light' : 'dark');
-      });
+      btn.onclick = (e) => {
+        e.preventDefault();
+        if (typeof window.toggleTheme === 'function') {
+          window.toggleTheme();
+        } else {
+          const isCurrentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          applyTheme(isCurrentlyDark ? 'light' : 'dark');
+        }
+      };
     });
 
     // Listen for OS dark mode changes
@@ -2708,9 +2710,21 @@ class PortfolioApp {
   }
 }
 
-// Instantiate on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  window.portfolioApp = new PortfolioApp();
-});
+function bootPortfolioApp() {
+  if (!window.portfolioApp) {
+    try {
+      window.portfolioApp = new PortfolioApp();
+    } catch (err) {
+      console.error('PortfolioApp boot error:', err);
+    }
+  }
+}
+
+// Instantiate safely on DOM ready or immediately if already loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootPortfolioApp);
+} else {
+  bootPortfolioApp();
+}
 
 
