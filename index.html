@@ -23,6 +23,7 @@
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="#work" class="nav-link">Featured Work</a></li>
+          <li><a href="#pdf-books" class="nav-link">📖 PDF Books</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery &amp; PDFs</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="resume.html" class="nav-link">Resume</a></li>
@@ -177,42 +178,614 @@
         </div>
       </div>
 
-      <!-- Quick Jump Category Pills -->
+      <!-- Quick Category Filter Pills -->
       <div class="folder-tabs-strip">
-        <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Jump to:</span>
+        <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Filter Projects:</span>
         <button class="folder-tab-btn active" data-tab-folder="root">
-          <span>All Categories</span>
+          <span>✨ All Projects (11)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="2d">
-          <span>2D (3 Projects)</span>
+          <span>🎬 2D Animation (3)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="preprod">
-          <span>Preprod (4 Projects)</span>
+          <span>🎨 Pre-Production (4)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="3d">
-          <span>3D (3 Projects)</span>
+          <span>🧊 3D &amp; Motion (3)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="xtra-work">
-          <span>Xtra work (1 Project)</span>
+          <span>🖌️ Extra Work (1)</span>
         </button>
-        <a href="gallery.html#in-site-pdf-viewer" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
-          <span>📖 PDF Books in Catalog &rarr;</span>
+        <button class="folder-tab-btn" data-tab-folder="pdf-only" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
+          <span>📖 PDF Books (2)</span>
+        </button>
+        <a href="#pdf-books" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.12); color: var(--rust); border-color: rgba(185, 28, 28, 0.4); margin-left: auto;">
+          <span>📖 Open In-Site PDF Viewer &darr;</span>
         </a>
       </div>
     </div>
 
-    <!-- LEVEL 0: ROOT CATEGORIES DIRECTORY (4 Main Categories) -->
+    <!-- LEVEL 0: ROOT DIRECTORY (All Projects displayed in List View by default) -->
     <div class="folder-view-level active" id="view-level-root">
-      <div style="margin-bottom: 20px;">
-        <h3 style="font-size: 1.35rem; font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 4px 0;">
-          Select a Production Category:
-        </h3>
-        <p style="margin: 0; font-size: 0.92rem; color: var(--text-dim);">
-          Click on any category card below to explore its projects, animatics, model sheets, and production books.
-        </p>
+      
+      <!-- LIST VIEW OF PROJECTS (Active & Displayed by Default for instant 1-click access) -->
+      <div class="project-list-container" id="projects-list-view">
+        
+          
+          <div class="project-list-item" 
+               data-open-sub="jaimini" 
+               data-parent-cat="2d" 
+               data-cat="2d" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Jaimini Title Sequence">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/2D/Jaimini%20Title%20Sequence/thumbnail.PNG" alt="Jaimini Title Sequence" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:57 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Jaimini Title Sequence</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">2D &bull; Title Sequence &amp; Worldbuilding</span>
+                <span class="project-list-assets-tag">4 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="non-narrative" 
+               data-parent-cat="2d" 
+               data-cat="2d" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Non Narrative">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/2D/Non%20Narrative/nna.png" alt="Non Narrative" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:30 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Non Narrative</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">2D &bull; Rhythmic &amp; Experimental Animation</span>
+                <span class="project-list-assets-tag">1 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="target-practise" 
+               data-parent-cat="2d" 
+               data-cat="2d" 
+               data-has-pdf="true"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Target Practise">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/images/target_split_blast_rifle.png" alt="Target Practise" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>📖 84.1 MB PDF Book</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Target Practise</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">2D &bull; Comic Storyboards &amp; Inking</span>
+                <span class="project-list-assets-tag">1 Files</span>
+                
+                <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Read PDF Book</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+        
+          
+          <div class="project-list-item" 
+               data-open-sub="akkad" 
+               data-parent-cat="preprod" 
+               data-cat="preprod" 
+               data-has-pdf="true"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Akkad">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/images/akkad_thumbnail.png" alt="Akkad" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>📖 32.7 MB PDF Book</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Akkad</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">Preprod &bull; Character Design &amp; Worldbuilding</span>
+                <span class="project-list-assets-tag">2 Files</span>
+                
+                <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Read PDF Book</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="beavis" 
+               data-parent-cat="preprod" 
+               data-cat="preprod" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Beavis">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/Preprod/Beavis/hori%20pan%20lol.png" alt="Beavis" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:30 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Beavis</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">Preprod &bull; Scene Layout &amp; Cinematography</span>
+                <span class="project-list-assets-tag">4 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="bot-and-boy" 
+               data-parent-cat="preprod" 
+               data-cat="preprod" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View bot and boy">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/Preprod/bot%20and%20boy/IMG_4688.PNG" alt="bot and boy" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 1:49 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">bot and boy</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">Preprod &bull; Storyboarding &amp; Animatic</span>
+                <span class="project-list-assets-tag">3 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="monkesh" 
+               data-parent-cat="preprod" 
+               data-cat="preprod" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Monkesh">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/Preprod/Monkesh/IMG_4719.PNG" alt="Monkesh" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎨 6 Artworks</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Monkesh</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">Preprod &bull; Character Design &amp; Model Sheets</span>
+                <span class="project-list-assets-tag">6 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Illustrator</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Open Project Gallery</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+        
+          
+          <div class="project-list-item" 
+               data-open-sub="cube" 
+               data-parent-cat="3d" 
+               data-cat="3d" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View cube">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/3D/cube/cube.png" alt="cube" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:15 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">cube</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">3D &bull; 3D Motion Graphics</span>
+                <span class="project-list-assets-tag">1 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+                <span class="project-list-chip">Cinema 4D</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="cyberpunk" 
+               data-parent-cat="3d" 
+               data-cat="3d" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Cyberpunk">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/3D/Cyberpunk/cyberpunk.png" alt="Cyberpunk" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:25 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Cyberpunk</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">3D &bull; Kinetic Typography &amp; Broadcast</span>
+                <span class="project-list-assets-tag">1 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+                <span class="project-list-chip">Illustrator</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+          <div class="project-list-item" 
+               data-open-sub="wine" 
+               data-parent-cat="3d" 
+               data-cat="3d" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Wine">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/3D/Wine/bottle.png" alt="Wine" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎬 0:18 min</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Wine</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">3D &bull; 3D Procedural &amp; Fluid Dynamics</span>
+                <span class="project-list-assets-tag">1 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Blender</span>
+                
+                <span class="project-list-chip">After Effects</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Watch Video Reel</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+        
+          
+          <div class="project-list-item" 
+               data-open-sub="illustrations" 
+               data-parent-cat="xtra-work" 
+               data-cat="xtra-work" 
+               data-has-pdf="false"
+               tabindex="0" 
+               role="button" 
+               aria-label="View Extra Work">
+            
+            <div class="project-list-thumb">
+              
+              <img src="static/aditya_project/Xtra%20work/FINAL%201.jpg" alt="Extra Work" loading="lazy" />
+              
+              <div class="project-list-thumb-badge">
+                
+                <span>🎨 6 Artworks</span>
+                
+              </div>
+            </div>
+
+            <div class="project-list-info">
+              <h3 class="project-list-title">Extra Work</h3>
+              <div class="project-list-meta-row">
+                <span class="project-list-cat-tag">Xtra work &bull; Digital Illustration &amp; Concept Art</span>
+                <span class="project-list-assets-tag">6 Files</span>
+                
+              </div>
+
+              
+              <div class="project-list-chips">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
+                
+                <span class="project-list-chip">Photoshop</span>
+                
+                <span class="project-list-chip">Clip Studio Paint</span>
+                
+                <span class="project-list-chip">Procreate</span>
+                
+              </div>
+              
+            </div>
+
+            <div class="project-list-action">
+              <button class="project-list-btn" type="button">
+                <span>Open Project Gallery</span>
+                <span class="project-list-btn-arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </div>
+          
+        
       </div>
 
-      <div class="folder-grid">
+      <!-- CATEGORIES OVERVIEW GRID (Toggled via toggle button) -->
+      <div class="folder-grid" id="categories-grid-view" style="display: none;">
         
         <div class="folder-card" data-open-cat="2d">
           
@@ -962,7 +1535,7 @@
         
         <div class="subfolder-content-container" id="sub-container-jaimini" data-parent-cat="2d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Jaimini Title Sequence</h3>
@@ -971,11 +1544,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
-                  <span>&larr; Back to 2D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
+                  <span>Filter 2D</span>
                 </button>
               </div>
             </div>
@@ -1094,7 +1667,7 @@
         
         <div class="subfolder-content-container" id="sub-container-non-narrative" data-parent-cat="2d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Non Narrative</h3>
@@ -1103,11 +1676,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
-                  <span>&larr; Back to 2D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
+                  <span>Filter 2D</span>
                 </button>
               </div>
             </div>
@@ -1158,7 +1731,7 @@
         
         <div class="subfolder-content-container" id="sub-container-target-practise" data-parent-cat="2d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Target Practise</h3>
@@ -1167,11 +1740,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
-                  <span>&larr; Back to 2D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="2d">
+                  <span>Filter 2D</span>
                 </button>
               </div>
             </div>
@@ -1259,7 +1832,7 @@
         
         <div class="subfolder-content-container" id="sub-container-akkad" data-parent-cat="preprod" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Akkad</h3>
@@ -1268,11 +1841,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
-                  <span>&larr; Back to Preprod</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
+                  <span>Filter Preprod</span>
                 </button>
               </div>
             </div>
@@ -1382,7 +1955,7 @@
         
         <div class="subfolder-content-container" id="sub-container-beavis" data-parent-cat="preprod" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Beavis</h3>
@@ -1391,11 +1964,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
-                  <span>&larr; Back to Preprod</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
+                  <span>Filter Preprod</span>
                 </button>
               </div>
             </div>
@@ -1510,7 +2083,7 @@
         
         <div class="subfolder-content-container" id="sub-container-bot-and-boy" data-parent-cat="preprod" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">bot and boy</h3>
@@ -1519,11 +2092,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
-                  <span>&larr; Back to Preprod</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
+                  <span>Filter Preprod</span>
                 </button>
               </div>
             </div>
@@ -1620,7 +2193,7 @@
         
         <div class="subfolder-content-container" id="sub-container-monkesh" data-parent-cat="preprod" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Monkesh</h3>
@@ -1629,11 +2202,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
-                  <span>&larr; Back to Preprod</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="preprod">
+                  <span>Filter Preprod</span>
                 </button>
               </div>
             </div>
@@ -1798,7 +2371,7 @@
         
         <div class="subfolder-content-container" id="sub-container-cube" data-parent-cat="3d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">cube</h3>
@@ -1807,11 +2380,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
-                  <span>&larr; Back to 3D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
+                  <span>Filter 3D</span>
                 </button>
               </div>
             </div>
@@ -1864,7 +2437,7 @@
         
         <div class="subfolder-content-container" id="sub-container-cyberpunk" data-parent-cat="3d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Cyberpunk</h3>
@@ -1873,11 +2446,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
-                  <span>&larr; Back to 3D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
+                  <span>Filter 3D</span>
                 </button>
               </div>
             </div>
@@ -1928,7 +2501,7 @@
         
         <div class="subfolder-content-container" id="sub-container-wine" data-parent-cat="3d" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Wine</h3>
@@ -1937,11 +2510,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
-                  <span>&larr; Back to 3D</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="3d">
+                  <span>Filter 3D</span>
                 </button>
               </div>
             </div>
@@ -1992,7 +2565,7 @@
         
         <div class="subfolder-content-container" id="sub-container-illustrations" data-parent-cat="xtra-work" style="display: none;">
           
-          <div class="subfolder-header-box">
+          <div class="subfolder-header-box sticky-bar">
             <div class="subfolder-header-top">
               <div>
                 <h3 class="subfolder-header-title">Extra Work</h3>
@@ -2001,11 +2574,11 @@
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="xtra-work">
-                  <span>&larr; Back to Xtra work</span>
+                <button class="pdf-action-btn primary" data-action="go-root" style="background: var(--rust); color: #fff; font-weight: 800;">
+                  <span>&larr; Back to All Projects</span>
                 </button>
-                <button class="pdf-action-btn" data-action="go-root">
-                  <span>All Categories</span>
+                <button class="pdf-action-btn" data-action="go-parent-cat" data-parent-cat="xtra-work">
+                  <span>Filter Xtra work</span>
                 </button>
               </div>
             </div>
@@ -2483,6 +3056,122 @@
 </section>
 
 <!-- =======================================================================
+     3. DEDICATED IN-SITE SCROLLABLE PDF READER
+     "Read Akkad and Target Practise directly on site with zero friction"
+     ======================================================================= -->
+<section class="in-site-pdf-showcase-section" id="pdf-books" style="margin-top: 60px; margin-bottom: 60px;">
+  <div class="container">
+    <div style="margin-bottom: 24px;">
+      <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 8px 0;">
+        📖 Scrollable Production Books &amp; Comic Storyboards
+      </h2>
+      <p style="margin: 0; font-size: 1rem; color: var(--text-dim); max-width: 860px; line-height: 1.6;">
+        Read, inspect, and scroll through the complete multi-page publications directly inside the viewer below. Toggle between <em>The Tale of Akkad</em> (32.7 MB) and <em>Target Practise</em> (84.1 MB) with zero redirects.
+      </p>
+    </div>
+
+    <div class="in-site-pdf-container" id="master-in-site-pdf-viewer">
+      
+      <!-- Viewer Control Toolbar -->
+      <div class="in-site-pdf-toolbar">
+        <div class="pdf-toolbar-left">
+          <div class="pdf-status-pill">
+            <span class="pdf-status-dot"></span>
+            <span id="master-pdf-status-text">Scrollable In-Site Reader Active</span>
+          </div>
+          
+          <div class="pdf-doc-meta">
+            <span class="pdf-doc-title" id="master-pdf-title">The Tale of Akkad — Full Production Art &amp; Storyboard Book</span>
+            <span class="pdf-doc-sub" id="master-pdf-sub">Interactive Scrollable PDF Publication &bull; <strong style="color: var(--rust);" id="master-pdf-size">32.7 MB</strong></span>
+          </div>
+        </div>
+
+        <div class="pdf-toolbar-actions">
+          <button class="pdf-action-btn" id="master-pdf-height-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18m0-18l-4 4m4-4l4 4m0 10l-4 4m0 0l-4-4"/></svg>
+            <span id="master-height-text">Expand (1200px)</span>
+          </button>
+
+          <button class="pdf-action-btn" id="master-pdf-fullscreen-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Fullscreen</span>
+          </button>
+
+          <a href="static/aditya_project/Preprod/Akkad/Akkad.pdf" id="master-pdf-open-btn" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Open in Tab</span>
+          </a>
+
+          <a href="static/aditya_project/Preprod/Akkad/Akkad.pdf" id="master-pdf-download-btn" download class="pdf-action-btn primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span id="master-download-text">Download (32.7 MB)</span>
+          </a>
+        </div>
+
+        <!-- Document Switcher Tabs -->
+        <div class="pdf-switcher-tabs">
+          <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); display: flex; align-items: center; margin-right: 6px;">Select Document:</span>
+          
+          <button class="pdf-switch-btn active" id="tab-pdf-akkad"
+                  data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf"
+                  data-pdf-title="The Tale of Akkad — Full Production Art &amp; Storyboard Book"
+                  data-pdf-size="32.7 MB"
+                  data-pdf-format="Interactive Scrollable PDF Publication &bull; Mesopotamian Fantasy">
+            <span>📖 Akkad.pdf (32.7 MB) &mdash; Preprod</span>
+          </button>
+
+          <button class="pdf-switch-btn" id="tab-pdf-target"
+                  data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf"
+                  data-pdf-title="Target Practise — Action Comic Storyboard Book"
+                  data-pdf-size="84.1 MB"
+                  data-pdf-format="Interactive Scrollable PDF Publication &bull; 600 DPI Inks">
+            <span>📖 TARGET_PRACTISE.pdf (84.1 MB) &mdash; 2D Comic</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- The In-Site Scrollable Iframe -->
+      <div class="in-site-pdf-stage" 
+           id="master-pdf-stage"
+           data-pdf-url="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+           data-pdf-title="The Tale of Akkad — Full Production Art & Storyboard Book"
+           style="position: relative; background: #12151e; min-height: 400px;">
+        <div class="pdf-loading-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 1; pointer-events: none;">
+          <div class="pdf-spinner" style="width: 38px; height: 38px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--rust, #e05638); border-radius: 50%; animation: pdfSpin 0.8s linear infinite;"></div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">Rendering Master Document...</div>
+          <div style="font-size: 0.78rem; color: #a0aec0;">High-Resolution Publication &bull; Scrollable In-Site</div>
+        </div>
+        <iframe id="master-pdf-iframe" 
+                data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+                class="in-site-pdf-iframe"
+                title="In-Site Scrollable PDF Viewer"
+                style="position: relative; z-index: 2; width: 100%; height: 800px; border: none; display: block; background: #1b1e28;"
+                onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
+        </iframe>
+      </div>
+
+      <!-- In-Site PDF Viewer Footer -->
+      <div class="in-site-pdf-footer-info" style="justify-content: flex-end;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 10px;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-dim);">
+            Direct in-site vertical scrolling enabled
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <a href="https://www.behance.net/mnkeshthewise" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+              <span>View on Behance &nearr;</span>
+            </a>
+            <a href="https://www.linkedin.com/in/jyotiraditya-savaikar-435852273/" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
+              <span>LinkedIn &nearr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
      4. TOOLKIT & TECHNICAL COMPETENCIES
      ======================================================================= -->
 <section class="section-padding toolkit-section" id="toolkit">
@@ -2769,6 +3458,12 @@
     </svg>
   </button>
 
+  <!-- Floating Return to Projects Pill (Active when inside project view) -->
+  <button id="floating-back-projects-btn" class="floating-back-projects-btn" data-action="go-root" aria-label="Back to All Projects" title="Return to All Projects (Esc)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <span>Back to All Projects</span>
+  </button>
+
   <!-- =========================================================================
        8. FOOTER
        ========================================================================= -->
@@ -2873,22 +3568,78 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261011_1"></script>
+  <script src="static/js/bundle.js?v=20261011_2"></script>
   
 <script>
+// =============================================================================
+// STREAMLINED INSTANT PORTFOLIO CONTROLLER (Zero-Friction UX)
+// =============================================================================
 (function() {
+  const viewRoot = document.getElementById('view-level-root');
+  const viewCat = document.getElementById('view-level-cat');
+  const viewSub = document.getElementById('view-level-sub');
+  const viewAll = document.getElementById('view-level-all');
+
+  const crumbRoot = document.getElementById('crumb-root');
+  const crumbSepCat = document.getElementById('crumb-sep-cat');
+  const crumbCat = document.getElementById('crumb-cat');
+  const crumbCatText = document.getElementById('crumb-cat-text');
+  const crumbSepSub = document.getElementById('crumb-sep-sub');
+  const crumbSub = document.getElementById('crumb-sub');
+  const crumbSubText = document.getElementById('crumb-sub-text');
+
+  const statsBadge = document.getElementById('folder-stats-text');
+  const toggleBtn = document.getElementById('view-mode-toggle');
+  const toggleText = document.getElementById('toggle-text');
+  const toggleIcon = document.getElementById('toggle-icon');
+  const floatingBackBtn = document.getElementById('floating-back-projects-btn');
+
+  let currentLevel = 'root';
+  let activeCatId = 'root';
+  let activeSubId = null;
+
+  const categoryNames = {
+    'root': 'All Projects',
+    'all': 'All Projects',
+    '2d': '2D Animation',
+    'preprod': 'Pre-Production',
+    '3d': '3D & Motion',
+    'xtra-work': 'Extra Work',
+    'pdf-only': 'PDF Books'
+  };
+
+  const subfolderNames = {
+    'jaimini': 'Jaimini Title Sequence',
+    'non-narrative': 'Non Narrative',
+    'target-practise': 'Target Practise',
+    'akkad': 'Akkad',
+    'beavis': 'Beavis',
+    'bot-and-boy': 'bot and boy',
+    'monkesh': 'Monkesh',
+    'cube': 'cube',
+    'cyberpunk': 'Cyberpunk',
+    'wine': 'Wine',
+    'illustrations': 'Extra Work'
+  };
+
+  function updatePills(activeId) {
+    document.querySelectorAll('.folder-tabs-strip .folder-tab-btn').forEach(btn => {
+      if (btn.dataset.tabFolder === activeId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
   function activatePdfIframe(container) {
     if (!container) return;
-    var stages = container.querySelectorAll ? container.querySelectorAll('.in-site-pdf-stage') : [];
-    if (container.classList && container.classList.contains('in-site-pdf-stage')) {
-      stages = [container];
-    }
-    stages.forEach(function(stage) {
-      var iframe = stage.querySelector('iframe');
+    const stages = container.querySelectorAll ? container.querySelectorAll('.in-site-pdf-stage') : [];
+    stages.forEach(stage => {
+      const iframe = stage.querySelector('iframe');
       if (!iframe) return;
-      var pdfUrl = iframe.getAttribute('data-pdf-src') || iframe.dataset.pdfSrc || stage.dataset.pdfUrl;
+      const pdfUrl = iframe.getAttribute('data-pdf-src') || iframe.dataset.pdfSrc || stage.dataset.pdfUrl;
       if (!pdfUrl) return;
-
       if (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('.pdf')) {
         iframe.removeAttribute('loading');
         iframe.src = pdfUrl;
@@ -2896,41 +3647,310 @@
     });
   }
 
-  // 1. Click triggers
-  document.addEventListener('click', function(e) {
-    var subCard = e.target.closest('[data-open-sub]');
-    if (subCard) {
-      var subId = subCard.dataset.openSub;
-      setTimeout(function() {
-        var target = document.getElementById('sub-container-' + subId);
-        if (target) activatePdfIframe(target);
-      }, 50);
+  // Filter project cards in real-time
+  function filterProjectsList(catId) {
+    activeCatId = catId;
+    const listView = document.getElementById('projects-list-view');
+    const catGrid = document.getElementById('categories-grid-view');
+    if (!listView) return;
+
+    if (catGrid) catGrid.style.display = 'none';
+    listView.style.display = 'flex';
+
+    if (toggleText) toggleText.textContent = 'Category Cards';
+    if (toggleIcon) toggleIcon.textContent = '▦';
+
+    const items = listView.querySelectorAll('.project-list-item');
+    let visibleCount = 0;
+    items.forEach(item => {
+      let match = false;
+      if (catId === 'root' || catId === 'all') {
+        match = true;
+      } else if (catId === 'pdf-only') {
+        match = item.dataset.hasPdf === 'true';
+      } else {
+        match = (item.dataset.parentCat === catId || item.dataset.cat === catId);
+      }
+
+      if (match) {
+        item.style.display = 'flex';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    const label = categoryNames[catId] || catId;
+    if (statsBadge) {
+      statsBadge.textContent = catId === 'root' ? '11 Projects • 4 Categories • 30 Assets' : label + ' (' + visibleCount + ' Projects)';
+    }
+    updatePills(catId);
+  }
+
+  // Return to All Projects view
+  function showRoot() {
+    currentLevel = 'root';
+    activeSubId = null;
+
+    if (viewRoot) viewRoot.classList.add('active');
+    if (viewCat) viewCat.classList.remove('active');
+    if (viewSub) viewSub.classList.remove('active');
+    if (viewAll) viewAll.classList.remove('active');
+
+    if (crumbRoot) {
+      crumbRoot.classList.add('active');
+      crumbRoot.style.display = 'inline-flex';
+    }
+    if (crumbSepCat) crumbSepCat.style.display = 'none';
+    if (crumbCat) crumbCat.style.display = 'none';
+    if (crumbSepSub) crumbSepSub.style.display = 'none';
+    if (crumbSub) crumbSub.style.display = 'none';
+
+    // Hide floating back button
+    if (floatingBackBtn) floatingBackBtn.classList.remove('visible');
+
+    filterProjectsList(activeCatId || 'root');
+  }
+
+  // Open individual Project view
+  function showSubfolder(subId, parentCatId) {
+    if (!subId) return showRoot();
+    currentLevel = 'sub';
+    activeSubId = subId;
+    activeCatId = parentCatId || activeCatId;
+
+    if (viewRoot) viewRoot.classList.remove('active');
+    if (viewCat) viewCat.classList.remove('active');
+    if (viewSub) viewSub.classList.add('active');
+    if (viewAll) viewAll.classList.remove('active');
+
+    document.querySelectorAll('.subfolder-content-container').forEach(el => {
+      el.style.display = 'none';
+    });
+    const target = document.getElementById('sub-container-' + subId);
+    if (target) {
+      target.style.display = 'block';
+      setTimeout(() => activatePdfIframe(target), 50);
     }
 
-    var pdfContainer = e.target.closest('.in-site-pdf-container');
-    if (pdfContainer) {
-      activatePdfIframe(pdfContainer);
+    if (crumbRoot) crumbRoot.classList.remove('active');
+    if (crumbSepCat) crumbSepCat.style.display = 'inline';
+    if (crumbCat) {
+      crumbCat.style.display = 'inline-flex';
+      crumbCat.classList.remove('active');
+      crumbCat.dataset.catId = activeCatId;
+      if (crumbCatText) crumbCatText.textContent = categoryNames[activeCatId] || activeCatId;
+    }
+    if (crumbSepSub) crumbSepSub.style.display = 'inline';
+    if (crumbSub) {
+      crumbSub.style.display = 'inline-flex';
+      crumbSub.classList.add('active');
+      if (crumbSubText) crumbSubText.textContent = subfolderNames[subId] || subId;
+    }
+
+    if (statsBadge) statsBadge.textContent = 'Project: ' + (subfolderNames[subId] || subId);
+
+    // Show floating return pill
+    if (floatingBackBtn) floatingBackBtn.classList.add('visible');
+
+    const workSec = document.getElementById('work');
+    if (workSec) workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Toggle View Mode (List vs Category Cards)
+  function toggleViewMode() {
+    const listView = document.getElementById('projects-list-view');
+    const catGrid = document.getElementById('categories-grid-view');
+    if (!listView || !catGrid) return;
+
+    if (listView.style.display !== 'none') {
+      listView.style.display = 'none';
+      catGrid.style.display = 'grid';
+      if (toggleText) toggleText.textContent = 'List View';
+      if (toggleIcon) toggleIcon.textContent = '☰';
+      if (statsBadge) statsBadge.textContent = 'Categories Overview (4 Categories)';
+    } else {
+      catGrid.style.display = 'none';
+      listView.style.display = 'flex';
+      if (toggleText) toggleText.textContent = 'Category Cards';
+      if (toggleIcon) toggleIcon.textContent = '▦';
+      filterProjectsList(activeCatId || 'root');
+    }
+  }
+
+  // Event Listeners for clicks
+  document.addEventListener('click', function(e) {
+    // Open project
+    const subCard = e.target.closest('[data-open-sub]');
+    if (subCard) {
+      const subId = subCard.dataset.openSub;
+      const parentCat = subCard.dataset.parentCat;
+      showSubfolder(subId, parentCat);
+      return;
+    }
+
+    // Open category from cards
+    const catCard = e.target.closest('[data-open-cat]');
+    if (catCard) {
+      const catId = catCard.dataset.openCat;
+      filterProjectsList(catId);
+      const workSec = document.getElementById('work');
+      if (workSec) workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Category filter tab pills
+    const tabBtn = e.target.closest('[data-tab-folder]');
+    if (tabBtn) {
+      const target = tabBtn.dataset.tabFolder;
+      if (currentLevel !== 'root') {
+        showRoot();
+      }
+      filterProjectsList(target);
+      return;
+    }
+
+    // Back to root
+    const backRootBtn = e.target.closest('[data-action="go-root"]');
+    if (backRootBtn) {
+      showRoot();
+      const workSec = document.getElementById('work');
+      if (workSec) workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Back to parent category filter
+    const backCatBtn = e.target.closest('[data-action="go-parent-cat"]');
+    if (backCatBtn) {
+      const catId = backCatBtn.dataset.parentCat || activeCatId;
+      showRoot();
+      filterProjectsList(catId);
+      const workSec = document.getElementById('work');
+      if (workSec) workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
   });
 
-  // 2. Visible container scan on load & hashchange
-  function scanVisiblePdfSubfolders() {
-    document.querySelectorAll('.subfolder-content-container').forEach(function(el) {
-      if (el.style.display !== 'none' && window.getComputedStyle(el).display !== 'none') {
-        activatePdfIframe(el);
+  if (crumbRoot) crumbRoot.addEventListener('click', showRoot);
+  if (crumbCat) crumbCat.addEventListener('click', () => {
+    showRoot();
+    if (activeCatId) filterProjectsList(activeCatId);
+  });
+  if (toggleBtn) toggleBtn.addEventListener('click', toggleViewMode);
+
+  // Keyboard shortcut: Escape returns to All Projects / closes lightbox
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const lightboxModal = document.getElementById('lightbox-modal');
+      if (lightboxModal && lightboxModal.classList.contains('active')) {
+        lightboxModal.classList.remove('active');
+        return;
+      }
+      if (currentLevel === 'sub') {
+        showRoot();
+        const workSec = document.getElementById('work');
+        if (workSec) workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  // Click-to-play on videos for instant frictionless viewing
+  document.querySelectorAll('.folder-video-box video').forEach(video => {
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
+
+  // ===========================================================================
+  // MASTER IN-SITE SCROLLABLE PDF VIEWER CONTROLLER
+  // ===========================================================================
+  const masterIframe = document.getElementById('master-pdf-iframe');
+  const masterTitle = document.getElementById('master-pdf-title');
+  const masterSub = document.getElementById('master-pdf-sub');
+  const masterOpenBtn = document.getElementById('master-pdf-open-btn');
+  const masterDownloadBtn = document.getElementById('master-pdf-download-btn');
+  const masterDownloadText = document.getElementById('master-download-text');
+  const masterHeightBtn = document.getElementById('master-pdf-height-btn');
+  const masterHeightText = document.getElementById('master-height-text');
+  const masterFullscreenBtn = document.getElementById('master-pdf-fullscreen-btn');
+  const masterContainer = document.getElementById('master-in-site-pdf-viewer');
+
+  const tabAkkad = document.getElementById('tab-pdf-akkad');
+  const tabTarget = document.getElementById('tab-pdf-target');
+
+  function switchMasterPdf(tabEl) {
+    if (!tabEl || !masterIframe) return;
+    document.querySelectorAll('#master-in-site-pdf-viewer .pdf-switch-btn').forEach(btn => btn.classList.remove('active'));
+    tabEl.classList.add('active');
+
+    const src = tabEl.dataset.pdfSrc;
+    const title = tabEl.dataset.pdfTitle;
+    const size = tabEl.dataset.pdfSize;
+    const format = tabEl.dataset.pdfFormat;
+
+    masterIframe.src = src + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH';
+    if (masterTitle) masterTitle.textContent = title;
+    if (masterSub) masterSub.innerHTML = format + ' &bull; <strong style="color: var(--rust);">' + size + '</strong>';
+    if (masterOpenBtn) masterOpenBtn.href = src;
+    if (masterDownloadBtn) masterDownloadBtn.href = src;
+    if (masterDownloadText) masterDownloadText.textContent = 'Download (' + size + ')';
+  }
+
+  if (tabAkkad) tabAkkad.addEventListener('click', () => switchMasterPdf(tabAkkad));
+  if (tabTarget) tabTarget.addEventListener('click', () => switchMasterPdf(tabTarget));
+
+  if (masterContainer && masterIframe) {
+    if ('IntersectionObserver' in window) {
+      const pdfObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
+              masterIframe.src = masterIframe.dataset.pdfSrc;
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '300px' });
+      pdfObserver.observe(masterContainer);
+    } else {
+      setTimeout(() => {
+        if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
+          masterIframe.src = masterIframe.dataset.pdfSrc;
+        }
+      }, 1000);
+    }
+  }
+
+  if (masterHeightBtn && masterContainer) {
+    masterHeightBtn.addEventListener('click', () => {
+      const isExpanded = masterContainer.classList.toggle('pdf-expanded');
+      if (masterIframe) {
+        masterIframe.style.height = isExpanded ? '1200px' : '800px';
+      }
+      if (masterHeightText) {
+        masterHeightText.textContent = isExpanded ? 'Collapse (800px)' : 'Expand (1200px)';
       }
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scanVisiblePdfSubfolders);
-  } else {
-    scanVisiblePdfSubfolders();
+  if (masterFullscreenBtn && masterContainer) {
+    masterFullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        masterContainer.requestFullscreen().catch(err => {
+          console.warn('Fullscreen error:', err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
   }
-  window.addEventListener('load', scanVisiblePdfSubfolders);
-  window.addEventListener('hashchange', function() {
-    setTimeout(scanVisiblePdfSubfolders, 150);
-  });
+
+  // Initial setup
+  showRoot();
 })();
 </script>
 

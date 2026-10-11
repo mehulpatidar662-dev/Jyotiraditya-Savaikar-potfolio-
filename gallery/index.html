@@ -23,6 +23,7 @@
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html#work" class="nav-link">Featured Work</a></li>
+          <li><a href="index.html#pdf-books" class="nav-link">📖 PDF Books</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery &amp; PDFs</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="resume.html" class="nav-link">Resume</a></li>
@@ -116,22 +117,25 @@
         <div class="folder-tabs-strip">
           <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Filter Projects:</span>
           <button class="folder-tab-btn active" data-tab-folder="root">
-            <span>All Projects (11)</span>
+            <span>✨ All Projects (11)</span>
           </button>
           <button class="folder-tab-btn" data-tab-folder="2d">
-            <span>2D (3 Projects)</span>
+            <span>🎬 2D Animation (3)</span>
           </button>
           <button class="folder-tab-btn" data-tab-folder="preprod">
-            <span>Preprod (4 Projects)</span>
+            <span>🎨 Pre-Production (4)</span>
           </button>
           <button class="folder-tab-btn" data-tab-folder="3d">
-            <span>3D (3 Projects)</span>
+            <span>🧊 3D &amp; Motion (3)</span>
           </button>
           <button class="folder-tab-btn" data-tab-folder="xtra-work">
-            <span>Xtra work (1 Project)</span>
+            <span>🖌️ Extra Work (1)</span>
           </button>
-          <a href="#in-site-pdf-viewer" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
-            <span>📖 In-Site PDF Viewer</span>
+          <button class="folder-tab-btn" data-tab-folder="pdf-only" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
+            <span>📖 PDF Books (2)</span>
+          </button>
+          <a href="#in-site-pdf-viewer" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.12); color: var(--rust); border-color: rgba(185, 28, 28, 0.4); margin-left: auto;">
+            <span>📖 Open In-Site PDF Viewer &darr;</span>
           </a>
         </div>
       </div>
@@ -3182,6 +3186,12 @@
     </svg>
   </button>
 
+  <!-- Floating Return to Projects Pill (Active when inside project view) -->
+  <button id="floating-back-projects-btn" class="floating-back-projects-btn" data-action="go-root" aria-label="Back to All Projects" title="Return to All Projects (Esc)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <span>Back to All Projects</span>
+  </button>
+
   <!-- =========================================================================
        8. FOOTER
        ========================================================================= -->
@@ -3286,7 +3296,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261011_1"></script>
+  <script src="static/js/bundle.js?v=20261011_2"></script>
   
 <script>
 // =============================================================================
@@ -3306,6 +3316,7 @@
   const crumbSepSub = document.getElementById('crumb-sep-sub');
   const crumbSub = document.getElementById('crumb-sub');
   const crumbSubText = document.getElementById('crumb-sub-text');
+  const floatingBackBtn = document.getElementById('floating-back-projects-btn');
 
   const statsBadge = document.getElementById('folder-stats-text');
   const toggleBtn = document.getElementById('view-mode-toggle');
@@ -3322,7 +3333,8 @@
     '2d': '2D',
     'preprod': 'Preprod',
     '3d': '3D',
-    'xtra-work': 'Xtra work'
+    'xtra-work': 'Xtra work',
+    'pdf-only': 'PDF Books'
   };
 
   const subfolderNames = {
@@ -3373,6 +3385,8 @@
     if (crumbSepSub) crumbSepSub.style.display = 'none';
     if (crumbSub) crumbSub.style.display = 'none';
 
+    if (floatingBackBtn) floatingBackBtn.classList.remove('visible');
+
     if (statsBadge) statsBadge.textContent = '11 Projects • 4 Categories • 30 Assets';
     updatePills('root');
   }
@@ -3392,7 +3406,17 @@
     const items = listView.querySelectorAll('.project-list-item');
     let visibleCount = 0;
     items.forEach(item => {
-      if (catId === 'root' || catId === 'all' || item.dataset.parentCat === catId || item.dataset.cat === catId) {
+      let match = false;
+      if (catId === 'root' || catId === 'all') {
+        match = true;
+      } else if (catId === 'pdf-only') {
+        const badge = item.querySelector('.project-list-thumb-badge');
+        match = item.dataset.hasPdf === 'true' || (badge && badge.textContent.includes('PDF'));
+      } else {
+        match = (item.dataset.parentCat === catId || item.dataset.cat === catId);
+      }
+
+      if (match) {
         item.style.display = 'flex';
         visibleCount++;
       } else {
@@ -3510,8 +3534,36 @@
     }
 
     if (statsBadge) statsBadge.textContent = 'Project: ' + (subfolderNames[subId] || subId);
+    if (floatingBackBtn) floatingBackBtn.classList.add('visible');
     updatePills(activeCatId);
   }
+
+  // Keyboard shortcut: Escape returns to all projects
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const lightboxModal = document.getElementById('lightbox-modal');
+      if (lightboxModal && lightboxModal.classList.contains('active')) {
+        lightboxModal.classList.remove('active');
+        return;
+      }
+      if (currentLevel === 'sub' || currentLevel === 'cat') {
+        showRoot();
+        const exp = document.getElementById('folder-explorer');
+        if (exp) exp.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  // Click-to-play on videos
+  document.querySelectorAll('.folder-video-box video').forEach(video => {
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
 
   function updatePills(activeId) {
     document.querySelectorAll('.folder-tab-btn').forEach(btn => {
