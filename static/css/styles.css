@@ -5401,18 +5401,22 @@ button:focus-visible {
   border-color: var(--rust);
 }
 
-.folder-video-box {
-  background: #000000;
+.folder-video-box,
+.folder-photo-box {
+  background: #000000 !important;
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius: 0 0 14px 14px;
 }
 
 .folder-video-box video,
-.in-site-main-video {
+.in-site-main-video,
+.folder-photo-box img,
+.in-site-main-photo {
   width: 100% !important;
   height: auto;
   max-height: 80vh !important;
@@ -5421,11 +5425,18 @@ button:focus-visible {
   display: block;
   margin: 0 auto;
   background: #000000;
+  transition: transform 0.25s ease;
+}
+
+.folder-media-card:hover .in-site-main-photo {
+  transform: scale(1.012);
 }
 
 @media (max-width: 640px) {
   .folder-video-box video,
-  .in-site-main-video {
+  .in-site-main-video,
+  .folder-photo-box img,
+  .in-site-main-photo {
     min-height: 240px;
     max-height: 60vh !important;
   }
