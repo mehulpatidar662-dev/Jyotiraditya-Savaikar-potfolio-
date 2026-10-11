@@ -6320,3 +6320,177 @@ button:focus-visible {
   user-select: none;
 }
 
+/* ==========================================================================
+   CINEMA VIDEO PLAYER SHORTCUTS, SPEED CONTROLS & TOUCH GESTURES
+   ========================================================================== */
+
+/* Cinema HUD Toast Notification Overlay */
+.cinema-hud-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  background: rgba(12, 16, 26, 0.94);
+  border: 1.5px solid rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 24px rgba(224, 86, 56, 0.35);
+  z-index: 100000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinema-hud-toast.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cinema-hud-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--rust, #e05638);
+}
+
+/* Lightbox Bottom Shortcuts Bar */
+.lightbox-shortcuts-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(12, 16, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  padding: 6px 18px;
+  border-radius: 999px;
+  z-index: 55;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+.lightbox-shortcuts-bar .shortcut-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+.lightbox-shortcuts-bar kbd {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Video Speed Pill Button */
+.video-speed-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  color: var(--heading-color);
+  border: 1px solid var(--border-color);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.video-speed-btn:hover {
+  background: var(--rust, #e05638);
+  color: #ffffff;
+  border-color: var(--rust, #e05638);
+}
+
+.video-speed-btn .speed-val {
+  color: var(--rust, #e05638);
+  font-weight: 800;
+}
+
+.video-speed-btn:hover .speed-val {
+  color: #ffffff;
+}
+
+/* Video Touch Swipe & Ripple feedback */
+.video-touch-ripple {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(224, 86, 56, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+
+.video-touch-ripple.left {
+  left: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.video-touch-ripple.right {
+  right: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.video-touch-ripple.active {
+  opacity: 1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .lightbox-shortcuts-bar {
+    bottom: 12px;
+    padding: 5px 12px;
+    gap: 8px;
+    max-width: 92vw;
+  }
+  .lightbox-shortcuts-bar .shortcut-item:not(.mobile-hint) {
+    display: none;
+  }
+  .lightbox-shortcuts-bar .mobile-hint {
+    display: inline-flex;
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: 769px) {
+  .lightbox-shortcuts-bar .mobile-hint {
+    display: none;
+  }
+}
+
+

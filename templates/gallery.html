@@ -359,8 +359,13 @@
             <div class="folder-asset-grid">
               {% for item in sub['items'] %}
                 {% if item.type == 'video' %}
-                <!-- Full-Width Cinema Video Media Card -->
-                <div class="folder-media-card video-media-card-full">
+                <div class="folder-media-card video-media-card-full"
+                     data-lightbox-trigger
+                     data-lightbox-video-src="{{ url_for('static', filename=item.file_path) }}"
+                     data-lightbox-title="{{ item.title }}"
+                     data-lightbox-badge="{{ item.badge }}"
+                     data-lightbox-desc="{{ item.caption or '' }}"
+                     data-lightbox-specs="PATH: {{ item.file_path }}">
                   <div class="folder-video-header">
                     <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                       <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e;"></span>
@@ -369,6 +374,10 @@
                       <span class="folder-media-type-badge-inline">{{ item.badge }}</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
+                      <button class="video-action-btn video-speed-btn" type="button" title="Cycle Video Speed (0.75x, 1x, 1.25x, 1.5x, 2x)">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span class="speed-val">1.0x</span>
+                      </button>
                       <button class="video-action-btn primary toggle-video-fullscreen-btn" type="button" title="Full Screen Browser Mode">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                         <span>Full Screen</span>

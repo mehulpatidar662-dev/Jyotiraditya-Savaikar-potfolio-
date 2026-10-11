@@ -2521,7 +2521,7 @@ class PortfolioApp {
     });
   }
 
-  // Setup High-Resolution Fullscreen Cinema Lightbox
+  // Setup High-Resolution Fullscreen Cinema Lightbox & Video Player
   setupLightbox() {
     const modal = document.getElementById('lightbox-modal');
     if (!modal) return;
@@ -2539,10 +2539,39 @@ class PortfolioApp {
     const zoomBtn = document.getElementById('lightbox-zoom-toggle');
     const zoomText = document.getElementById('lightbox-zoom-text');
     const browserFsBtn = document.getElementById('lightbox-browser-fullscreen');
+    const speedBtn = document.getElementById('lightbox-speed-btn');
+    const speedText = document.getElementById('lightbox-speed-text');
     const mediaWrap = document.getElementById('lightbox-media-container');
 
     let currentItems = [];
     let currentIndex = 0;
+    const SPEED_STEPS = [1.0, 1.25, 1.5, 2.0, 0.75];
+    let currentSpeedIdx = 0;
+
+    // Cinema HUD Overlay Helper
+    const showCinemaHUD = (msg, icon = '🎬') => {
+      let toast = document.getElementById('cinema-hud-toast');
+      if (!toast) return;
+      const iconEl = document.getElementById('cinema-hud-icon');
+      const textEl = document.getElementById('cinema-hud-text');
+      if (iconEl) iconEl.innerHTML = icon;
+      if (textEl) textEl.textContent = msg;
+      toast.classList.remove('visible');
+      void toast.offsetWidth; // force reflow
+      toast.classList.add('visible');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove('visible');
+      }, 850);
+    };
+    window.showCinemaHUD = showCinemaHUD;
+
+    const formatTime = (secs) => {
+      if (isNaN(secs) || secs < 0) return '0:00';
+      const m = Math.floor(secs / 60);
+      const s = Math.floor(secs % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    };
 
     const resetZoom = () => {
       if (imgEl) imgEl.classList.remove('is-zoomed');
@@ -2551,10 +2580,11 @@ class PortfolioApp {
     };
 
     const toggleZoom = () => {
-      if (!imgEl) return;
+      if (!imgEl || imgEl.style.display === 'none') return;
       const isZoomed = imgEl.classList.toggle('is-zoomed');
       if (mediaWrap) mediaWrap.classList.toggle('is-zoomed-wrap', isZoomed);
       if (zoomText) zoomText.textContent = isZoomed ? 'Fit Screen' : 'Zoom In';
+      showCinemaHUD(isZoomed ? '🔍 1:1 Pixel Details' : '⛶ Fit to Screen', '🔍');
     };
 
     if (zoomBtn) {
@@ -2572,24 +2602,56 @@ class PortfolioApp {
       });
     }
 
+    // Toggle True Browser Fullscreen
+    const toggleFullscreen = (targetEl) => {
+      const el = targetEl || document.documentElement;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (el.requestFullscreen) {
+          el.requestFullscreen().catch(err => console.warn(err));
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.webkitEnterFullscreen) {
+          el.webkitEnterFullscreen();
+        }
+        showCinemaHUD('⛶ Fullscreen Browser Mode', '⛶');
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(err => console.warn(err));
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+        showCinemaHUD('Standard View', '🗗');
+      }
+    };
+
     if (browserFsBtn) {
       browserFsBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-          const docEl = document.documentElement;
-          if (docEl.requestFullscreen) {
-            docEl.requestFullscreen().catch(err => console.warn(err));
-          } else if (docEl.webkitRequestFullscreen) {
-            docEl.webkitRequestFullscreen();
-          }
-        } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen().catch(err => console.warn(err));
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          }
-        }
+        toggleFullscreen(modal);
+      });
+    }
+
+    // Speed Cycle Handler
+    const cycleSpeed = (targetVid) => {
+      currentSpeedIdx = (currentSpeedIdx + 1) % SPEED_STEPS.length;
+      const newSpeed = SPEED_STEPS[currentSpeedIdx];
+      if (targetVid) {
+        targetVid.playbackRate = newSpeed;
+      }
+      const speedStr = `${newSpeed}x`;
+      if (speedText) speedText.textContent = speedStr;
+      document.querySelectorAll('.video-speed-btn .speed-val').forEach(el => {
+        el.textContent = speedStr;
+      });
+      showCinemaHUD(`⚡ Playback Speed: ${speedStr}`, '⚡');
+    };
+
+    if (speedBtn) {
+      speedBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        cycleSpeed(videoEl);
       });
     }
 
@@ -2598,17 +2660,46 @@ class PortfolioApp {
       currentIndex = idx;
       resetZoom();
       const item = currentItems[idx];
-      if (videoEl) {
-        videoEl.pause();
-        videoEl.removeAttribute('src');
-        videoEl.style.display = 'none';
+      const isVideo = !!(item.videoSrc || (item.src && (item.src.endsWith('.mp4') || item.src.endsWith('.mov') || item.src.endsWith('.webm'))));
+
+      if (isVideo) {
+        if (imgEl) {
+          imgEl.style.display = 'none';
+          imgEl.src = '';
+        }
+        if (zoomBtn) zoomBtn.style.display = 'none';
+        if (speedBtn) speedBtn.style.display = 'inline-flex';
+        if (videoEl) {
+          videoEl.style.display = 'block';
+          const targetSrc = item.videoSrc || item.src;
+          if (videoEl.src !== targetSrc) {
+            videoEl.src = targetSrc;
+          }
+          if (item.poster) videoEl.poster = item.poster;
+          videoEl.playbackRate = SPEED_STEPS[currentSpeedIdx];
+          videoEl.currentTime = 0;
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(err => console.warn('Autoplay prevented:', err));
+          }
+        }
+        showCinemaHUD('▶ Cinema Player Active', '🎬');
+      } else {
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.removeAttribute('src');
+          videoEl.style.display = 'none';
+        }
+        if (zoomBtn) zoomBtn.style.display = 'inline-flex';
+        if (speedBtn) speedBtn.style.display = 'none';
+        if (imgEl) {
+          imgEl.style.display = 'block';
+          imgEl.src = item.src;
+          imgEl.alt = item.title;
+        }
       }
-      if (imgEl) {
-        imgEl.style.display = 'block';
-        imgEl.src = item.src;
-        imgEl.alt = item.title;
-      }
-      if (badgeEl) badgeEl.textContent = item.badge || 'PRODUCTION PLATE';
+
+      if (badgeEl) badgeEl.textContent = item.badge || (isVideo ? 'CINEMA VIDEO' : 'PRODUCTION PLATE');
       if (titleEl) titleEl.textContent = item.title;
       if (descEl) descEl.textContent = item.desc || '';
       if (specsEl) specsEl.textContent = item.specs || '';
@@ -2620,13 +2711,19 @@ class PortfolioApp {
         return el.offsetParent !== null; // element is currently visible in DOM
       });
 
-      currentItems = visibleTriggers.map(el => ({
-        src: el.dataset.lightboxSrc || (el.querySelector('img') ? el.querySelector('img').src : ''),
-        title: el.dataset.lightboxTitle || (el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline') ? el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline').textContent.trim() : 'Production Artwork'),
-        badge: el.dataset.lightboxBadge || 'PRODUCTION PLATE',
-        desc: el.dataset.lightboxDesc || (el.querySelector('p, .cinema-caption') ? el.querySelector('p, .cinema-caption').textContent.trim() : ''),
-        specs: el.dataset.lightboxSpecs || ''
-      }));
+      currentItems = visibleTriggers.map(el => {
+        const vSrc = el.dataset.lightboxVideoSrc || el.dataset.videoSrc || (el.querySelector('video source') ? el.querySelector('video source').src : (el.querySelector('video') ? el.querySelector('video').src : ''));
+        const iSrc = el.dataset.lightboxSrc || (el.querySelector('img') ? el.querySelector('img').src : '');
+        return {
+          src: iSrc,
+          videoSrc: vSrc,
+          title: el.dataset.lightboxTitle || el.dataset.videoTitle || (el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline') ? el.querySelector('h3, h4, .cinema-media-title, .folder-media-title-inline').textContent.trim() : 'Production Artwork'),
+          badge: el.dataset.lightboxBadge || el.dataset.videoBadge || (vSrc ? 'CINEMA VIDEO' : 'PRODUCTION PLATE'),
+          desc: el.dataset.lightboxDesc || (el.querySelector('p, .cinema-caption') ? el.querySelector('p, .cinema-caption').textContent.trim() : ''),
+          specs: el.dataset.lightboxSpecs || '',
+          poster: el.querySelector('video') ? el.querySelector('video').poster : ''
+        };
+      });
 
       const clickIndex = visibleTriggers.indexOf(triggerEl);
       currentIndex = clickIndex >= 0 ? clickIndex : 0;
@@ -2648,14 +2745,49 @@ class PortfolioApp {
         videoEl.removeAttribute('src');
         videoEl.style.display = 'none';
       }
+      showCinemaHUD('Cinema Lightbox Closed', '✕');
     };
 
-    // Bind triggers using event delegation
+    // Global click listener for lightbox triggers, theater buttons, and fullscreen buttons
     document.addEventListener('click', (e) => {
+      const theaterBtn = e.target.closest('.open-video-theater-btn');
+      if (theaterBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = theaterBtn.closest('.folder-media-card') || theaterBtn;
+        openLightbox(card);
+        return;
+      }
+
+      const videoFsBtn = e.target.closest('.toggle-video-fullscreen-btn');
+      if (videoFsBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = videoFsBtn.closest('.folder-media-card');
+        const vid = card ? card.querySelector('video') : null;
+        if (vid) toggleFullscreen(vid);
+        return;
+      }
+
+      const speedBtnClicked = e.target.closest('.video-speed-btn');
+      if (speedBtnClicked) {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = speedBtnClicked.closest('.folder-media-card');
+        const vid = card ? card.querySelector('video') : null;
+        cycleSpeed(vid);
+        return;
+      }
+
       const trigger = e.target.closest('[data-lightbox-trigger]');
       if (trigger) {
-        // If clicking on an anchor tag inside that is not a zoom button, let it navigate
         if (e.target.closest('a') && !e.target.closest('.gallery-zoom-trigger')) {
+          return;
+        }
+        if (e.target.tagName === 'VIDEO' || e.target.closest('video')) {
+          return;
+        }
+        if (e.target.closest('.video-action-btn') && !e.target.closest('.open-video-theater-btn') && !e.target.closest('.image-action-fullscreen-btn') && !e.target.closest('.cinema-zoom-btn')) {
           return;
         }
         e.preventDefault();
@@ -2686,26 +2818,308 @@ class PortfolioApp {
       });
     }
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('active')) return;
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        if (currentItems.length > 0) {
-          const newIdx = (currentIndex - 1 + currentItems.length) % currentItems.length;
-          updateLightbox(newIdx);
-        }
-      } else if (e.key === 'ArrowRight') {
-        if (currentItems.length > 0) {
-          const newIdx = (currentIndex + 1) % currentItems.length;
-          updateLightbox(newIdx);
-        }
-      } else if (e.key === 'f' || e.key === 'F') {
-        if (browserFsBtn) browserFsBtn.click();
-      } else if (e.key === 'z' || e.key === 'Z') {
-        toggleZoom();
+    // Helper to find the active/playing video on the page
+    const getActiveVideo = () => {
+      if (modal && modal.classList.contains('active')) {
+        return (videoEl && videoEl.style.display !== 'none' && videoEl.src) ? videoEl : null;
       }
+      const allVideos = Array.from(document.querySelectorAll('video'));
+      const playingVideo = allVideos.find(v => !v.paused && !v.ended && v.currentTime > 0);
+      if (playingVideo) return playingVideo;
+      const hoveredVideo = allVideos.find(v => v.matches(':hover') || (v.closest('.folder-media-card') && v.closest('.folder-media-card').matches(':hover')));
+      if (hoveredVideo) return hoveredVideo;
+      return null;
+    };
+
+    // ==========================================
+    // CINEMA KEYBOARD CONTROLS (Universal)
+    // ==========================================
+    document.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+
+      const isModalActive = modal && modal.classList.contains('active');
+      const activeVideo = getActiveVideo();
+
+      // 1. SPACEBAR: Play / Pause or Next Plate
+      if (e.code === 'Space' || e.key === ' ') {
+        if (isModalActive) {
+          e.preventDefault();
+          if (videoEl && videoEl.style.display !== 'none' && videoEl.src) {
+            if (videoEl.paused) {
+              videoEl.play();
+              showCinemaHUD('▶ Playing', '▶');
+            } else {
+              videoEl.pause();
+              showCinemaHUD('❚❚ Paused', '❚❚');
+            }
+          } else {
+            // Space advances image plate
+            if (currentItems.length > 0) {
+              const newIdx = (currentIndex + 1) % currentItems.length;
+              updateLightbox(newIdx);
+            }
+          }
+          return;
+        } else if (activeVideo) {
+          e.preventDefault();
+          if (activeVideo.paused) {
+            activeVideo.play();
+            showCinemaHUD('▶ Playing', '▶');
+          } else {
+            activeVideo.pause();
+            showCinemaHUD('❚❚ Paused', '❚❚');
+          }
+          return;
+        }
+      }
+
+      // 2. F / f: Toggle Fullscreen
+      if (e.key === 'f' || e.key === 'F') {
+        if (isModalActive) {
+          e.preventDefault();
+          toggleFullscreen(modal);
+          return;
+        } else if (activeVideo) {
+          e.preventDefault();
+          toggleFullscreen(activeVideo);
+          return;
+        }
+      }
+
+      // 3. M / m: Mute / Unmute
+      if (e.key === 'm' || e.key === 'M') {
+        if (activeVideo) {
+          e.preventDefault();
+          activeVideo.muted = !activeVideo.muted;
+          const status = activeVideo.muted ? '🔇 Muted' : '🔊 Unmuted';
+          showCinemaHUD(status, activeVideo.muted ? '🔇' : '🔊');
+          return;
+        }
+      }
+
+      // 4. ARROW LEFT: Seek -5s on video OR Previous Plate
+      if (e.key === 'ArrowLeft') {
+        if (isModalActive) {
+          e.preventDefault();
+          const hasVideo = videoEl && videoEl.style.display !== 'none' && videoEl.src;
+          if (hasVideo && !e.shiftKey) {
+            videoEl.currentTime = Math.max(0, videoEl.currentTime - 5);
+            showCinemaHUD(`⏪ -5s (${formatTime(videoEl.currentTime)})`, '⏪');
+          } else {
+            if (currentItems.length > 0) {
+              const newIdx = (currentIndex - 1 + currentItems.length) % currentItems.length;
+              updateLightbox(newIdx);
+            }
+          }
+          return;
+        } else if (activeVideo) {
+          e.preventDefault();
+          activeVideo.currentTime = Math.max(0, activeVideo.currentTime - 5);
+          showCinemaHUD(`⏪ -5s (${formatTime(activeVideo.currentTime)})`, '⏪');
+          return;
+        }
+      }
+
+      // 5. ARROW RIGHT: Seek +5s on video OR Next Plate
+      if (e.key === 'ArrowRight') {
+        if (isModalActive) {
+          e.preventDefault();
+          const hasVideo = videoEl && videoEl.style.display !== 'none' && videoEl.src;
+          if (hasVideo && !e.shiftKey) {
+            videoEl.currentTime = Math.min(videoEl.duration || Infinity, videoEl.currentTime + 5);
+            showCinemaHUD(`⏩ +5s (${formatTime(videoEl.currentTime)})`, '⏩');
+          } else {
+            if (currentItems.length > 0) {
+              const newIdx = (currentIndex + 1) % currentItems.length;
+              updateLightbox(newIdx);
+            }
+          }
+          return;
+        } else if (activeVideo) {
+          e.preventDefault();
+          activeVideo.currentTime = Math.min(activeVideo.duration || Infinity, activeVideo.currentTime + 5);
+          showCinemaHUD(`⏩ +5s (${formatTime(activeVideo.currentTime)})`, '⏩');
+          return;
+        }
+      }
+
+      // 6. SPEED CONTROLS: '>' / '.' speed up, '<' / ',' slow down
+      if (e.key === '>' || (e.shiftKey && e.key === '.') || e.key === '<' || (e.shiftKey && e.key === ',')) {
+        if (activeVideo) {
+          e.preventDefault();
+          const isUp = (e.key === '>' || (e.shiftKey && e.key === '.'));
+          const speeds = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
+          let curIdx = speeds.indexOf(activeVideo.playbackRate);
+          if (curIdx === -1) curIdx = 2; // 1.0
+          const nextIdx = isUp ? Math.min(speeds.length - 1, curIdx + 1) : Math.max(0, curIdx - 1);
+          activeVideo.playbackRate = speeds[nextIdx];
+          const speedStr = `${speeds[nextIdx]}x`;
+          if (speedText) speedText.textContent = speedStr;
+          showCinemaHUD(`⚡ Playback Speed: ${speedStr}`, '⚡');
+          return;
+        }
+      }
+
+      // 7. NUMBERS 0-9: Jump percentage of video
+      if (activeVideo && e.key >= '0' && e.key <= '9' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        e.preventDefault();
+        const pct = parseInt(e.key, 10) * 0.1;
+        if (activeVideo.duration) {
+          activeVideo.currentTime = pct * activeVideo.duration;
+          showCinemaHUD(`⏱ Jump to ${parseInt(e.key, 10) * 10}% (${formatTime(activeVideo.currentTime)})`, '⏱');
+        }
+        return;
+      }
+
+      // 8. ESCAPE: Close Lightbox
+      if (e.key === 'Escape' && isModalActive) {
+        closeLightbox();
+        return;
+      }
+
+      // 9. Z / z: Toggle 1:1 Zoom (on images)
+      if ((e.key === 'z' || e.key === 'Z') && isModalActive && imgEl && imgEl.style.display !== 'none') {
+        toggleZoom();
+        return;
+      }
+    });
+
+    // ==========================================
+    // MOBILE TOUCH GESTURES (Swipe & Double-Tap)
+    // ==========================================
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let isTouchActive = false;
+    let lastTapTime = 0;
+
+    if (mediaWrap) {
+      mediaWrap.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+          isTouchActive = true;
+
+          // Double-tap zoom detection on images
+          const now = Date.now();
+          if (imgEl && imgEl.style.display !== 'none' && (now - lastTapTime < 320)) {
+            toggleZoom();
+            lastTapTime = 0;
+          } else {
+            lastTapTime = now;
+          }
+        }
+      }, { passive: true });
+
+      mediaWrap.addEventListener('touchmove', (e) => {
+        if (!isTouchActive || e.touches.length !== 1) return;
+        const curX = e.touches[0].clientX;
+        const curY = e.touches[0].clientY;
+        const diffX = curX - touchStartX;
+        const diffY = curY - touchStartY;
+
+        // If zoomed, allow native panning
+        if (imgEl && imgEl.classList.contains('is-zoomed')) return;
+
+        const activeEl = (videoEl && videoEl.style.display !== 'none') ? videoEl : imgEl;
+        if (!activeEl) return;
+
+        // Elastic horizontal swipe feedback
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          activeEl.style.transform = `translateX(${diffX * 0.4}px)`;
+          activeEl.style.transition = 'none';
+        } else if (diffY > 0 && Math.abs(diffY) > Math.abs(diffX) * 1.4) {
+          // Vertical pull-to-dismiss feedback
+          const scaleVal = Math.max(0.85, 1 - (diffY / 900));
+          activeEl.style.transform = `translateY(${diffY * 0.5}px) scale(${scaleVal})`;
+          activeEl.style.transition = 'none';
+        }
+      }, { passive: true });
+
+      const handleTouchEnd = (e) => {
+        if (!isTouchActive) return;
+        isTouchActive = false;
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        const duration = Date.now() - touchStartTime;
+
+        const activeEl = (videoEl && videoEl.style.display !== 'none') ? videoEl : imgEl;
+        if (activeEl) {
+          activeEl.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+          activeEl.style.transform = '';
+        }
+
+        if (imgEl && imgEl.classList.contains('is-zoomed')) return;
+
+        // Pull down to dismiss
+        if (diffY > 90 && Math.abs(diffX) < 60) {
+          closeLightbox();
+          return;
+        }
+
+        // Horizontal swipe (Next / Prev)
+        if (Math.abs(diffX) > 50 || (Math.abs(diffX) > 30 && duration < 320)) {
+          if (diffX < 0) {
+            // Swiped Left -> Next plate
+            if (currentItems.length > 0) {
+              const newIdx = (currentIndex + 1) % currentItems.length;
+              updateLightbox(newIdx);
+              showCinemaHUD('Next Plate →', '❯');
+            }
+          } else {
+            // Swiped Right -> Previous plate
+            if (currentItems.length > 0) {
+              const newIdx = (currentIndex - 1 + currentItems.length) % currentItems.length;
+              updateLightbox(newIdx);
+              showCinemaHUD('← Previous Plate', '❮');
+            }
+          }
+        }
+      };
+
+      mediaWrap.addEventListener('touchend', handleTouchEnd, { passive: true });
+      mediaWrap.addEventListener('touchcancel', () => {
+        isTouchActive = false;
+        const activeEl = (videoEl && videoEl.style.display !== 'none') ? videoEl : imgEl;
+        if (activeEl) {
+          activeEl.style.transition = 'transform 0.25s ease';
+          activeEl.style.transform = '';
+        }
+      }, { passive: true });
+    }
+
+    // In-page mobile double-tap on video boxes to seek 5s
+    document.querySelectorAll('.folder-video-box').forEach(box => {
+      let lastTapTime = 0;
+      let lastTapX = 0;
+
+      box.addEventListener('touchend', (e) => {
+        const video = box.querySelector('video');
+        if (!video) return;
+        const now = Date.now();
+        const touch = e.changedTouches[0];
+        const rect = box.getBoundingClientRect();
+        const tapX = touch.clientX - rect.left;
+
+        if (now - lastTapTime < 320 && Math.abs(tapX - lastTapX) < 60) {
+          const isLeft = tapX < (rect.width * 0.4);
+          const isRight = tapX > (rect.width * 0.6);
+          if (isLeft) {
+            video.currentTime = Math.max(0, video.currentTime - 5);
+            showCinemaHUD(`⏪ -5s (${formatTime(video.currentTime)})`, '⏪');
+          } else if (isRight) {
+            video.currentTime = Math.min(video.duration || Infinity, video.currentTime + 5);
+            showCinemaHUD(`⏩ +5s (${formatTime(video.currentTime)})`, '⏩');
+          }
+          lastTapTime = 0;
+        } else {
+          lastTapTime = now;
+          lastTapX = tapX;
+        }
+      });
     });
   }
 }
