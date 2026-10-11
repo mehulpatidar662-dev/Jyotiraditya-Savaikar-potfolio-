@@ -127,15 +127,6 @@ WORK_CATEGORIES = [
         "featured_project": "The Bot and the Boy & Akkad"
     },
     {
-        "id": "3d",
-        "slug": "3d",
-        "title": "3D Motion & Design",
-        "badge": "3 Projects • 3 Video Renders",
-        "thumbnail_image": "aditya_project/3D/cube/cube.png",
-        "description": "Looping isometric dimensional puzzles, cyberpunk kinetic typography, and fluid liquid glass morph animations.",
-        "featured_project": "Cube Shift & Cyberpunk"
-    },
-    {
         "id": "xtra-work",
         "slug": "xtra-work",
         "title": "Extra Work & Visual Development",
@@ -329,34 +320,6 @@ FEATURED_PROJECTS = [
         "tags": ["Character Design", "Model Sheet", "Facial Expressions", "Turnaround"]
     },
     {
-        "id": "3d-motion",
-        "slug": "3d-motion",
-        "folder_cat": "3d",
-        "folder_sub": "cube",
-        "title": "3D Motion Graphics & Isometric Physics",
-        "subtitle": "Cube Shift, Cyberpunk Typography & Liquid Glass Morph",
-        "category": "3D Motion Design & Simulation",
-        "artwork_badge": "3 VIDEO RENDERS • ISOMETRIC PHYSICS • 24 FPS",
-        "media_type": "video",
-        "cover_image": "aditya_project/3D/cube/cube.png",
-        "secondary_image": "aditya_project/3D/Cyberpunk/cyberpunk.png",
-        "video_file": "aditya_project/3D/cube/Cube shift Final.mp4",
-        "tools": ["Blender", "After Effects", "Cinema 4D"],
-        "description": (
-            "Procedural isometric voxel transformation (Cube Shift), cyberpunk kinetic typography with "
-            "glitch chromatic dispersion, and fluid liquid simulation tracking viscous glass morphing with caustics."
-        ),
-        "highlights": [
-            "Cube Shift Isometric 3D Motion",
-            "Cyberpunk Kinetic Typography Reel",
-            "Wine Bottle Liquid Morph Simulation",
-            "Procedural Physics & Lighting"
-        ],
-        "gallery_url": "gallery.html?cat=3d",
-        "folder_path": "Aditya project/3D/",
-        "tags": ["3D Motion", "Blender", "Physics Simulation", "Kinetic Typography"]
-    },
-    {
         "id": "non-narrative",
         "slug": "non-narrative",
         "folder_cat": "2d",
@@ -440,19 +403,6 @@ PROJECT_DOSSIERS = {
         "folder_cat": "preprod",
         "subfolders": ["bot-and-boy", "beavis", "akkad", "monkesh"]
     },
-    "3d": {
-        "slug": "3d",
-        "title": "3D Motion & Design Archive",
-        "category_title": "3D Motion Design",
-        "badge": "Procedural Physics & Fluid Simulation",
-        "tagline": "Dimensional Puzzles, Kinetic Typography & Fluid Dynamics",
-        "brief": (
-            "Hard-surface geometric voxel transformation (Cube Shift), broadcast cyberpunk kinetic typography "
-            "with neon chromatic dispersion, and fluid liquid simulation tracking viscous glass morphing."
-        ),
-        "folder_cat": "3d",
-        "subfolders": ["cube", "cyberpunk", "wine"]
-    },
     "xtra-work": {
         "slug": "xtra-work",
         "title": "Extra Artwork & Visual Development",
@@ -478,7 +428,8 @@ PROJECT_DOSSIERS = {
     "target-practise": FEATURED_PROJECTS[4],
     "comic-storyboards": FEATURED_PROJECTS[4],
     "monkesh": FEATURED_PROJECTS[5],
-    "3d-motion": FEATURED_PROJECTS[6]
+    "non-narrative": FEATURED_PROJECTS[6],
+    "illustrations": FEATURED_PROJECTS[7]
 }
 
 SKILLS_TOOLKIT = {
@@ -912,88 +863,6 @@ FOLDER_ARCHIVES = [
                         "bg": "#18141f",
                         "badge": "TYPOGRAPHIC TITLE DESIGN",
                         "caption": "Custom stylized title branding and letterform design for the Monkesh franchise."
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "3d",
-        "slug": "3d",
-        "name": "3D",
-        "title": "3D Motion & Design",
-        "icon": "box",
-        "cover_image": "aditya_project/3D/cube/cube.png",
-        "description": "Looping isometric dimensional puzzles, cyberpunk kinetic typography, and fluid liquid glass morph animations.",
-        "badge": "3 Projects • 3 Video Renders",
-        "subfolders": [
-            {
-                "id": "cube",
-                "slug": "cube",
-                "folder_name": "cube",
-                "title": "Cube Shift — Isometric 3D Motion",
-                "cover_image": "aditya_project/3D/cube/cube.png",
-                "category": "3D Motion Graphics",
-                "description": "Looping isometric voxel cube animation featuring dynamic studio lighting, procedural rotation, and dimensional shift mechanics.",
-                "tools": ["Blender", "After Effects", "Cinema 4D"],
-                "badge": "1 Video Render (84.1 MB)",
-                "items": [
-                    {
-                        "type": "video",
-                        "title": "Cube Shift Final — 3D Motion Animation",
-                        "file_path": "aditya_project/3D/cube/Cube shift Final.mp4",
-                        "file_path_alt": "aditya_project/3D/cube/Cube shift Final.mov",
-                        "poster": "aditya_project/3D/cube/cube.png",
-                        "duration": "0:15 min",
-                        "fps": "24 fps",
-                        "badge": "ISOMETRIC 3D • 24 FPS",
-                        "caption": "Hard-surface geometric voxel transformation and procedural isometric cube shift animation."
-                    }
-                ]
-            },
-            {
-                "id": "cyberpunk",
-                "slug": "cyberpunk",
-                "folder_name": "Cyberpunk",
-                "title": "Cyberpunk Typography — Motion Design",
-                "cover_image": "aditya_project/3D/Cyberpunk/cyberpunk.png",
-                "category": "Kinetic Typography & Broadcast",
-                "description": "High-energy cyberpunk kinetic typography reel featuring stylized glitch distortion, neon chromatic dispersion, and synchronized audio pacing.",
-                "tools": ["After Effects", "Illustrator", "Blender"],
-                "badge": "1 Video Render (18.4 MB)",
-                "items": [
-                    {
-                        "type": "video",
-                        "title": "Cyberpunk Typography FINAL — Kinetic Reel",
-                        "file_path": "aditya_project/3D/Cyberpunk/Cyberpunk Typography FINAL.mp4",
-                        "poster": "aditya_project/3D/Cyberpunk/cyberpunk.png",
-                        "duration": "0:25 min",
-                        "fps": "24 fps",
-                        "badge": "KINETIC TYPOGRAPHY • 1080p HD",
-                        "caption": "Stylized broadcast kinetic typography exploration with sci-fi glitch transitions and procedural pacing."
-                    }
-                ]
-            },
-            {
-                "id": "wine",
-                "slug": "wine",
-                "folder_name": "Wine",
-                "title": "Wine Bottle Liquid Morph — 3D Simulation",
-                "cover_image": "aditya_project/3D/Wine/bottle.png",
-                "category": "3D Procedural & Fluid Dynamics",
-                "description": "Fluid simulation and procedural glass shading study tracking viscous liquid morphing into bottle geometry with caustics and refraction.",
-                "tools": ["Blender", "After Effects"],
-                "badge": "1 Video Render (11.6 MB)",
-                "items": [
-                    {
-                        "type": "video",
-                        "title": "Wine Bottle Liquid Morph — 3D Simulation Reel",
-                        "file_path": "aditya_project/3D/Wine/Wine Bottle Liquid Morph.mp4",
-                        "poster": "aditya_project/3D/Wine/bottle.png",
-                        "duration": "0:18 min",
-                        "fps": "24 fps",
-                        "badge": "FLUID DYNAMICS • CAUSTICS",
-                        "caption": "Procedural fluid surface simulation with photorealistic glass dispersion, refraction, and surface tension."
                     }
                 ]
             }

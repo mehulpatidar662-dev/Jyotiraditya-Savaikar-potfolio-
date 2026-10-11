@@ -54,12 +54,16 @@
 
         <!-- Hero Reel / Video Loop Preview -->
         <div class="hero-reel-box" style="border-color: rgba(255,255,255,0.15);">
-          <div style="display: flex; align-items: center; padding: 10px 16px; background: rgba(0,0,0,0.55); border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.82rem; font-weight: 600; color: #fff;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(0,0,0,0.55); border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.82rem; font-weight: 600; color: #fff;">
             <span style="letter-spacing: 0.05em; font-family: 'Syne', sans-serif; font-weight: 700;">Showreel &bull; 2D Animation</span>
+            <button id="hero-fullscreen-btn" type="button" class="video-action-btn primary" title="Full Screen Cinema Mode" style="padding: 4px 10px; font-size: 0.74rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              <span>Full Screen</span>
+            </button>
           </div>
           <div class="portfolio-media-wrapper" style="min-height: 220px; position: relative;">
             {% if artist.showreel_video %}
-            <video id="hero-reel-video" autoplay muted loop playsinline preload="auto" style="width: 100%; height: 100%; min-height: 220px; object-fit: contain; background: #060911; display: block;">
+            <video id="hero-reel-video" autoplay muted loop controls playsinline preload="auto" style="width: 100%; height: 100%; min-height: 220px; object-fit: contain; background: #060911; display: block;">
               <source src="{{ url_for('static', filename=artist.showreel_video) }}" type="video/mp4">
             </video>
             {% else %}
@@ -121,7 +125,7 @@
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <span class="folder-stats-badge" id="folder-stats-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-            <span id="folder-stats-text">4 Categories &bull; 11 Projects &bull; 30 Assets</span>
+            <span id="folder-stats-text">3 Categories &bull; 8 Projects &bull; 27 Assets</span>
           </span>
 
           <button class="folder-view-mode-toggle" id="view-mode-toggle" title="Toggle between catalog view and all projects expanded">
@@ -135,16 +139,13 @@
       <div class="folder-tabs-strip">
         <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Filter Projects:</span>
         <button class="folder-tab-btn active" data-tab-folder="root">
-          <span>✨ All Projects (11)</span>
+          <span>✨ All Projects (8)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="2d">
           <span>🎬 2D Animation (3)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="preprod">
           <span>🎨 Pre-Production (4)</span>
-        </button>
-        <button class="folder-tab-btn" data-tab-folder="3d">
-          <span>🧊 3D &amp; Motion (3)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="xtra-work">
           <span>🖌️ Extra Work (1)</span>
@@ -419,22 +420,37 @@
           <div class="folder-asset-grid">
             {% for item in sub['items'] %}
               {% if item.type == 'video' %}
-              <div class="folder-media-card">
+              <div class="folder-media-card video-media-card-full">
+                <div class="folder-video-header">
+                  <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e;"></span>
+                    <h4 class="folder-media-title" style="margin: 0; font-size: 1.05rem;">{{ item.title }}</h4>
+                    <span style="font-size: 0.76rem; font-weight: 800; color: var(--rust); background: var(--rust-soft); padding: 3px 9px; border-radius: 4px;">{{ item.duration }}</span>
+                    <span class="folder-media-type-badge-inline">{{ item.badge }}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <button class="video-action-btn primary toggle-video-fullscreen-btn" type="button" title="Full Screen Browser Mode">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                      <span>Full Screen</span>
+                    </button>
+                    <button class="video-action-btn open-video-theater-btn" type="button" 
+                            data-video-src="{{ url_for('static', filename=item.file_path) }}" 
+                            data-video-title="{{ item.title }}" 
+                            data-video-badge="{{ item.badge }}" 
+                            title="Fullscreen Theater in Web">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                      <span>Theater (Web)</span>
+                    </button>
+                  </div>
+                </div>
                 <div class="folder-video-box">
-                  <video controls playsinline preload="none" poster="{{ url_for('static', filename=item.poster) }}" style="width: 100%; max-height: 420px; object-fit: contain; display: block; margin: 0 auto; background: #000;">
+                  <video controls playsinline preload="metadata" poster="{{ url_for('static', filename=item.poster) }}" class="in-site-main-video">
                     <source src="{{ url_for('static', filename=item.file_path) }}" type="{{ 'video/quicktime' if item.file_path.endswith('.mov') else 'video/mp4' }}">
                     {% if item.file_path_alt %}
                     <source src="{{ url_for('static', filename=item.file_path_alt) }}" type="video/mp4">
                     {% endif %}
                     Your browser does not support HTML5 video.
                   </video>
-                  <span class="folder-media-type-badge">{{ item.badge }}</span>
-                </div>
-                <div class="folder-media-body">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h4 class="folder-media-title" style="margin: 0;">{{ item.title }}</h4>
-                    <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); background: var(--rust-soft); padding: 2px 8px; border-radius: 4px;">{{ item.duration }}</span>
-                  </div>
                 </div>
               </div>
 
@@ -728,7 +744,6 @@
     'all': 'All Projects',
     '2d': '2D Animation',
     'preprod': 'Pre-Production',
-    '3d': '3D & Motion',
     'xtra-work': 'Extra Work',
     'pdf-only': 'PDF Books'
   };
@@ -741,9 +756,6 @@
     'beavis': 'Beavis',
     'bot-and-boy': 'bot and boy',
     'monkesh': 'Monkesh',
-    'cube': 'cube',
-    'cyberpunk': 'Cyberpunk',
-    'wine': 'Wine',
     'illustrations': 'Extra Work'
   };
 
@@ -988,6 +1000,109 @@
         video.pause();
       }
     });
+    video.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      toggleElementFullscreen(video);
+    });
+  });
+
+  // ===========================================================================
+  // FULLSCREEN VIDEO & THEATER CONTROLLER
+  // ===========================================================================
+  function toggleElementFullscreen(el) {
+    if (!el) return;
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      if (el.requestFullscreen) {
+        el.requestFullscreen().catch(err => console.warn('Fullscreen err:', err));
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      } else if (el.webkitEnterFullscreen) {
+        el.webkitEnterFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(err => console.warn('Exit fullscreen err:', err));
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+  }
+
+  window.openLightboxVideo = function(src, title, badge) {
+    const modal = document.getElementById('lightbox-modal');
+    if (!modal) return;
+    const imgEl = document.getElementById('lightbox-img');
+    const videoEl = document.getElementById('lightbox-video');
+    const titleEl = document.getElementById('lightbox-title');
+    const badgeEl = document.getElementById('lightbox-badge');
+
+    if (imgEl) imgEl.style.display = 'none';
+    if (videoEl) {
+      videoEl.style.display = 'block';
+      videoEl.src = src;
+      videoEl.play().catch(err => console.log('Autoplay:', err));
+    }
+    if (titleEl) titleEl.textContent = title;
+    if (badgeEl) badgeEl.textContent = badge;
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLightboxVideo = function() {
+    const modal = document.getElementById('lightbox-modal');
+    if (!modal) return;
+    const imgEl = document.getElementById('lightbox-img');
+    const videoEl = document.getElementById('lightbox-video');
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+      videoEl.load();
+      videoEl.style.display = 'none';
+    }
+    if (imgEl) {
+      imgEl.style.display = 'block';
+    }
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  const lbCloseBtn = document.getElementById('lightbox-close');
+  const lbBackdropEl = document.getElementById('lightbox-backdrop');
+  if (lbCloseBtn) lbCloseBtn.addEventListener('click', window.closeLightboxVideo);
+  if (lbBackdropEl) lbBackdropEl.addEventListener('click', window.closeLightboxVideo);
+
+  document.addEventListener('click', (e) => {
+    const fsBtn = e.target.closest('.toggle-video-fullscreen-btn');
+    if (fsBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const card = fsBtn.closest('.folder-media-card') || fsBtn.closest('.folder-video-box');
+      const video = card ? card.querySelector('video') : null;
+      if (video) toggleElementFullscreen(video);
+      return;
+    }
+
+    const theaterBtn = e.target.closest('.open-video-theater-btn');
+    if (theaterBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const videoSrc = theaterBtn.dataset.videoSrc;
+      const title = theaterBtn.dataset.videoTitle || 'Animation Video';
+      const badge = theaterBtn.dataset.videoBadge || 'VIDEO REEL';
+      window.openLightboxVideo(videoSrc, title, badge);
+      return;
+    }
+
+    const heroFsBtn = e.target.closest('#hero-fullscreen-btn') || e.target.closest('#hero-reel-fullscreen-btn');
+    if (heroFsBtn) {
+      e.preventDefault();
+      const heroVideo = document.getElementById('hero-reel-video');
+      if (heroVideo) toggleElementFullscreen(heroVideo);
+      return;
+    }
   });
 
   // Initial setup

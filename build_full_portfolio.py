@@ -124,8 +124,7 @@ def build_portfolio():
         ("comic-storyboards", "gallery-comic-storyboards.html"),
         ("storyboarding", "gallery-storyboarding.html"),
         ("character-design", "gallery-character-design.html"),
-        ("scene-layout", "gallery-scene-layout.html"),
-        ("3d-motion", "gallery-3d-motion.html")
+        ("scene-layout", "gallery-scene-layout.html")
     ]
     for slug, fname in legacy_slugs:
         routes.append((f"/gallery/{slug}", fname))

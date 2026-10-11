@@ -84,7 +84,6 @@ def gallery_view(category_slug):
         'storyboarding': 'preprod',
         'character-design': 'preprod',
         'scene-layout': 'preprod',
-        '3d-motion': '3d',
         'illustrations': 'xtra-work'
     }
     resolved_slug = slug_alias_map.get(category_slug, category_slug)
