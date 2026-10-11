@@ -23,7 +23,6 @@
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="#work" class="nav-link">Featured Work</a></li>
-          <li><a href="#pdf-books" class="nav-link">📖 PDF Books</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery &amp; PDFs</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="resume.html" class="nav-link">Resume</a></li>
@@ -199,9 +198,6 @@
         <button class="folder-tab-btn" data-tab-folder="pdf-only" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
           <span>📖 PDF Books (2)</span>
         </button>
-        <a href="#pdf-books" class="folder-tab-btn" style="background: rgba(185, 28, 28, 0.12); color: var(--rust); border-color: rgba(185, 28, 28, 0.4); margin-left: auto;">
-          <span>📖 Open In-Site PDF Viewer &darr;</span>
-        </a>
       </div>
     </div>
 
@@ -3056,123 +3052,7 @@
 </section>
 
 <!-- =======================================================================
-     3. DEDICATED IN-SITE SCROLLABLE PDF READER
-     "Read Akkad and Target Practise directly on site with zero friction"
-     ======================================================================= -->
-<section class="in-site-pdf-showcase-section" id="pdf-books" style="margin-top: 60px; margin-bottom: 60px;">
-  <div class="container">
-    <div style="margin-bottom: 24px;">
-      <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); font-family: 'Syne', sans-serif; font-weight: 800; color: var(--heading-color); margin: 0 0 8px 0;">
-        📖 Scrollable Production Books &amp; Comic Storyboards
-      </h2>
-      <p style="margin: 0; font-size: 1rem; color: var(--text-dim); max-width: 860px; line-height: 1.6;">
-        Read, inspect, and scroll through the complete multi-page publications directly inside the viewer below. Toggle between <em>The Tale of Akkad</em> (32.7 MB) and <em>Target Practise</em> (84.1 MB) with zero redirects.
-      </p>
-    </div>
-
-    <div class="in-site-pdf-container" id="master-in-site-pdf-viewer">
-      
-      <!-- Viewer Control Toolbar -->
-      <div class="in-site-pdf-toolbar">
-        <div class="pdf-toolbar-left">
-          <div class="pdf-status-pill">
-            <span class="pdf-status-dot"></span>
-            <span id="master-pdf-status-text">Scrollable In-Site Reader Active</span>
-          </div>
-          
-          <div class="pdf-doc-meta">
-            <span class="pdf-doc-title" id="master-pdf-title">The Tale of Akkad — Full Production Art &amp; Storyboard Book</span>
-            <span class="pdf-doc-sub" id="master-pdf-sub">Interactive Scrollable PDF Publication &bull; <strong style="color: var(--rust);" id="master-pdf-size">32.7 MB</strong></span>
-          </div>
-        </div>
-
-        <div class="pdf-toolbar-actions">
-          <button class="pdf-action-btn" id="master-pdf-height-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18m0-18l-4 4m4-4l4 4m0 10l-4 4m0 0l-4-4"/></svg>
-            <span id="master-height-text">Expand (1200px)</span>
-          </button>
-
-          <button class="pdf-action-btn" id="master-pdf-fullscreen-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            <span>Fullscreen</span>
-          </button>
-
-          <a href="static/aditya_project/Preprod/Akkad/Akkad.pdf" id="master-pdf-open-btn" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            <span>Open in Tab</span>
-          </a>
-
-          <a href="static/aditya_project/Preprod/Akkad/Akkad.pdf" id="master-pdf-download-btn" download class="pdf-action-btn primary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span id="master-download-text">Download (32.7 MB)</span>
-          </a>
-        </div>
-
-        <!-- Document Switcher Tabs -->
-        <div class="pdf-switcher-tabs">
-          <span style="font-size: 0.78rem; font-weight: 800; color: var(--rust); display: flex; align-items: center; margin-right: 6px;">Select Document:</span>
-          
-          <button class="pdf-switch-btn active" id="tab-pdf-akkad"
-                  data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf"
-                  data-pdf-title="The Tale of Akkad — Full Production Art &amp; Storyboard Book"
-                  data-pdf-size="32.7 MB"
-                  data-pdf-format="Interactive Scrollable PDF Publication &bull; Mesopotamian Fantasy">
-            <span>📖 Akkad.pdf (32.7 MB) &mdash; Preprod</span>
-          </button>
-
-          <button class="pdf-switch-btn" id="tab-pdf-target"
-                  data-pdf-src="static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf"
-                  data-pdf-title="Target Practise — Action Comic Storyboard Book"
-                  data-pdf-size="84.1 MB"
-                  data-pdf-format="Interactive Scrollable PDF Publication &bull; 600 DPI Inks">
-            <span>📖 TARGET_PRACTISE.pdf (84.1 MB) &mdash; 2D Comic</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- The In-Site Scrollable Iframe -->
-      <div class="in-site-pdf-stage" 
-           id="master-pdf-stage"
-           data-pdf-url="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
-           data-pdf-title="The Tale of Akkad — Full Production Art & Storyboard Book"
-           style="position: relative; background: #12151e; min-height: 400px;">
-        <div class="pdf-loading-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 1; pointer-events: none;">
-          <div class="pdf-spinner" style="width: 38px; height: 38px; border: 3px solid rgba(255,255,255,0.15); border-top-color: var(--rust, #e05638); border-radius: 50%; animation: pdfSpin 0.8s linear infinite;"></div>
-          <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">Rendering Master Document...</div>
-          <div style="font-size: 0.78rem; color: #a0aec0;">High-Resolution Publication &bull; Scrollable In-Site</div>
-        </div>
-        <iframe id="master-pdf-iframe" 
-                data-pdf-src="static/aditya_project/Preprod/Akkad/Akkad.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
-                class="in-site-pdf-iframe"
-                title="In-Site Scrollable PDF Viewer"
-                style="position: relative; z-index: 2; width: 100%; height: 800px; border: none; display: block; background: #1b1e28;"
-                onload="var ov = this.previousElementSibling; if(ov) ov.style.display='none';">
-        </iframe>
-      </div>
-
-      <!-- In-Site PDF Viewer Footer -->
-      <div class="in-site-pdf-footer-info" style="justify-content: flex-end;">
-        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 10px;">
-          <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-dim);">
-            Direct in-site vertical scrolling enabled
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <a href="https://www.behance.net/mnkeshthewise" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
-              <span>View on Behance &nearr;</span>
-            </a>
-            <a href="https://www.linkedin.com/in/jyotiraditya-savaikar-435852273/" target="_blank" rel="noopener noreferrer" class="pdf-action-btn">
-              <span>LinkedIn &nearr;</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =======================================================================
-     4. TOOLKIT & TECHNICAL COMPETENCIES
+     3. TOOLKIT & TECHNICAL COMPETENCIES
      ======================================================================= -->
 <section class="section-padding toolkit-section" id="toolkit">
   <div class="container">
@@ -3864,90 +3744,6 @@
       }
     });
   });
-
-  // ===========================================================================
-  // MASTER IN-SITE SCROLLABLE PDF VIEWER CONTROLLER
-  // ===========================================================================
-  const masterIframe = document.getElementById('master-pdf-iframe');
-  const masterTitle = document.getElementById('master-pdf-title');
-  const masterSub = document.getElementById('master-pdf-sub');
-  const masterOpenBtn = document.getElementById('master-pdf-open-btn');
-  const masterDownloadBtn = document.getElementById('master-pdf-download-btn');
-  const masterDownloadText = document.getElementById('master-download-text');
-  const masterHeightBtn = document.getElementById('master-pdf-height-btn');
-  const masterHeightText = document.getElementById('master-height-text');
-  const masterFullscreenBtn = document.getElementById('master-pdf-fullscreen-btn');
-  const masterContainer = document.getElementById('master-in-site-pdf-viewer');
-
-  const tabAkkad = document.getElementById('tab-pdf-akkad');
-  const tabTarget = document.getElementById('tab-pdf-target');
-
-  function switchMasterPdf(tabEl) {
-    if (!tabEl || !masterIframe) return;
-    document.querySelectorAll('#master-in-site-pdf-viewer .pdf-switch-btn').forEach(btn => btn.classList.remove('active'));
-    tabEl.classList.add('active');
-
-    const src = tabEl.dataset.pdfSrc;
-    const title = tabEl.dataset.pdfTitle;
-    const size = tabEl.dataset.pdfSize;
-    const format = tabEl.dataset.pdfFormat;
-
-    masterIframe.src = src + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH';
-    if (masterTitle) masterTitle.textContent = title;
-    if (masterSub) masterSub.innerHTML = format + ' &bull; <strong style="color: var(--rust);">' + size + '</strong>';
-    if (masterOpenBtn) masterOpenBtn.href = src;
-    if (masterDownloadBtn) masterDownloadBtn.href = src;
-    if (masterDownloadText) masterDownloadText.textContent = 'Download (' + size + ')';
-  }
-
-  if (tabAkkad) tabAkkad.addEventListener('click', () => switchMasterPdf(tabAkkad));
-  if (tabTarget) tabTarget.addEventListener('click', () => switchMasterPdf(tabTarget));
-
-  if (masterContainer && masterIframe) {
-    if ('IntersectionObserver' in window) {
-      const pdfObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
-              masterIframe.src = masterIframe.dataset.pdfSrc;
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '300px' });
-      pdfObserver.observe(masterContainer);
-    } else {
-      setTimeout(() => {
-        if (!masterIframe.src && masterIframe.dataset.pdfSrc) {
-          masterIframe.src = masterIframe.dataset.pdfSrc;
-        }
-      }, 1000);
-    }
-  }
-
-  if (masterHeightBtn && masterContainer) {
-    masterHeightBtn.addEventListener('click', () => {
-      const isExpanded = masterContainer.classList.toggle('pdf-expanded');
-      if (masterIframe) {
-        masterIframe.style.height = isExpanded ? '1200px' : '800px';
-      }
-      if (masterHeightText) {
-        masterHeightText.textContent = isExpanded ? 'Collapse (800px)' : 'Expand (1200px)';
-      }
-    });
-  }
-
-  if (masterFullscreenBtn && masterContainer) {
-    masterFullscreenBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement) {
-        masterContainer.requestFullscreen().catch(err => {
-          console.warn('Fullscreen error:', err);
-        });
-      } else {
-        document.exitFullscreen();
-      }
-    });
-  }
 
   // Initial setup
   showRoot();
