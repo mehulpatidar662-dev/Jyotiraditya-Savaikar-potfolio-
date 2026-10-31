@@ -103,6 +103,43 @@
 <div class="folk-border-strip" aria-hidden="true"></div>
 
 <!-- =======================================================================
+     FEATURED SHOWCASE VIDEO SECTION
+     ======================================================================= -->
+<section class="section-padding featured-reel-showcase-section" style="padding-top: 48px; padding-bottom: 24px;">
+  <div class="container">
+    <div style="margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+      <div>
+        <span class="badge" style="display: inline-block; margin-bottom: 10px;">🎬 Featured Reel</span>
+        <h2 class="section-title" style="text-align: left; margin-bottom: 0; font-size: clamp(1.8rem, 3.2vw, 2.7rem);">
+          Animation &amp; Motion Reel
+        </h2>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-dim); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--rust);"></span>
+        <span>Original Motion Sequence • 24 FPS</span>
+      </div>
+    </div>
+
+    <div class="hero-reel-box" style="box-shadow: 0 16px 44px rgba(0,0,0,0.4); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color);">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: rgba(0,0,0,0.55); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; font-weight: 600; color: #fff;">
+        <span style="letter-spacing: 0.05em; font-family: 'Syne', sans-serif; font-weight: 700;">Showreel &bull; 2D Animation &amp; Motion Design</span>
+        <span style="font-size: 0.78rem; opacity: 0.75; font-family: monospace;">HD 1080p • 24 FPS</span>
+      </div>
+      <div class="portfolio-media-wrapper" style="min-height: 280px; max-height: 720px; position: relative; background: #000;">
+        <video id="featured-showcase-video" autoplay muted loop controls playsinline preload="auto" style="width: 100%; height: auto; max-height: 720px; display: block; margin: 0 auto; object-fit: contain;">
+          <source src="{{ url_for('static', filename='videos/hopefully_final.mp4') }}" type="video/mp4">
+          <source src="static/videos/hopefully_final.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOLK-ART REPEATING BORDER STRIP -->
+<div class="folk-border-strip" aria-hidden="true"></div>
+
+<!-- =======================================================================
      2. FEATURED WORK & PRE-PRODUCTION (CATALOG DIRECTORY VIEW)
      ======================================================================= -->
 <div id="gallery" style="position: relative; top: -80px; visibility: hidden;"></div>
@@ -723,6 +760,12 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           <span>LinkedIn Network &nearr;</span>
         </a>
+        {% if artist.github_url %}
+        <a href="{{ artist.github_url }}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 999px; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--heading-color); font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <span>GitHub ({{ artist.github_handle }}) &nearr;</span>
+        </a>
+        {% endif %}
       </div>
     </div>
 
