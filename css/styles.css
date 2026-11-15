@@ -7673,6 +7673,479 @@ button[data-action="go-root"]:hover {
   padding-top: 0;
 }
 
+/* =============================================================================
+   AWWWARDS & FRAMER ADVANCED ANIMATION STUDIO ENHANCEMENTS
+   Film Grain, Custom Magnetic Cursor, Infinite Marquee, Pro Cinema Console,
+   Interactive Animation Pipeline, 3D Perspective Tilt, Audio UI
+   ============================================================================= */
+
+/* 1. Handcrafted 35mm Celluloid Film Grain Texture Overlay */
+.cinematic-grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grainFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grainFilter)'/%3E%3C/svg%3E");
+}
+
+/* 2. Magnetic Studio Cursor */
+@media (pointer: fine) {
+  .studio-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: #FF5C35;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.06s ease-out;
+    box-shadow: 0 0 10px #FF5C35;
+  }
+
+  .studio-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(255, 92, 53, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease,
+                transform 0.12s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .studio-cursor-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .studio-cursor-ring.cursor-hover-link {
+    width: 52px;
+    height: 52px;
+    border-color: rgba(56, 189, 248, 0.75);
+    background: rgba(56, 189, 248, 0.12);
+    backdrop-filter: blur(4px);
+  }
+
+  .studio-cursor-ring.cursor-hover-video {
+    width: 80px;
+    height: 80px;
+    border-color: #FF5C35;
+    background: rgba(255, 92, 53, 0.3);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 30px rgba(255, 92, 53, 0.4);
+  }
+
+  .studio-cursor-ring.cursor-hover-video .studio-cursor-label {
+    opacity: 1;
+  }
+
+  .studio-cursor-ring.cursor-hover-card {
+    width: 68px;
+    height: 68px;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+  }
+
+  .studio-cursor-ring.cursor-hover-card .studio-cursor-label {
+    opacity: 1;
+  }
+}
+
+/* 3. Infinite Kinetic Marquee Ticker */
+.studio-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0;
+  background: rgba(8, 10, 15, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  position: relative;
+  backdrop-filter: blur(12px);
+  margin: 10px 0;
+}
+
+.studio-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: studioMarqueeScroll 30s linear infinite;
+}
+
+.studio-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.studio-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0 20px;
+}
+
+.studio-marquee-item .marquee-accent {
+  color: #FF5C35;
+}
+
+.studio-marquee-item .marquee-dot {
+  color: #38BDF8;
+  font-size: 0.7rem;
+}
+
+@keyframes studioMarqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 4. Live Studio IST Clock & Audio UI Toggle */
+.nav-studio-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #CBD5E1;
+  letter-spacing: 0.03em;
+}
+
+.nav-studio-clock .clock-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: clockPulse 2s ease infinite;
+}
+
+@keyframes clockPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.nav-sound-ui-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-sound-ui-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.nav-sound-ui-btn.active {
+  border-color: #38BDF8;
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.12);
+}
+
+/* 5. Hero Video Quick Switcher */
+.hero-reel-switcher {
+  display: flex;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.65);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+}
+
+.hero-reel-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.hero-reel-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.hero-reel-tab-btn.active {
+  background: rgba(255, 92, 53, 0.25);
+  border-color: #FF5C35;
+  color: #FF5C35;
+  box-shadow: 0 2px 8px rgba(255, 92, 53, 0.3);
+}
+
+/* 6. Pro Cinema Vault HUD Controls */
+.vault-pro-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: rgba(6, 9, 15, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vault-speed-group,
+.vault-step-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vault-sub-btn {
+  background: transparent;
+  border: none;
+  color: #CBD5E1;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.vault-sub-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.vault-sub-btn.active {
+  background: #FF5C35;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(255, 92, 53, 0.4);
+}
+
+/* Equalizer Bars */
+.vault-audio-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.vault-audio-eq span {
+  width: 3px;
+  background: #22c55e;
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.15s ease;
+}
+
+.vault-audio-eq.playing span:nth-child(1) { animation: eqBounce 0.5s ease infinite alternate; }
+.vault-audio-eq.playing span:nth-child(2) { animation: eqBounce 0.7s ease infinite 0.15s alternate; }
+.vault-audio-eq.playing span:nth-child(3) { animation: eqBounce 0.4s ease infinite 0.3s alternate; }
+.vault-audio-eq.playing span:nth-child(4) { animation: eqBounce 0.6s ease infinite 0.1s alternate; }
+
+@keyframes eqBounce {
+  0% { height: 3px; }
+  100% { height: 16px; }
+}
+
+/* Scrubber */
+.vault-scrubber-wrap {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  position: relative;
+  transition: height 0.2s ease;
+}
+
+.vault-scrubber-wrap:hover {
+  height: 10px;
+}
+
+.vault-scrubber-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #FF5C35, #38BDF8);
+  position: relative;
+  border-radius: 0 3px 3px 0;
+}
+
+.vault-scrubber-handle {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.vault-scrubber-wrap:hover .vault-scrubber-handle {
+  opacity: 1;
+}
+
+/* 7. Animation Pipeline Bento Section (#pipeline) */
+.pipeline-section {
+  padding: 90px 0;
+  position: relative;
+}
+
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+@media (max-width: 960px) {
+  .pipeline-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pipeline-card {
+  position: relative;
+  border-radius: 20px;
+  background: rgba(14, 18, 28, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 34px 28px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pipeline-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 92, 53, 0.45);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 92, 53, 0.12);
+}
+
+.pipeline-card-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.pipeline-card:hover .pipeline-card-num {
+  color: #FF5C35;
+  transition: color 0.3s ease;
+}
+
+.pipeline-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+
+.pipeline-card-subtitle {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38BDF8;
+  margin-bottom: 16px;
+}
+
+.pipeline-card-desc {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.pipeline-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 18px;
+}
+
+.pipeline-deliverables li {
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pipeline-deliverables li::before {
+  content: '✦';
+  color: #FF5C35;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+/* 8. 3D Perspective Card Tilt Smoothness */
+.bento-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+
 
 
 

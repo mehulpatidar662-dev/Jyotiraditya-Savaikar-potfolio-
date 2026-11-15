@@ -46,8 +46,17 @@
 </head>
 <body>
 
+  <!-- 35mm Celluloid Film Grain Texture Overlay -->
+  <div class="cinematic-grain-overlay" aria-hidden="true"></div>
+
+  <!-- Magnetic Studio Cursor -->
+  <div class="studio-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="studio-cursor-ring" id="cursor-ring" aria-hidden="true">
+    <span class="studio-cursor-label" id="cursor-label">VIEW</span>
+  </div>
+
   <!-- =========================================================================
-       1. NAVIGATION BAR
+       1. FLOATING GLASSMORPHIC NAVBAR (STUDIO EDITION)
        ========================================================================= -->
   <header class="navbar">
     <div class="container nav-container">
@@ -56,17 +65,30 @@
         <span>Jyotiraditya Savaikar</span>
       </a>
 
+      <!-- Live Studio Clock & Availability -->
+      <div class="nav-studio-clock" id="nav-studio-clock" title="Current Artist Studio Time (Pune, India)">
+        <span class="clock-dot"></span>
+        <span id="studio-clock-time">IST 23:01</span>
+      </div>
+
       <nav>
         <ul class="nav-links" id="nav-links">
-          <li><a href="#vault" class="nav-link" style="color: var(--rust); font-weight: 800;">🎬 Cinema Vault</a></li>
+          <li><a href="#vault" class="nav-link" style="color: #FF5C35; font-weight: 800;">🎬 Cinema Vault</a></li>
           <li><a href="#work" class="nav-link">Featured Work</a></li>
+          <li><a href="#pipeline" class="nav-link">Pipeline</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery &amp; PDFs</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="resume.html" class="nav-link">Resume</a></li>
           <li><a href="#contact" class="nav-cta-btn">Contact Me &rarr;</a></li>
         </ul>
       </nav>
-      <div style="display: flex; align-items: center; gap: 14px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- Audio UI Sound Toggle -->
+        <button type="button" class="nav-sound-ui-btn" id="sound-ui-toggle-btn" title="Toggle Tactile UI Feedback Sound">
+          <span id="sound-ui-icon">🔊</span>
+          <span style="font-size: 0.72rem;">SFX</span>
+        </button>
+
         <button class="dark-mode-toggle-btn" id="theme-toggle" onclick="window.toggleTheme ? window.toggleTheme() : null" aria-label="Toggle Dark Mode" title="Toggle Dark or Light Mode">
           <span class="theme-icon">☀️</span>
           <span class="theme-label-text">Light Mode</span>
@@ -165,11 +187,22 @@
             </button>
           </div>
           <div class="portfolio-media-wrapper" style="min-height: 220px; position: relative;">
-            
             <video id="hero-reel-video" autoplay muted loop controls playsinline preload="auto" fetchpriority="high" style="width: 100%; height: 100%; min-height: 220px; object-fit: contain; background: #060911; display: block;">
               <source src="static/videos/hopefully_final.mp4" type="video/mp4">
             </video>
-            
+          </div>
+
+          <!-- Hero Reel Quick Switcher -->
+          <div class="hero-reel-switcher">
+            <button type="button" class="hero-reel-tab-btn active" data-hero-video="static/videos/hopefully_final.mp4" data-hero-title="Showreel &bull; 2D Animation (2026)">
+              <span>🎬 2026 Showreel</span>
+            </button>
+            <button type="button" class="hero-reel-tab-btn" data-hero-video="static/videos/jaimini_title_sequence.mp4" data-hero-title="Jaimini &bull; Title Sequence">
+              <span>⚡ Jaimini Title</span>
+            </button>
+            <button type="button" class="hero-reel-tab-btn" data-hero-video="static/videos/temple_flag_chill_showreel.mp4" data-hero-title="Temple Flag &bull; 2D Loop">
+              <span>🛕 Temple Loop</span>
+            </button>
           </div>
         </div>
 
@@ -187,9 +220,31 @@
   </div>
 </section>
 
-<!-- FOLK-ART REPEATING BORDER STRIP -->
-<!-- FILMSTRIP TOP ACCENT -->
-<div class="filmstrip-strip" aria-hidden="true"></div>
+<!-- INFINITE STUDIO MARQUEE TICKER (TOP) -->
+<div class="studio-marquee-wrap" aria-hidden="true">
+  <div class="studio-marquee-track">
+    <div class="studio-marquee-item">
+      <span class="marquee-accent">✦</span> 2D Character Animation <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Kinetic Devanagari Typography <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Frame-by-Frame Motion <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Mythological Visual Development <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> 24 Frames Per Second <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Storyboard Pro &amp; Animatics <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Blender 3D Motion <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> MIT Institute of Design <span class="marquee-dot">●</span>
+    </div>
+    <div class="studio-marquee-item">
+      <span class="marquee-accent">✦</span> 2D Character Animation <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Kinetic Devanagari Typography <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Frame-by-Frame Motion <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Mythological Visual Development <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> 24 Frames Per Second <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Storyboard Pro &amp; Animatics <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> Blender 3D Motion <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> MIT Institute of Design <span class="marquee-dot">●</span>
+    </div>
+  </div>
+</div>
 
 <!-- =======================================================================
      ANIMATOR CINEMA VAULT & SIGNATURE CLIP SHOWCASE
@@ -345,6 +400,9 @@
           <button type="button" class="vault-ctrl-btn" id="vault-sound-toggle-btn" title="Toggle Sound On/Off">
             <span id="vault-sound-icon">🔇</span>
             <span id="vault-sound-text">Unmute Audio</span>
+            <span class="vault-audio-eq" id="vault-audio-eq" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </span>
           </button>
           
           <button type="button" class="vault-ctrl-btn" id="vault-fullscreen-btn" title="Watch in Fullscreen Theater Mode">
@@ -370,6 +428,36 @@
           <source src="static/videos/hopefully_final.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
+      </div>
+
+      <!-- Interactive Video Scrubber Bar -->
+      <div class="vault-scrubber-wrap" id="vault-scrubber-wrap" title="Click to seek position">
+        <div class="vault-scrubber-progress" id="vault-scrubber-progress">
+          <div class="vault-scrubber-handle"></div>
+        </div>
+      </div>
+
+      <!-- Pro Controls Bar (Speed Switcher, Frame Step, Time Elapsed) -->
+      <div class="vault-pro-controls-bar">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em;">Keyframe Study:</span>
+          <div class="vault-speed-group">
+            <button type="button" class="vault-sub-btn" data-speed="0.25" title="Slow-Motion 0.25x for Keyframe Spacing Study">0.25x</button>
+            <button type="button" class="vault-sub-btn" data-speed="0.5" title="Slow-Motion 0.5x for Timing Study">0.5x</button>
+            <button type="button" class="vault-sub-btn active" data-speed="1.0" title="Normal 1.0x Speed">1.0x</button>
+          </div>
+
+          <span style="font-size: 0.72rem; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 6px;">Frame Step:</span>
+          <div class="vault-step-group">
+            <button type="button" class="vault-sub-btn" id="vault-step-back-btn" title="Step back 1 frame (-0.0416s)">◀ -1 Frame</button>
+            <button type="button" class="vault-sub-btn" id="vault-step-forward-btn" title="Step forward 1 frame (+0.0416s)">+1 Frame ▶</button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span id="vault-timecode-live" style="font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #38BDF8;">00:00 / 00:00</span>
+          <span style="font-size: 0.72rem; color: #64748B; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08);">[Space] Play/Pause</span>
+        </div>
       </div>
 
       <!-- Monitor Meta Footer Bar -->
@@ -3074,6 +3162,76 @@
 </section>
 
 <!-- =======================================================================
+     2.5. ANIMATION PIPELINE SHOWCASE (STUDIO METHODOLOGY)
+     ======================================================================= -->
+<section class="pipeline-section" id="pipeline">
+  <div class="container">
+    <div style="text-align: center; max-width: 740px; margin: 0 auto 10px;">
+      <div class="bento-section-badge">
+        <span class="live-pulse-dot"></span>
+        <span>STUDIO PRODUCTION METHODOLOGY</span>
+      </div>
+      <h2 class="bento-section-title" style="text-align: center;">
+        The 24 FPS Animation Pipeline
+      </h2>
+      <p class="bento-section-subtitle" style="margin: 0 auto;">
+        From initial narrative seeds and thumbnail beats to final color-graded composite and sound synchronization.
+      </p>
+    </div>
+
+    <div class="pipeline-grid">
+      <!-- Stage 01 -->
+      <div class="pipeline-card">
+        <div class="pipeline-card-num">01</div>
+        <h3 class="pipeline-card-title">Pre-Production &amp; Story</h3>
+        <div class="pipeline-card-subtitle">Ideation &bull; Worldbuilding &bull; Storyboards</div>
+        <p class="pipeline-card-desc">
+          Translating written narratives into visual scripts. Developing character bibles, expression turnarounds, beatboards, and timed animatics with temp dialogue &amp; SFX sync.
+        </p>
+        <ul class="pipeline-deliverables">
+          <li>Thumbnail Beatboards &amp; Staging</li>
+          <li>Character Model Sheets &amp; Turnarounds</li>
+          <li>Timed Animatics with Audio Sync</li>
+          <li>Color Scripts &amp; Environment Moods</li>
+        </ul>
+      </div>
+
+      <!-- Stage 02 -->
+      <div class="pipeline-card">
+        <div class="pipeline-card-num">02</div>
+        <h3 class="pipeline-card-title">Production &amp; Animation</h3>
+        <div class="pipeline-card-subtitle">Keyframing &bull; Inbetweens &bull; Clean-up</div>
+        <p class="pipeline-card-desc">
+          Executing hand-drawn frame-by-frame motion on 1s and 2s. Establishing strong silhouette poses, dynamic arcs, anticipation, smear frames, and multiplane camera layouts.
+        </p>
+        <ul class="pipeline-deliverables">
+          <li>Keyframe Pose &amp; Breakdown Passes</li>
+          <li>Fluid Secondary Action &amp; Cloth Dynamics</li>
+          <li>Meticulous Line Clean-up &amp; Inking</li>
+          <li>Multiplane Background Layout Drafting</li>
+        </ul>
+      </div>
+
+      <!-- Stage 03 -->
+      <div class="pipeline-card">
+        <div class="pipeline-card-num">03</div>
+        <h3 class="pipeline-card-title">Compositing &amp; Finishing</h3>
+        <div class="pipeline-card-subtitle">Lighting &bull; Kinetic FX &bull; 24 FPS Master</div>
+        <p class="pipeline-card-desc">
+          Integrating hand-drawn 2D passes with 3D camera projections in After Effects &amp; Blender. Applying volumetric lighting, atmospheric fog, particle FX, and final 1080p rendering.
+        </p>
+        <ul class="pipeline-deliverables">
+          <li>Node Compositing &amp; Camera Parallax</li>
+          <li>Volumetric Lighting &amp; Atmosphere FX</li>
+          <li>Kinetic Devanagari Typography Animation</li>
+          <li>High-Bitrate 1080p Master Delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
      3. TOOLKIT & TECHNICAL COMPETENCIES
      ======================================================================= -->
 <section class="section-padding toolkit-section" id="toolkit">
@@ -3292,8 +3450,27 @@
   </div>
 </section>
 
-<!-- FOLK-ART REPEATING BORDER STRIP -->
-<div class="folk-border-strip" aria-hidden="true"></div>
+<!-- INFINITE STUDIO MARQUEE TICKER (BOTTOM) -->
+<div class="studio-marquee-wrap" aria-hidden="true" style="margin: 40px 0 20px;">
+  <div class="studio-marquee-track">
+    <div class="studio-marquee-item">
+      <span class="marquee-accent">✦</span> OPEN FOR 2026 ROLES <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> 2D ANIMATOR &bull; STORYBOARD ARTIST <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> FREELANCE MOTION DESIGN <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> PRE-PRODUCTION COLLABORATIONS <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> LET'S BRING STORIES TO LIFE <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> PUNE &bull; HYBRID &bull; REMOTE <span class="marquee-dot">●</span>
+    </div>
+    <div class="studio-marquee-item">
+      <span class="marquee-accent">✦</span> OPEN FOR 2026 ROLES <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> 2D ANIMATOR &bull; STORYBOARD ARTIST <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> FREELANCE MOTION DESIGN <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> PRE-PRODUCTION COLLABORATIONS <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> LET'S BRING STORIES TO LIFE <span class="marquee-dot">●</span>
+      <span class="marquee-accent">✦</span> PUNE &bull; HYBRID &bull; REMOTE <span class="marquee-dot">●</span>
+    </div>
+  </div>
+</div>
 
 <!-- =======================================================================
      6. CALL TO ACTION / GET IN TOUCH
@@ -4070,6 +4247,260 @@
         video.currentTime = 0;
       });
     }
+  });
+
+  // =============================================================================
+  // AWWWARDS / FRAMER PRO CONTROLLERS
+  // (Pro Cinema Vault, Live Clock, Magnetic Cursor, 3D Tilt, Audio UI, Hero Switcher)
+  // =============================================================================
+  // 1. Audio UI Synthesizer (Zero External Files, Web Audio API)
+  let audioCtx = null;
+  let soundEnabled = true;
+  const soundToggleBtn = document.getElementById('sound-ui-toggle-btn');
+  const soundIcon = document.getElementById('sound-ui-icon');
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+  }
+
+  function playUiClick(freq = 1100, duration = 0.02) {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + duration);
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      soundEnabled = !soundEnabled;
+      this.classList.toggle('active', soundEnabled);
+      if (soundIcon) soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+      if (soundEnabled) playUiClick(1200, 0.03);
+    });
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('button, .bento-card, .nav-link, .vault-clip-btn, .cred-chip, .folder-tab-btn, .hero-reel-tab-btn, .vault-sub-btn')) {
+      playUiClick(1000, 0.02);
+    }
+  });
+
+  // 2. Live Studio IST Clock
+  const clockEl = document.getElementById('studio-clock-time');
+  function updateStudioClock() {
+    if (!clockEl) return;
+    try {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const istTime = new Date(utc + (3600000 * 5.5));
+      const hours = String(istTime.getHours()).padStart(2, '0');
+      const mins = String(istTime.getMinutes()).padStart(2, '0');
+      const secs = String(istTime.getSeconds()).padStart(2, '0');
+      clockEl.textContent = `IST ${hours}:${mins}:${secs}`;
+    } catch(e) {}
+  }
+  updateStudioClock();
+  setInterval(updateStudioClock, 1000);
+
+  // 3. Hero Video Quick Switcher
+  const heroVideo = document.getElementById('hero-reel-video');
+  const heroTabs = document.querySelectorAll('.hero-reel-tab-btn');
+  const heroBadge = document.querySelector('.hero-reel-box span[style*="font-family"]');
+  if (heroVideo && heroTabs.length) {
+    heroTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        heroTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const vSrc = this.dataset.heroVideo;
+        const vTitle = this.dataset.heroTitle;
+        if (heroBadge && vTitle) heroBadge.textContent = vTitle;
+        if (vSrc && heroVideo) {
+          heroVideo.src = vSrc;
+          heroVideo.load();
+          heroVideo.play().catch(()=>{});
+        }
+      });
+    });
+  }
+
+  // 4. Pro Cinema Vault Scrubber & Speed & Stepper HUD
+  const scrubberWrap = document.getElementById('vault-scrubber-wrap');
+  const scrubberProgress = document.getElementById('vault-scrubber-progress');
+  const timecodeLive = document.getElementById('vault-timecode-live');
+  const eqBars = document.getElementById('vault-audio-eq');
+  const speedBtns = document.querySelectorAll('.vault-speed-group .vault-sub-btn');
+  const stepBackBtn = document.getElementById('vault-step-back-btn');
+  const stepFwdBtn = document.getElementById('vault-step-forward-btn');
+
+  function formatTime(seconds) {
+    if (isNaN(seconds)) return '00:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  if (vaultVideo) {
+    vaultVideo.addEventListener('timeupdate', function() {
+      if (vaultVideo.duration && scrubberProgress) {
+        const pct = (vaultVideo.currentTime / vaultVideo.duration) * 100;
+        scrubberProgress.style.width = pct + '%';
+      }
+      if (timecodeLive) {
+        timecodeLive.textContent = `${formatTime(vaultVideo.currentTime)} / ${formatTime(vaultVideo.duration)}`;
+      }
+      if (eqBars) {
+        const isAudible = !vaultVideo.muted && !vaultVideo.paused;
+        eqBars.classList.toggle('playing', isAudible);
+      }
+    });
+
+    if (scrubberWrap) {
+      scrubberWrap.addEventListener('click', function(e) {
+        const rect = scrubberWrap.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        if (vaultVideo.duration) {
+          vaultVideo.currentTime = pos * vaultVideo.duration;
+        }
+      });
+    }
+
+    if (speedBtns.length) {
+      speedBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          speedBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const speed = parseFloat(this.dataset.speed) || 1.0;
+          vaultVideo.playbackRate = speed;
+        });
+      });
+    }
+
+    // 24 FPS Frame Stepping (1 frame = 1 / 24 = ~0.0416s)
+    const frameDelta = 1 / 24;
+    if (stepBackBtn) {
+      stepBackBtn.addEventListener('click', function() {
+        vaultVideo.pause();
+        vaultVideo.currentTime = Math.max(0, vaultVideo.currentTime - frameDelta);
+      });
+    }
+    if (stepFwdBtn) {
+      stepFwdBtn.addEventListener('click', function() {
+        vaultVideo.pause();
+        vaultVideo.currentTime = Math.min(vaultVideo.duration || 9999, vaultVideo.currentTime + frameDelta);
+      });
+    }
+
+    // Keyboard Shortcuts (Space, F, M, Arrow Keys)
+    document.addEventListener('keydown', function(e) {
+      if (['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
+      if (e.code === 'Space') {
+        const vaultInView = vaultVideo.getBoundingClientRect().top < window.innerHeight && vaultVideo.getBoundingClientRect().bottom > 0;
+        if (vaultInView) {
+          e.preventDefault();
+          if (vaultVideo.paused) vaultVideo.play(); else vaultVideo.pause();
+        }
+      } else if (e.key === 'm' || e.key === 'M') {
+        const soundBtn = document.getElementById('vault-sound-toggle-btn');
+        if (soundBtn) soundBtn.click();
+      } else if (e.key === 'f' || e.key === 'F') {
+        const fsBtn = document.getElementById('vault-fullscreen-btn');
+        if (fsBtn) fsBtn.click();
+      } else if (e.key === 'ArrowLeft') {
+        if (stepBackBtn) stepBackBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        if (stepFwdBtn) stepFwdBtn.click();
+      }
+    });
+  }
+
+  // 5. Magnetic Custom Cursor Controller
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+  const cursorLabel = document.getElementById('cursor-label');
+
+  if (cursorDot && cursorRing && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    window.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    // Hover state detection
+    document.addEventListener('mouseover', function(e) {
+      const videoTarget = e.target.closest('.bento-card-media, .vault-monitor-box, .video-hover-thumb, .hero-reel-box');
+      const cardTarget = e.target.closest('.bento-card, .pipeline-card, .timeline-card');
+      const linkTarget = e.target.closest('a, button, .vault-sub-btn, .cred-chip, .folder-tab-btn, .hero-reel-tab-btn');
+
+      if (videoTarget) {
+        cursorRing.className = 'studio-cursor-ring cursor-hover-video';
+        if (cursorLabel) cursorLabel.textContent = 'PLAY';
+      } else if (cardTarget) {
+        cursorRing.className = 'studio-cursor-ring cursor-hover-card';
+        if (cursorLabel) cursorLabel.textContent = 'VIEW';
+      } else if (linkTarget) {
+        cursorRing.className = 'studio-cursor-ring cursor-hover-link';
+        if (cursorLabel) cursorLabel.textContent = '';
+      } else {
+        cursorRing.className = 'studio-cursor-ring';
+        if (cursorLabel) cursorLabel.textContent = '';
+      }
+    });
+
+    document.addEventListener('mouseleave', function() {
+      cursorDot.style.opacity = '0';
+      cursorRing.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function() {
+      cursorDot.style.opacity = '1';
+      cursorRing.style.opacity = '1';
+    });
+  }
+
+  // 6. Interactive 3D Perspective Card Tilt on Bento Cards
+  const tiltCards = document.querySelectorAll('.bento-card, .pipeline-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      if (window.innerWidth < 1024) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
   });
 })();
 </script>
