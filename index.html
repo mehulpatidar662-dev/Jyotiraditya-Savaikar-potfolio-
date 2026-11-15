@@ -95,35 +95,36 @@
       
       <!-- Left Hero Content -->
       <div class="hero-content">
-        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(194, 65, 12, 0.12); border: 1px solid rgba(194, 65, 12, 0.35); border-radius: 999px; margin-bottom: 16px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255, 92, 53, 0.12); border: 1px solid rgba(255, 92, 53, 0.35); border-radius: 999px; margin-bottom: 16px;">
           <span class="live-pulse-dot"></span>
-          <span style="font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 800; color: var(--rust); letter-spacing: 0.08em; text-transform: uppercase;">2D Animator &bull; Motion Designer &bull; 24 FPS</span>
+          <span style="font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 800; color: #FF5C35; letter-spacing: 0.08em; text-transform: uppercase;">✦ Available for 2D Animation &bull; Storyboards &bull; 24 FPS</span>
         </div>
         <h1 class="hero-name">Jyotiraditya Savaikar</h1>
 
         <div class="hero-subtitle">
-          2D Animator | Motion Designer | Pre-Production Artist
+          2D Animator &bull; Motion Designer &bull; Pre-Production Artist
         </div>
 
         <p class="hero-intro">
-          Hello, I&#39;m Jyotiraditya, an animation student. I have been deeply passionate about animation and storytelling since my childhood. I enjoy expressing my ideas through storytelling, visuals and written narratives. I am an avid reader, which helps me expand my imagination and develop unique perspectives.
+          Passionate 2D animator crafting expressive character performance, kinetic title sequences, and mythological pre-production worldbuilding. Bachelor of Animation Design at MIT Institute of Design ('23&ndash;'27), Pune.
         </p>
 
         <div class="hero-credential-chips">
-          <span class="cred-chip">MIT Institute of Design ('23–'27)</span>
-          <span class="cred-chip">Pune, Maharashtra</span>
-          <span class="cred-chip">2D Animation &amp; Storyboards</span>
+          <span class="cred-chip">🎓 MIT Institute of Design ('23–'27)</span>
+          <span class="cred-chip">📍 Pune, Maharashtra</span>
+          <span class="cred-chip">🎬 24 FPS Character Animation</span>
+          <span class="cred-chip">📁 30+ Production Artworks</span>
         </div>
 
         <div class="hero-actions">
-          <a href="#vault" class="btn-primary" style="background: var(--rust); box-shadow: 0 6px 20px rgba(194, 65, 12, 0.4); display: inline-flex; align-items: center; gap: 8px;">
+          <a href="#vault" class="btn-primary" style="background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%); box-shadow: 0 6px 24px rgba(255, 92, 53, 0.45); display: inline-flex; align-items: center; gap: 8px; border-radius: 999px;">
             <span style="font-size: 0.95rem;">▶</span>
-            <span>Watch Animation Reels</span>
+            <span>Watch 2026 Showreel</span>
           </a>
-          <a href="#work" class="btn-secondary" style="background: var(--bg-card);">
-            <span>Explore Projects &darr;</span>
+          <a href="#work" class="btn-secondary" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; color: #fff;">
+            <span>Explore Bento Works &darr;</span>
           </a>
-          <a href="https://www.behance.net/mnkeshthewise" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="border-color: var(--border-color); background: transparent;">
+          <a href="https://www.behance.net/mnkeshthewise" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="border: 1px solid rgba(255, 255, 255, 0.12); background: transparent; border-radius: 999px; color: #CBD5E1;">
             <span>Behance Profile &nearr;</span>
           </a>
         </div>
@@ -166,7 +167,7 @@
           <div class="portfolio-media-wrapper" style="min-height: 220px; position: relative;">
             
             <video id="hero-reel-video" autoplay muted loop controls playsinline preload="auto" fetchpriority="high" style="width: 100%; height: 100%; min-height: 220px; object-fit: contain; background: #060911; display: block;">
-              <source src="static/videos/temple_flag_chill_showreel.mp4" type="video/mp4">
+              <source src="static/videos/hopefully_final.mp4" type="video/mp4">
             </video>
             
           </div>
@@ -407,38 +408,26 @@
      2. FEATURED WORK & PRE-PRODUCTION (CATALOG DIRECTORY VIEW)
      ======================================================================= -->
 <div id="gallery" style="position: relative; top: -80px; visibility: hidden;"></div>
-<section class="section-padding folder-browser-section" id="work" data-section="gallery">
+<section class="section-padding bento-portfolio-section" id="work" data-section="gallery">
   <div class="container">
     
-    <!-- Section Title -->
-    <div style="margin-bottom: 24px;">
-      <h2 class="section-title" style="text-align: left; margin-bottom: 0; font-size: clamp(2rem, 3.8vw, 3rem);">
-        Featured Work &amp; Pre-Production
-      </h2>
-    </div>
-
-    <!-- Master Breadcrumbs & Quick Pills Strip -->
-    <div class="folder-browser-header">
-      <div class="folder-breadcrumbs-row">
-        <nav class="folder-breadcrumbs" id="folder-breadcrumbs" aria-label="Breadcrumb Navigation">
-          <button class="folder-crumb-btn active" id="crumb-root" data-action="go-root">
-            <span>My Projects</span>
-          </button>
-          <span class="folder-crumb-sep" id="crumb-sep-cat" style="display: none;">/</span>
-          <button class="folder-crumb-btn" id="crumb-cat" data-action="go-cat" style="display: none;">
-            <span id="crumb-cat-text">Category</span>
-          </button>
-          <span class="folder-crumb-sep" id="crumb-sep-sub" style="display: none;">/</span>
-          <button class="folder-crumb-btn" id="crumb-sub" data-action="go-sub" style="display: none;">
-            <span id="crumb-sub-text">Project</span>
-          </button>
-        </nav>
+    <!-- Section Header (Framer Dark Studio Style) -->
+    <div class="bento-section-header">
+      <div class="bento-section-badge">
+        <span class="live-pulse-dot"></span>
+        <span>CURATED PORTFOLIO &bull; 2024&ndash;2026</span>
       </div>
+      <h2 class="bento-section-title">
+        Featured Works &amp; Visual Development
+      </h2>
+      <p class="bento-section-subtitle">
+        High-octane 2D character animation, worldbuilding title sequences, animatics, storyboards, and 3D kinetic motion.
+      </p>
 
       <!-- Quick Category Filter Pills -->
-      <div class="folder-tabs-strip">
+      <div class="folder-tabs-strip bento-filter-strip">
         <button class="folder-tab-btn active" data-tab-folder="root">
-          <span>✨ All Projects (8)</span>
+          <span>✦ All Works (9)</span>
         </button>
         <button class="folder-tab-btn" data-tab-folder="2d">
           <span>🎬 2D Animation (3)</span>
@@ -446,429 +435,406 @@
         <button class="folder-tab-btn" data-tab-folder="preprod">
           <span>🎨 Pre-Production (4)</span>
         </button>
+        <button class="folder-tab-btn" data-tab-folder="3d">
+          <span>💎 3D Motion (1)</span>
+        </button>
         <button class="folder-tab-btn" data-tab-folder="xtra-work">
           <span>🖌️ Extra Work (1)</span>
         </button>
-        <button class="folder-tab-btn" data-tab-folder="pdf-only" style="background: rgba(185, 28, 28, 0.08); color: var(--rust); border-color: rgba(185, 28, 28, 0.3);">
-          <span>📖 PDF Books (2)</span>
+        <button class="folder-tab-btn" data-tab-folder="pdf-only" style="background: rgba(255, 92, 53, 0.08); color: var(--rust); border-color: rgba(255, 92, 53, 0.3);">
+          <span>📖 Artbooks &amp; PDFs (2)</span>
         </button>
       </div>
     </div>
 
-    <!-- LEVEL 0: ROOT DIRECTORY (All Projects displayed in List View by default) -->
+    <!-- Hidden Master Breadcrumbs for Subfolder Navigation -->
+    <div class="folder-browser-header" style="display: none;">
+      <nav class="folder-breadcrumbs" id="folder-breadcrumbs" aria-label="Breadcrumb Navigation">
+        <button class="folder-crumb-btn active" id="crumb-root" data-action="go-root">
+          <span>My Projects</span>
+        </button>
+        <span class="folder-crumb-sep" id="crumb-sep-cat" style="display: none;">/</span>
+        <button class="folder-crumb-btn" id="crumb-cat" data-action="go-cat" style="display: none;">
+          <span id="crumb-cat-text">Category</span>
+        </button>
+        <span class="folder-crumb-sep" id="crumb-sep-sub" style="display: none;">/</span>
+        <button class="folder-crumb-btn" id="crumb-sub" data-action="go-sub" style="display: none;">
+          <span id="crumb-sub-text">Project</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- LEVEL 0: ROOT DIRECTORY (Bento Grid View) -->
     <div class="folder-view-level active" id="view-level-root">
       
-      <!-- LIST VIEW OF PROJECTS (Active & Displayed by Default for instant 1-click access) -->
-      <div class="project-list-container" id="projects-list-view">
+      <!-- BENTO GRID OF FEATURED PROJECTS -->
+      <div class="bento-projects-grid" id="projects-list-view">
         
           
-          <div class="project-list-item" 
-               data-open-sub="jaimini" 
-               data-parent-cat="2d" 
-               data-cat="2d" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Jaimini Title Sequence">
-            
-            <div class="project-list-thumb video-hover-thumb" data-hover-video="static/videos/jaimini_title_sequence.mp4">
-              <img src="static/aditya_project/2D/Jaimini%20Title%20Sequence/thumbnail.webp" alt="Jaimini Title Sequence" loading="lazy" decoding="async" />
-              <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
-              <div class="anim-badge-motion">▶ CLIP</div>
-              <div class="project-list-thumb-badge">
-                <span>🎬 0:57 min</span>
-              </div>
+        <!-- CARD 1: Jaimini Title Sequence (Span 8 - Hero Bento Card) -->
+        <div class="project-list-item bento-card span-8" 
+             data-open-sub="jaimini" 
+             data-parent-cat="2d" 
+             data-cat="2d" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Jaimini Title Sequence Case Study">
+          
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/jaimini_title_sequence.mp4">
+            <img src="static/aditya_project/2D/Jaimini%20Title%20Sequence/thumbnail.webp" alt="Jaimini Title Sequence" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span class="live-pulse-dot"></span>
+              <span>🎬 2D Animation &bull; Title Sequence</span>
             </div>
-
-            <div class="project-list-info">
-              <h3 class="project-list-title">Jaimini Title Sequence</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">2D &bull; Title Sequence &amp; Worldbuilding</span>
-                <span class="project-list-assets-tag">4 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">After Effects</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">Blender</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-              </div>
-              
-            </div>
-
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Watch Video Reel</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
-            </div>
-
+            <div class="bento-badge-meta">0:57 min &bull; 24 FPS</div>
+            <div class="bento-badge-motion">▶ HOVER TO PREVIEW</div>
           </div>
-          
-          <div class="project-list-item" 
-               data-open-sub="non-narrative" 
-               data-parent-cat="2d" 
-               data-cat="2d" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Non Narrative">
-            
-            <div class="project-list-thumb video-hover-thumb" data-hover-video="static/aditya_project/2D/Non%20Narrative/Anna%20Dominoes.mp4">
-              <img src="static/aditya_project/2D/Non%20Narrative/nna.webp" alt="Non Narrative" loading="lazy" decoding="async" />
-              <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
-              <div class="anim-badge-motion">▶ CLIP</div>
-              <div class="project-list-thumb-badge">
-                <span>🎬 0:30 min</span>
-              </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Jaimini Title Sequence</h3>
+              <p class="bento-card-desc">
+                Mythological sci-fi title sequence set in a post-nuclear citadel. Sanskrit chants, Devanagari kinetic typography, fluid multiplane camera motion, and atmospheric volumetric lighting.
+              </p>
             </div>
 
-            <div class="project-list-info">
-              <h3 class="project-list-title">Non Narrative</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">2D &bull; Rhythmic &amp; Experimental Animation</span>
-                <span class="project-list-assets-tag">1 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">After Effects</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Blender</span>
-                
-              </div>
-              
+            <div class="bento-card-chips">
+              <span class="bento-chip">After Effects</span>
+              <span class="bento-chip">Blender</span>
+              <span class="bento-chip">Photoshop</span>
+              <span class="bento-chip">Clip Studio Paint</span>
             </div>
 
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Watch Video Reel</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Explore Project Breakdown &bull; 4 Production Files</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
             </div>
-
           </div>
+        </div>
+
+        <!-- CARD 2: The Bot and the Boy (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="bot-and-boy" 
+             data-parent-cat="preprod" 
+             data-cat="preprod" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View The Bot and the Boy Storyboards">
           
-          <div class="project-list-item" 
-               data-open-sub="target-practise" 
-               data-parent-cat="2d" 
-               data-cat="2d" 
-               data-has-pdf="true"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Target Practise">
-            
-            <div class="project-list-thumb">
-              
-              <img src="static/images/target_split_blast_rifle.webp" alt="Target Practise" loading="lazy" decoding="async" />
-              
-              <div class="project-list-thumb-badge">
-                
-                <span>📖 84.1 MB PDF Book</span>
-                
-              </div>
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/bot_and_boy_animatic.mp4">
+            <img src="static/aditya_project/Preprod/bot%20and%20boy/IMG_4688.webp" alt="The Bot and the Boy" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span>🎨 Storyboards &bull; VisDev</span>
             </div>
-
-            <div class="project-list-info">
-              <h3 class="project-list-title">Target Practise</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">2D &bull; Comic Storyboards &amp; Inking</span>
-                <span class="project-list-assets-tag">1 Files</span>
-                
-                <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-              </div>
-              
-            </div>
-
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Read PDF Book</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
-            </div>
-
+            <div class="bento-badge-meta">1:15 min Animatic</div>
+            <div class="bento-badge-motion">▶ ANIMATIC</div>
           </div>
-          
-        
-          
-          <div class="project-list-item" 
-               data-open-sub="akkad" 
-               data-parent-cat="preprod" 
-               data-cat="preprod" 
-               data-has-pdf="true"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Akkad">
-            
-            <div class="project-list-thumb video-hover-thumb" data-hover-video="static/videos/akkad_sequence.mp4">
-              <img src="static/images/akkad_thumbnail.webp" alt="Akkad" loading="lazy" decoding="async" />
-              <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
-              <div class="anim-badge-motion">▶ REEL</div>
-              <div class="project-list-thumb-badge">
-                <span>📖 32.7 MB PDF Book</span>
-              </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">The Bot and the Boy</h3>
+              <p class="bento-card-desc">
+                Emotional character animatic exploring friendship between an abandoned child and a repurposed industrial automaton in a decaying future.
+              </p>
             </div>
 
-            <div class="project-list-info">
-              <h3 class="project-list-title">Akkad</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">Preprod &bull; Character Design &amp; Worldbuilding</span>
-                <span class="project-list-assets-tag">2 Files</span>
-                
-                <span style="font-size: 0.72rem; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(185, 28, 28, 0.25);">📖 In-Site PDF Book</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Blender</span>
-                
-              </div>
-              
+            <div class="bento-card-chips">
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">Storyboard Pro</span>
+              <span class="bento-chip">Premiere</span>
             </div>
 
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Read PDF Book</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Watch Animatic &amp; Storyboards</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
             </div>
-
           </div>
+        </div>
+
+        <!-- CARD 3: The Tale of Akkad (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="akkad" 
+             data-parent-cat="preprod" 
+             data-cat="preprod" 
+             data-has-pdf="true"
+             tabindex="0" 
+             role="button" 
+             aria-label="View The Tale of Akkad">
           
-          <div class="project-list-item" 
-               data-open-sub="beavis" 
-               data-parent-cat="preprod" 
-               data-cat="preprod" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Beavis">
-            
-            <div class="project-list-thumb video-hover-thumb" data-hover-video="static/videos/rendered_shot.mp4">
-              <img src="static/aditya_project/Preprod/Beavis/hori%20pan%20lol.webp" alt="Beavis" loading="lazy" decoding="async" />
-              <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
-              <div class="anim-badge-motion">▶ SHOT</div>
-              <div class="project-list-thumb-badge">
-                <span>🎬 0:30 min</span>
-              </div>
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/akkad_sequence.mp4">
+            <img src="static/images/akkad_thumbnail.webp" alt="The Tale of Akkad" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span>🎨 Pre-Production &bull; 2D</span>
             </div>
-
-            <div class="project-list-info">
-              <h3 class="project-list-title">Beavis</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">Preprod &bull; Scene Layout &amp; Cinematography</span>
-                <span class="project-list-assets-tag">4 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">After Effects</span>
-                
-                <span class="project-list-chip">Blender</span>
-                
-              </div>
-              
-            </div>
-
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Watch Video Reel</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
-            </div>
-
+            <div class="bento-badge-meta">📖 32MB Artbook</div>
+            <div class="bento-badge-motion">▶ REEL</div>
           </div>
-          
-          <div class="project-list-item" 
-               data-open-sub="bot-and-boy" 
-               data-parent-cat="preprod" 
-               data-cat="preprod" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View bot and boy">
-            
-            <div class="project-list-thumb video-hover-thumb" data-hover-video="static/videos/bot_and_boy_animatic.mp4">
-              <img src="static/aditya_project/Preprod/bot%20and%20boy/IMG_4688.webp" alt="bot and boy" loading="lazy" decoding="async" />
-              <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
-              <div class="anim-badge-motion">▶ ANIMATIC</div>
-              <div class="project-list-thumb-badge">
-                <span>🎬 1:49 min</span>
-              </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">The Tale of Akkad</h3>
+              <p class="bento-card-desc">
+                Dynamic rooftop chase animation sequence featuring exaggerated keyframe physics, fluid cloth dynamics, and hand-drawn layout artbook.
+              </p>
             </div>
 
-            <div class="project-list-info">
-              <h3 class="project-list-title">bot and boy</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">Preprod &bull; Storyboarding &amp; Animatic</span>
-                <span class="project-list-assets-tag">3 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">After Effects</span>
-                
-              </div>
-              
+            <div class="bento-card-chips">
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">After Effects</span>
+              <span class="bento-chip">Photoshop</span>
             </div>
 
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Watch Video Reel</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Read Artbook &amp; Watch Reel</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
             </div>
-
           </div>
+        </div>
+
+        <!-- CARD 4: Beavis & Butt-head Pan Shot (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="beavis" 
+             data-parent-cat="preprod" 
+             data-cat="preprod" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Beavis & Butt-head Pan Shot">
           
-          <div class="project-list-item" 
-               data-open-sub="monkesh" 
-               data-parent-cat="preprod" 
-               data-cat="preprod" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Monkesh">
-            
-            <div class="project-list-thumb">
-              
-              <img src="static/aditya_project/Preprod/Monkesh/IMG_4719.webp" alt="Monkesh" loading="lazy" decoding="async" />
-              
-              <div class="project-list-thumb-badge">
-                
-                <span>🎨 6 Artworks</span>
-                
-              </div>
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/rendered_shot.mp4">
+            <img src="static/aditya_project/Preprod/Beavis/hori%20pan%20lol.webp" alt="Beavis &amp; Butt-head Pan Shot" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span>🎬 Layout &bull; Clean-up</span>
             </div>
-
-            <div class="project-list-info">
-              <h3 class="project-list-title">Monkesh</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">Preprod &bull; Character Design &amp; Model Sheets</span>
-                <span class="project-list-assets-tag">6 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Illustrator</span>
-                
-              </div>
-              
-            </div>
-
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Open Project Gallery</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
-            </div>
-
+            <div class="bento-badge-meta">0:18 min Pan</div>
+            <div class="bento-badge-motion">▶ SHOT</div>
           </div>
-          
-        
-          
-          <div class="project-list-item" 
-               data-open-sub="illustrations" 
-               data-parent-cat="xtra-work" 
-               data-cat="xtra-work" 
-               data-has-pdf="false"
-               tabindex="0" 
-               role="button" 
-               aria-label="View Extra Work">
-            
-            <div class="project-list-thumb">
-              
-              <img src="static/aditya_project/Xtra%20work/FINAL%201.webp" alt="Extra Work" loading="lazy" decoding="async" />
-              
-              <div class="project-list-thumb-badge">
-                
-                <span>🎨 6 Artworks</span>
-                
-              </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Beavis &amp; Butt-head Pan</h3>
+              <p class="bento-card-desc">
+                Multiplane horizontal street pan honoring 90s MTV animation language with meticulous background clean-up and architectural layout drafting.
+              </p>
             </div>
 
-            <div class="project-list-info">
-              <h3 class="project-list-title">Extra Work</h3>
-              <div class="project-list-meta-row">
-                <span class="project-list-cat-tag">Xtra work &bull; Digital Illustration &amp; Concept Art</span>
-                <span class="project-list-assets-tag">6 Files</span>
-                
-              </div>
-
-              
-              <div class="project-list-chips">
-                <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-dim); margin-right: 2px;">Software:</span>
-                
-                <span class="project-list-chip">Photoshop</span>
-                
-                <span class="project-list-chip">Clip Studio Paint</span>
-                
-                <span class="project-list-chip">Procreate</span>
-                
-              </div>
-              
+            <div class="bento-card-chips">
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">Photoshop</span>
+              <span class="bento-chip">After Effects</span>
             </div>
 
-            <div class="project-list-action">
-              <button class="project-list-btn" type="button">
-                <span>Open Project Gallery</span>
-                <span class="project-list-btn-arrow">&rarr;</span>
-              </button>
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Explore Multiplane Pan Files</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
             </div>
-
           </div>
+        </div>
+
+        <!-- CARD 5: Cyberpunk 3D Kinetic Motion (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-vault="cyberpunk"
+             data-parent-cat="3d" 
+             data-cat="3d" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Cyberpunk 3D Typography">
           
-        
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/aditya_project/3D/Cyberpunk/Cyberpunk Typography FINAL.mp4">
+            <img src="static/aditya_project/3D/Cyberpunk/cyberpunk.webp" alt="Cyberpunk 3D Typography" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span>💎 3D Motion Graphics</span>
+            </div>
+            <div class="bento-badge-meta">30 FPS &bull; Render</div>
+            <div class="bento-badge-motion">▶ 3D CLIP</div>
+          </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Cyberpunk 3D Motion</h3>
+              <p class="bento-card-desc">
+                Experimental 3D typography exploration combining glitch aesthetics, volumetric neon lighting, and rhythm-synchronized text choreography.
+              </p>
+            </div>
+
+            <div class="bento-card-chips">
+              <span class="bento-chip">Blender</span>
+              <span class="bento-chip">After Effects</span>
+              <span class="bento-chip">Cinema 4D</span>
+            </div>
+
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Watch 3D Kinetic Sequence</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: Non Narrative Dominoes (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="non-narrative" 
+             data-parent-cat="2d" 
+             data-cat="2d" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Non Narrative Animation">
+          
+          <div class="bento-card-media video-hover-thumb" data-hover-video="static/aditya_project/2D/Non%20Narrative/Anna%20Dominoes.mp4">
+            <img src="static/aditya_project/2D/Non%20Narrative/nna.webp" alt="Non Narrative Dominoes" loading="lazy" decoding="async" />
+            <video class="thumb-hover-video" muted loop playsinline preload="none"></video>
+            <div class="bento-badge-cat">
+              <span>🎬 2D Experimental</span>
+            </div>
+            <div class="bento-badge-meta">0:30 min Clip</div>
+            <div class="bento-badge-motion">▶ CLIP</div>
+          </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Non Narrative Dominoes</h3>
+              <p class="bento-card-desc">
+                Rhythmic frame-by-frame character movement, sound synchronization, and playful kinetic pacing exercise.
+              </p>
+            </div>
+
+            <div class="bento-card-chips">
+              <span class="bento-chip">After Effects</span>
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">Blender</span>
+            </div>
+
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Watch Animation Clip</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 7: Target Practise (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="target-practise" 
+             data-parent-cat="2d" 
+             data-cat="2d" 
+             data-has-pdf="true"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Target Practise Comic Book">
+          
+          <div class="bento-card-media">
+            <img src="static/images/target_split_blast_rifle.webp" alt="Target Practise" loading="lazy" decoding="async" />
+            <div class="bento-badge-cat">
+              <span>🎨 Comic Storyboards</span>
+            </div>
+            <div class="bento-badge-meta">📖 84MB PDF Book</div>
+          </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Target Practise</h3>
+              <p class="bento-card-desc">
+                Action staging, line-art inking, dynamic character poses, and comedic timing beats in a multi-panel comic storyboard narrative.
+              </p>
+            </div>
+
+            <div class="bento-card-chips">
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">Photoshop</span>
+            </div>
+
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Read Full In-Site PDF Book</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 8: Monkesh The Wise (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="monkesh" 
+             data-parent-cat="preprod" 
+             data-cat="preprod" 
+             data-has-pdf="true"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Monkesh The Wise Concept Bible">
+          
+          <div class="bento-card-media">
+            <img src="static/aditya_project/Preprod/Monkesh/IMG_4719.webp" alt="Monkesh The Wise" loading="lazy" decoding="async" />
+            <div class="bento-badge-cat">
+              <span>🎨 Character Design</span>
+            </div>
+            <div class="bento-badge-meta">📖 Concept Bible PDF</div>
+          </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Monkesh The Wise</h3>
+              <p class="bento-card-desc">
+                Complete character design bible featuring mythological worldbuilding, model turnarounds, facial expressions, and costume visual development.
+              </p>
+            </div>
+
+            <div class="bento-card-chips">
+              <span class="bento-chip">Photoshop</span>
+              <span class="bento-chip">Clip Studio Paint</span>
+              <span class="bento-chip">Illustrator</span>
+            </div>
+
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">Explore Model Sheets &amp; PDF</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 9: Digital Illustrations & Extra Work (Span 4) -->
+        <div class="project-list-item bento-card span-4" 
+             data-open-sub="illustrations" 
+             data-parent-cat="xtra-work" 
+             data-cat="xtra-work" 
+             data-has-pdf="false"
+             tabindex="0" 
+             role="button" 
+             aria-label="View Extra Work & Digital Illustrations">
+          
+          <div class="bento-card-media">
+            <img src="static/aditya_project/Xtra%20work/FINAL%201.webp" alt="Digital Art &amp; VisDev" loading="lazy" decoding="async" />
+            <div class="bento-badge-cat">
+              <span>🖌️ Digital Art &bull; Studies</span>
+            </div>
+            <div class="bento-badge-meta">🎨 10+ Artworks</div>
+          </div>
+
+          <div class="bento-card-body">
+            <div>
+              <h3 class="bento-card-title">Digital Art &amp; VisDev</h3>
+              <p class="bento-card-desc">
+                Visual development studies, environment lighting explorations, color scripts, and personal digital illustrations.
+              </p>
+            </div>
+
+            <div class="bento-card-chips">
+              <span class="bento-chip">Photoshop</span>
+              <span class="bento-chip">Procreate</span>
+              <span class="bento-chip">Clip Studio Paint</span>
+            </div>
+
+            <div class="bento-card-footer">
+              <span class="bento-footer-label">View 10+ Production Artworks</span>
+              <div class="bento-arrow-btn" aria-hidden="true">&nearr;</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- CATEGORIES OVERVIEW GRID (Toggled via toggle button) -->
@@ -3593,12 +3559,13 @@
   let activeSubId = null;
 
   const categoryNames = {
-    'root': 'All Projects',
-    'all': 'All Projects',
+    'root': 'All Works',
+    'all': 'All Works',
     '2d': '2D Animation',
     'preprod': 'Pre-Production',
+    '3d': '3D Motion Graphics',
     'xtra-work': 'Extra Work',
-    'pdf-only': 'PDF Books'
+    'pdf-only': 'Artbooks & PDFs'
   };
 
   const subfolderNames = {
@@ -3645,10 +3612,7 @@
     if (!listView) return;
 
     if (catGrid) catGrid.style.display = 'none';
-    listView.style.display = 'flex';
-
-    if (toggleText) toggleText.textContent = 'Category Cards';
-    if (toggleIcon) toggleIcon.textContent = '▦';
+    listView.style.display = 'grid';
 
     const items = listView.querySelectorAll('.project-list-item');
     let visibleCount = 0;
@@ -3658,12 +3622,14 @@
         match = true;
       } else if (catId === 'pdf-only') {
         match = item.dataset.hasPdf === 'true';
+      } else if (catId === '3d') {
+        match = (item.dataset.parentCat === '3d' || item.dataset.cat === '3d');
       } else {
         match = (item.dataset.parentCat === catId || item.dataset.cat === catId);
       }
 
       if (match) {
-        item.style.display = 'flex';
+        item.style.display = '';
         visibleCount++;
       } else {
         item.style.display = 'none';
@@ -3672,7 +3638,7 @@
 
     const label = categoryNames[catId] || catId;
     if (statsBadge) {
-      statsBadge.textContent = catId === 'root' ? '11 Projects • 4 Categories • 30 Assets' : label + ' (' + visibleCount + ' Projects)';
+      statsBadge.textContent = catId === 'root' ? '9 Curated Works • 24 FPS • 30+ Assets' : label + ' (' + visibleCount + ' Projects)';
     }
     updatePills(catId);
   }
@@ -3770,6 +3736,18 @@
 
   // Event Listeners for clicks
   document.addEventListener('click', function(e) {
+    // Jump to Vault for 3D Cyberpunk clip
+    const vaultJump = e.target.closest('[data-vault-jump]');
+    if (vaultJump) {
+      const vaultSec = document.getElementById('vault');
+      if (vaultSec) {
+        vaultSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const cpBtn = document.querySelector('.vault-clip-btn[data-target="3d-motion-graphics"]');
+        if (cpBtn) cpBtn.click();
+      }
+      return;
+    }
+
     // Open project
     const subCard = e.target.closest('[data-open-sub]');
     if (subCard) {
@@ -4072,20 +4050,22 @@
     }
   }
 
-  // Video Preview On Hover For Project Cards
-  const hoverThumbs = document.querySelectorAll('.video-hover-thumb');
-  hoverThumbs.forEach(thumb => {
+  // Video Preview On Hover For Project Cards & Bento Cards
+  const bentoCards = document.querySelectorAll('.bento-card, .video-hover-thumb');
+  bentoCards.forEach(card => {
+    const thumb = card.classList.contains('video-hover-thumb') ? card : card.querySelector('.video-hover-thumb');
+    if (!thumb) return;
     const video = thumb.querySelector('.thumb-hover-video');
     const videoSrc = thumb.dataset.hoverVideo;
     if (video && videoSrc) {
-      thumb.addEventListener('mouseenter', function() {
+      card.addEventListener('mouseenter', function() {
         if (!video.src || video.src === window.location.href) {
           video.src = videoSrc;
           video.load();
         }
         video.play().catch(function(){});
       });
-      thumb.addEventListener('mouseleave', function() {
+      card.addEventListener('mouseleave', function() {
         video.pause();
         video.currentTime = 0;
       });

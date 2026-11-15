@@ -6879,5 +6879,801 @@ button:focus-visible {
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
+/* =============================================================================
+   ULTRA-MODERN DARK STUDIO / FRAMER-GRADE DESIGN SYSTEM (OPTION A)
+   Obsidian Dark, Ambient Lighting, Floating Glass Navbar, Bento Grid
+   ============================================================================= */
+
+/* 1. Global Reset & Ambient Mesh Lighting */
+:root[data-theme="dark"],
+:root[data-theme="midnight"],
+[data-theme="dark"],
+[data-theme="midnight"],
+:root {
+  --bg-primary: #08090C !important;
+  --bg-surface: #0E121A !important;
+  --bg-card: rgba(14, 18, 28, 0.75) !important;
+  --bg-card-hover: rgba(22, 28, 42, 0.85) !important;
+  --border-color: rgba(255, 255, 255, 0.08) !important;
+  --border-hover: rgba(255, 92, 53, 0.45) !important;
+  --heading-color: #FFFFFF !important;
+  --text-color: #CBD5E1 !important;
+  --text-dim: #94A3B8 !important;
+  --rust: #FF5C35 !important;
+  --rust-hover: #FF704D !important;
+  --rust-glow: rgba(255, 92, 53, 0.35) !important;
+  --blue: #38BDF8 !important;
+  --blue-glow: rgba(56, 189, 248, 0.3) !important;
+}
+
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-color) !important;
+  position: relative !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Studio Ambient Mesh Lighting */
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 15% 65%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 85%, rgba(255, 92, 53, 0.07) 0%, transparent 50%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Hide legacy distracting folk strips for clean studio aesthetic */
+.folk-border-strip {
+  display: none !important;
+}
+
+.filmstrip-strip {
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+  border: none !important;
+}
+
+/* 2. Floating Glassmorphism Pill Navbar */
+.navbar {
+  position: fixed !important;
+  top: 16px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(1180px, calc(100% - 32px)) !important;
+  height: 64px !important;
+  background: rgba(10, 13, 20, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+  z-index: 1000 !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.nav-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.05rem !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.01em !important;
+}
+
+.nav-logo-mark {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 14px rgba(255, 92, 53, 0.4) !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.nav-logo:hover .nav-logo-mark {
+  transform: rotate(-6deg) scale(1.08) !important;
+}
+
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-link {
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #CBD5E1 !important;
+  padding: 8px 14px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-link:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.nav-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 18px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.35) !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-cta-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 22px rgba(255, 92, 53, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+.dark-mode-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #CBD5E1 !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.dark-mode-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+}
+
+/* 3. Hero Section Studio Redesign */
+.hero-section {
+  min-height: 92vh !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 120px 0 80px !important;
+  position: relative !important;
+}
+
+.hero-name {
+  font-family: 'Syne', sans-serif !important;
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem) !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.08 !important;
+  margin: 0 0 14px !important;
+}
+
+.hero-subtitle {
+  font-family: 'Syne', sans-serif !important;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem) !important;
+  font-weight: 700 !important;
+  background: linear-gradient(90deg, #FFFFFF 0%, #E2E8F0 50%, #38BDF8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  margin-bottom: 20px !important;
+  letter-spacing: -0.01em !important;
+}
+
+.hero-intro {
+  font-size: 1.05rem !important;
+  color: #94A3B8 !important;
+  line-height: 1.68 !important;
+  max-width: 580px !important;
+  margin-bottom: 24px !important;
+}
+
+.hero-credential-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-bottom: 32px !important;
+}
+
+.cred-chip {
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #CBD5E1 !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.hero-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  flex-wrap: wrap !important;
+}
+
+.hero-reel-box {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: rgba(14, 18, 28, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 92, 53, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.profile-avatar-wrap {
+  position: relative !important;
+  margin-bottom: 24px !important;
+}
+
+.profile-avatar-img-real {
+  border-radius: 50% !important;
+  border: 3px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 0 35px rgba(255, 92, 53, 0.25) !important;
+}
+
+/* 4. Framer Bento Grid for Works (#work) */
+.bento-portfolio-section {
+  padding: 90px 0 !important;
+  position: relative !important;
+}
+
+.bento-section-header {
+  margin-bottom: 36px !important;
+}
+
+.bento-section-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 14px !important;
+  background: rgba(255, 92, 53, 0.12) !important;
+  border: 1px solid rgba(255, 92, 53, 0.35) !important;
+  border-radius: 999px !important;
+  margin-bottom: 16px !important;
+}
+
+.bento-section-badge span:last-child {
+  font-family: 'Syne', sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  color: #FF5C35 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.bento-section-title {
+  font-family: 'Syne', sans-serif !important;
+  font-size: clamp(2rem, 3.8vw, 3.2rem) !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+  margin: 0 0 12px !important;
+}
+
+.bento-section-subtitle {
+  font-size: 1.05rem !important;
+  color: #94A3B8 !important;
+  max-width: 680px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 24px !important;
+}
+
+.bento-filter-strip {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 24px !important;
+}
+
+.bento-filter-strip .folder-tab-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 18px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #CBD5E1 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+}
+
+.bento-filter-strip .folder-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.bento-filter-strip .folder-tab-btn.active {
+  background: rgba(255, 92, 53, 0.15) !important;
+  border-color: rgba(255, 92, 53, 0.4) !important;
+  color: #FF5C35 !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.2) !important;
+}
+
+/* The Bento Grid Container */
+.bento-projects-grid,
+#projects-list-view {
+  display: grid !important;
+  grid-template-columns: repeat(12, 1fr) !important;
+  gap: 24px !important;
+  margin-top: 32px !important;
+}
+
+/* Bento Cards */
+.bento-card {
+  position: relative !important;
+  border-radius: 22px !important;
+  background: rgba(14, 18, 28, 0.72) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  cursor: pointer !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(255, 92, 53, 0.45) !important;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 92, 53, 0.18) !important;
+}
+
+.bento-card.span-8 {
+  grid-column: span 8 !important;
+}
+
+.bento-card.span-4 {
+  grid-column: span 4 !important;
+}
+
+.bento-card.span-12 {
+  grid-column: span 12 !important;
+}
+
+@media (max-width: 1024px) {
+  .bento-card.span-8,
+  .bento-card.span-4,
+  .bento-card.span-12 {
+    grid-column: span 12 !important;
+  }
+}
+
+/* Bento Card Media */
+.bento-card-media {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  background: #06080d !important;
+}
+
+.bento-card-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bento-card:hover .bento-card-media img {
+  transform: scale(1.05) !important;
+}
+
+.bento-card .thumb-hover-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  opacity: 0 !important;
+  transition: opacity 0.35s ease !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  background: #000 !important;
+}
+
+.bento-card:hover .thumb-hover-video {
+  opacity: 1 !important;
+}
+
+/* Floating Badges on Media */
+.bento-badge-cat {
+  position: absolute !important;
+  top: 14px !important;
+  left: 14px !important;
+  z-index: 4 !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(10, 13, 20, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #FFFFFF !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.bento-badge-meta {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 4 !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  font-family: monospace !important;
+}
+
+/* Bento Card Body */
+.bento-card-body {
+  padding: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+.bento-card-title {
+  font-family: 'Syne', sans-serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+}
+
+.bento-card.span-8 .bento-card-title {
+  font-size: 1.65rem !important;
+}
+
+.bento-card-desc {
+  font-size: 0.88rem !important;
+  color: #94A3B8 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+.bento-card-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.bento-chip {
+  padding: 3px 9px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: #CBD5E1 !important;
+}
+
+.bento-card-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  margin-top: auto !important;
+}
+
+.bento-footer-label {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  color: #94A3B8 !important;
+  letter-spacing: 0.02em !important;
+  transition: color 0.2s ease !important;
+}
+
+.bento-card:hover .bento-footer-label {
+  color: #FF5C35 !important;
+}
+
+.bento-arrow-btn {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #FFFFFF !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bento-card:hover .bento-arrow-btn {
+  background: #FF5C35 !important;
+  border-color: #FF5C35 !important;
+  transform: translateX(4px) !important;
+  box-shadow: 0 4px 12px rgba(255, 92, 53, 0.4) !important;
+}
+
+/* 5. Subfolder Showcase & Gallery Polish */
+.subfolder-header-box {
+  background: rgba(14, 18, 28, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 28px !important;
+  margin-bottom: 32px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.subfolder-header-title {
+  font-family: 'Syne', sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 8px !important;
+}
+
+.subfolder-header-meta {
+  color: #94A3B8 !important;
+  font-size: 0.9rem !important;
+}
+
+.pdf-action-btn.primary,
+button[data-action="go-root"] {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 8px 18px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(255, 92, 53, 0.35) !important;
+  transition: all 0.2s ease !important;
+}
+
+button[data-action="go-root"]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(255, 92, 53, 0.5) !important;
+}
+
+/* Floating Return Button */
+.floating-back-projects-btn {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 22px !important;
+  border-radius: 999px !important;
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.45) !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(16px) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.floating-back-projects-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 6. Toolkit Bento Section (#toolkit) */
+.toolkit-section {
+  padding: 90px 0 !important;
+}
+
+.toolkit-grid-layout > div {
+  background: rgba(14, 18, 28, 0.72) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease !important;
+}
+
+.tool-card:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 92, 53, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 7. Experience Section (#experience) */
+.exp-section {
+  background: transparent !important;
+  padding: 90px 0 !important;
+}
+
+.timeline-card {
+  background: rgba(14, 18, 28, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+/* 8. Contact Section (#contact) */
+.contact-section {
+  padding: 90px 0 !important;
+}
+
+.contact-card-box {
+  background: radial-gradient(circle at 50% -20%, rgba(255, 92, 53, 0.25) 0%, rgba(14, 18, 28, 0.85) 70%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  padding: 60px 32px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 92, 53, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  text-align: center !important;
+}
+
+.contact-title {
+  font-family: 'Syne', sans-serif !important;
+  font-size: clamp(2rem, 3.6vw, 2.8rem) !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 14px !important;
+}
+
+.contact-subtitle {
+  color: #94A3B8 !important;
+  font-size: 1.05rem !important;
+  max-width: 600px !important;
+  margin: 0 auto 32px !important;
+}
+
+.contact-main-btn {
+  background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 24px rgba(255, 92, 53, 0.45) !important;
+  border-radius: 999px !important;
+  padding: 12px 28px !important;
+  font-weight: 700 !important;
+}
+
+.contact-secondary-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #FFFFFF !important;
+  border-radius: 999px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+}
+
+/* 9. Minimalist Footer */
+.footer {
+  background: rgba(8, 10, 14, 0.95) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 60px 0 40px !important;
+}
+
+/* Light Mode Overrides (if toggled) */
+[data-theme="light"] {
+  --bg-primary: #F8FAFC !important;
+  --bg-surface: #FFFFFF !important;
+  --bg-card: rgba(255, 255, 255, 0.9) !important;
+  --bg-card-hover: #F1F5F9 !important;
+  --border-color: rgba(15, 23, 42, 0.1) !important;
+  --border-hover: rgba(255, 92, 53, 0.5) !important;
+  --heading-color: #0F172A !important;
+  --text-color: #334155 !important;
+  --text-dim: #64748B !important;
+}
+
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.05) 0%, transparent 45%) !important;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .nav-logo,
+[data-theme="light"] .bento-card-title,
+[data-theme="light"] .bento-section-title,
+[data-theme="light"] .hero-name,
+[data-theme="light"] .contact-title,
+[data-theme="light"] .subfolder-header-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .bento-card:hover {
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Page Spacing for Floating Navbar */
+#app-viewport {
+  padding-top: 75px;
+}
+
+#app-viewport:has(.hero-section) {
+  padding-top: 0;
+}
+
+
+
 
 
