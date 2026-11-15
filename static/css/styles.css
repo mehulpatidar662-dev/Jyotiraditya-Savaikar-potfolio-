@@ -7497,34 +7497,7 @@ button[data-action="go-root"]:hover {
 }
 
 /* Floating Return Button */
-.floating-back-projects-btn {
-  position: fixed !important;
-  bottom: 24px !important;
-  right: 24px !important;
-  z-index: 999 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  padding: 12px 22px !important;
-  border-radius: 999px !important;
-  background: #FF5C35 !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  font-weight: 700 !important;
-  font-size: 0.88rem !important;
-  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.45) !important;
-  cursor: pointer !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transform: translateY(16px) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
 
-.floating-back-projects-btn.visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
-}
 
 /* 6. Toolkit Bento Section (#toolkit) */
 .toolkit-section {
@@ -7695,4 +7668,218 @@ button[data-action="go-root"]:hover {
   .vault-screen-video {
     min-height: 240px;
   }
+}
+
+
+/* =============================================================================
+   ATMOSPHERIC STUDIO BACKGROUND EFFECT
+   Interactive Aurora Spotlight, Gentle Gradient Orbs, and Precision Grid
+   ============================================================================= */
+.ambient-studio-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* 1. Interactive Spotlight that follows the cursor */
+.ambient-glow-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(750px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(255, 92, 53, 0.08) 0%, rgba(56, 189, 248, 0.04) 35%, transparent 70%);
+  will-change: background;
+  transition: opacity 0.3s ease;
+}
+
+/* 2. Floating Ambient Color Orbs */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  -webkit-filter: blur(140px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ambient-orb-1 {
+  top: -150px;
+  left: 10%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(255, 92, 53, 0.16) 0%, rgba(216, 66, 24, 0.04) 70%, transparent 100%);
+  animation: floatOrb1 22s ease-in-out infinite alternate;
+}
+
+.ambient-orb-2 {
+  top: 45%;
+  right: -100px;
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(2, 132, 199, 0.03) 70%, transparent 100%);
+  animation: floatOrb2 28s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 80px) scale(1.08); }
+  100% { transform: translate(-40px, 120px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, -60px) scale(1.1); }
+  100% { transform: translate(-30px, 50px) scale(0.92); }
+}
+
+/* 3. Subtle Precision Dot Grid Blueprint */
+.ambient-grid-blueprint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 80%);
+  opacity: 0.6;
+}
+
+/* =============================================================================
+   CLICK RIPPLE & TACTILE INTERACTION EFFECTS
+   ============================================================================= */
+.studio-click-ripple {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  animation: studioRippleWave 0.55s cubic-bezier(0.12, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes studioRippleWave {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.85;
+    border: 2px solid #FF5C35;
+    box-shadow: 0 0 16px rgba(255, 92, 53, 0.7);
+  }
+  50% {
+    border-color: #38BDF8;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+  }
+  100% {
+    width: 90px;
+    height: 90px;
+    opacity: 0;
+    border: 1px solid transparent;
+    box-shadow: 0 0 32px rgba(56, 189, 248, 0);
+  }
+}
+
+.studio-click-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  background: #FF5C35;
+  box-shadow: 0 0 8px #FF5C35;
+  animation: studioParticleBurst 0.45s ease-out forwards;
+}
+
+@keyframes studioParticleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+/* Tactile Active Press Feedback */
+button:active,
+.btn-primary:active,
+.btn-secondary:active,
+.bento-card:active,
+.vault-clip-btn:active,
+.folder-tab-btn:active,
+.nav-link:active,
+.floating-back-projects-btn:active,
+.pdf-action-btn:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* =============================================================================
+   STICKY & PROMINENT PROJECT CASE STUDY NAVIGATION (BACK BUTTONS)
+   ============================================================================= */
+.subfolder-header-box {
+  position: sticky !important;
+  top: 72px !important;
+  z-index: 85 !important;
+  background: rgba(10, 14, 22, 0.94) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 92, 53, 0.35) !important;
+  border-radius: 18px !important;
+  padding: 18px 24px !important;
+  margin-bottom: 30px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 92, 53, 0.15) !important;
+}
+
+.floating-back-projects-btn {
+  position: fixed !important;
+  bottom: 28px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) translateY(24px) !important;
+  z-index: 1000 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 28px !important;
+  border-radius: 999px !important;
+  background: rgba(12, 16, 26, 0.94) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #FF5C35 !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 92, 53, 0.35) !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.floating-back-projects-btn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.floating-back-projects-btn:hover {
+  transform: translateX(-50%) translateY(-3px) scale(1.03) !important;
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 16px 40px rgba(255, 92, 53, 0.6) !important;
+}
+
+.project-bottom-return-box button:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 10px 32px rgba(255, 92, 53, 0.65) !important;
 }
