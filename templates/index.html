@@ -102,41 +102,220 @@
 <!-- FOLK-ART REPEATING BORDER STRIP -->
 <div class="folk-border-strip" aria-hidden="true"></div>
 
+<!-- FILMSTRIP TOP ACCENT -->
+<div class="filmstrip-strip" aria-hidden="true"></div>
+
 <!-- =======================================================================
-     FEATURED SHOWCASE VIDEO SECTION
+     ANIMATOR CINEMA VAULT & SIGNATURE CLIP SHOWCASE
      ======================================================================= -->
-<section class="section-padding featured-reel-showcase-section" style="padding-top: 48px; padding-bottom: 24px;">
-  <div class="container">
-    <div style="margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
-      <div>
-        <span class="badge" style="display: inline-block; margin-bottom: 10px;">🎬 Featured Reel</span>
-        <h2 class="section-title" style="text-align: left; margin-bottom: 0; font-size: clamp(1.8rem, 3.2vw, 2.7rem);">
-          Animation &amp; Motion Reel
-        </h2>
+<section class="animator-vault-section" id="vault">
+  <div class="animator-vault-container">
+    
+    <div class="animator-vault-header">
+      <div class="animator-vault-title-wrap">
+        <div class="animator-vault-badge">
+          <span class="live-pulse-dot"></span>
+          <span>Animation &bull; 24 FPS Cinema Vault</span>
+        </div>
+        <h2>Animation Reel &amp; Signature Clips</h2>
+        <p style="margin: 0; color: var(--text-dim); font-size: 0.95rem;">
+          Click any clip below to watch high-definition sequences, kinetic typography, animatics, and production shots.
+        </p>
       </div>
-      <div style="font-size: 0.85rem; color: var(--text-dim); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--rust);"></span>
-        <span>Original Motion Sequence • 24 FPS</span>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-family: monospace; font-size: 0.8rem; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.4); padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          8 CLIPS IN VAULT &bull; 1080p HD
+        </span>
       </div>
     </div>
 
-    <div class="hero-reel-box" style="box-shadow: 0 16px 44px rgba(0,0,0,0.4); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color);">
-      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: rgba(0,0,0,0.55); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; font-weight: 600; color: #fff;">
-        <span style="letter-spacing: 0.05em; font-family: 'Syne', sans-serif; font-weight: 700;">Showreel &bull; 2D Animation &amp; Motion Design</span>
-        <span style="font-size: 0.78rem; opacity: 0.75; font-family: monospace;">HD 1080p • 24 FPS</span>
+    <!-- Clip Selector Pills Strip -->
+    <div class="vault-clips-strip" id="vault-clips-strip">
+      <button class="vault-clip-btn active" 
+              data-src="{{ url_for('static', filename='videos/hopefully_final.mp4') }}"
+              data-title="Official Animation &amp; Motion Showreel (2026)"
+              data-desc="Showcasing high-energy 2D character animation, kinetic typography, mythological pre-production worldbuilding, and frame-by-frame motion studies."
+              data-role="Lead 2D Animator &bull; Motion Designer"
+              data-fps="24 FPS &bull; 1080p FULL HD"
+              data-tc="TC: 00:01:45:00"
+              data-tools="After Effects, Clip Studio Paint, Blender, Photoshop"
+              data-target="work">
+        <span class="clip-icon">🎬</span>
+        <span>2026 Showreel</span>
+        <span class="clip-duration">Featured</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='videos/jaimini_title_sequence.mp4') }}"
+              data-title="Jaimini — Mythological Sci-Fi Title Sequence"
+              data-desc="Title sequence blending Sanskrit mythology with a post-nuclear citadel. Features kinetic Devanagari typography, dynamic camera moves, and particle atmospherics."
+              data-role="Lead Animator &bull; Title Designer"
+              data-fps="24 FPS &bull; Sync Audio"
+              data-tc="TC: 00:00:57:12"
+              data-tools="After Effects, Photoshop, Blender"
+              data-target="jaimini">
+        <span class="clip-icon">⚡</span>
+        <span>Jaimini Title</span>
+        <span class="clip-duration">0:57</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='videos/bot_and_boy_animatic.mp4') }}"
+              data-title="The Bot and the Boy — Character Animatic Reel"
+              data-desc="Complete sequence animatic exploring emotional acting beats between an abandoned boy and a repurposed industrial automaton in a decaying future."
+              data-role="Storyboard Artist &bull; Character Animator"
+              data-fps="24 FPS &bull; Temp Dialogue &amp; SFX"
+              data-tc="TC: 00:01:15:08"
+              data-tools="Clip Studio Paint, Storyboard Pro, Premiere"
+              data-target="bot-and-boy">
+        <span class="clip-icon">🤖</span>
+        <span>The Bot &amp; The Boy</span>
+        <span class="clip-duration">1:15</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='videos/akkad_sequence.mp4') }}"
+              data-title="The Tale of Akkad — Animated Cinematic Sequence"
+              data-desc="Dynamic rooftop chase animation sequence featuring exaggerated keyframe physics, fluid cloth dynamics, and hand-drawn background multiplane layouts."
+              data-role="2D Animator &bull; Layout Artist"
+              data-fps="24 FPS &bull; Narrative Sync"
+              data-tc="TC: 00:00:42:00"
+              data-tools="Clip Studio Paint, After Effects"
+              data-target="akkad">
+        <span class="clip-icon">🏙️</span>
+        <span>Tale of Akkad</span>
+        <span class="clip-duration">0:42</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='videos/rendered_shot.mp4') }}"
+              data-title="Beavis &amp; Butt-head — Camera Pan &amp; Layout Shot"
+              data-desc="Multiplane horizontal street pan replicating the vintage 90s MTV animation language with meticulous background clean-up and architectural layout drafting."
+              data-role="Layout &bull; Clean-up Artist"
+              data-fps="24 FPS &bull; Multiplane Pan"
+              data-tc="TC: 00:00:18:20"
+              data-tools="Clip Studio Paint, Photoshop"
+              data-target="beavis">
+        <span class="clip-icon">🥊</span>
+        <span>Beavis Pan Shot</span>
+        <span class="clip-duration">0:18</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='videos/temple_flag_chill_showreel.mp4') }}"
+              data-title="Temple Flag Chill Shot — Environmental 2D Loop"
+              data-desc="Fluid secondary animation study of silk pennants flapping over an ancient temple spire under dramatic monsoon skies. Hand-drawn on 2s."
+              data-role="2D Animator &bull; Art Director"
+              data-fps="24 FPS &bull; Seamless Loop"
+              data-tc="TC: 00:00:12:00"
+              data-tools="Clip Studio Paint, After Effects"
+              data-target="work">
+        <span class="clip-icon">🛕</span>
+        <span>Temple Flag Loop</span>
+        <span class="clip-duration">Loop</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='aditya_project/3D/Cyberpunk/Cyberpunk Typography FINAL.mp4') }}"
+              data-title="Cyberpunk — 3D Kinetic Motion Graphics"
+              data-desc="Experimental 3D typography exploration combining glitch aesthetics, volumetric neon lighting, and rhythm-synchronized text choreography."
+              data-role="3D Motion Designer"
+              data-fps="30 FPS &bull; 3D Render"
+              data-tc="TC: 00:00:25:15"
+              data-tools="Blender, After Effects, Cinema 4D"
+              data-target="3d-motion-graphics">
+        <span class="clip-icon">💎</span>
+        <span>Cyberpunk 3D</span>
+        <span class="clip-duration">0:25</span>
+      </button>
+
+      <button class="vault-clip-btn" 
+              data-src="{{ url_for('static', filename='aditya_project/3D/cube/Cube shift Final.mp4') }}"
+              data-title="Cube Shift — Procedural Geometry &amp; Light Study"
+              data-desc="Procedural geometric transformation study focusing on bevel reflections, camera orbiting, and minimal ambient sound design."
+              data-role="3D Visual Artist"
+              data-fps="30 FPS &bull; Ambient Sound"
+              data-tc="TC: 00:00:20:00"
+              data-tools="Blender, After Effects"
+              data-target="3d-motion-graphics">
+        <span class="clip-icon">🎲</span>
+        <span>Cube Shift 3D</span>
+        <span class="clip-duration">0:20</span>
+      </button>
+    </div>
+
+    <!-- Active Cinema Monitor Box -->
+    <div class="vault-monitor-box">
+      <!-- Monitor Top Control Bar -->
+      <div class="vault-monitor-topbar">
+        <div class="vault-monitor-title">
+          <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #e05d38; box-shadow: 0 0 8px #e05d38;"></span>
+          <span id="vault-monitor-title-text">Official Animation &amp; Motion Showreel (2026)</span>
+          <span id="vault-monitor-fps-tag" style="font-size: 0.74rem; font-weight: 800; color: #22c55e; background: rgba(34, 197, 94, 0.12); padding: 2px 8px; border-radius: 4px; font-family: monospace;">24 FPS &bull; 1080p FULL HD</span>
+        </div>
+
+        <div class="vault-monitor-controls">
+          <button type="button" class="vault-ctrl-btn" id="vault-sound-toggle-btn" title="Toggle Sound On/Off">
+            <span id="vault-sound-icon">🔇</span>
+            <span id="vault-sound-text">Unmute Audio</span>
+          </button>
+          
+          <button type="button" class="vault-ctrl-btn" id="vault-fullscreen-btn" title="Watch in Fullscreen Theater Mode">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <span>Cinema Fullscreen</span>
+          </button>
+        </div>
       </div>
-      <div class="portfolio-media-wrapper" style="min-height: 280px; max-height: 720px; position: relative; background: #000;">
-        <video id="featured-showcase-video" autoplay muted loop controls playsinline preload="auto" style="width: 100%; height: auto; max-height: 720px; display: block; margin: 0 auto; object-fit: contain;">
+
+      <!-- Main Video Screen with HUD -->
+      <div class="vault-screen-wrap">
+        <div class="vault-hud-slate" id="vault-hud-slate">● SCENE: SHOWREEL &bull; TAKE 01</div>
+        <div class="vault-hud-timecode" id="vault-hud-timecode">24.00 FPS &bull; SYNC</div>
+        
+        <video id="vault-main-video" 
+               class="vault-screen-video" 
+               autoplay 
+               muted 
+               loop 
+               controls 
+               playsinline 
+               preload="auto">
           <source src="{{ url_for('static', filename='videos/hopefully_final.mp4') }}" type="video/mp4">
-          <source src="static/videos/hopefully_final.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
       </div>
+
+      <!-- Monitor Meta Footer Bar -->
+      <div class="vault-monitor-meta">
+        <div class="vault-meta-info">
+          <h3 id="vault-meta-heading">Official Animation &amp; Motion Showreel (2026)</h3>
+          <p class="vault-meta-desc" id="vault-meta-desc">
+            Showcasing high-energy 2D character animation, kinetic typography, mythological pre-production worldbuilding, and frame-by-frame motion studies.
+          </p>
+          <div class="vault-meta-chips" id="vault-meta-chips">
+            <span class="vault-chip" style="color: var(--rust); font-weight: 700;">Role: Lead 2D Animator &bull; Motion Designer</span>
+            <span class="vault-chip">After Effects</span>
+            <span class="vault-chip">Clip Studio Paint</span>
+            <span class="vault-chip">Blender</span>
+            <span class="vault-chip">Photoshop</span>
+          </div>
+        </div>
+
+        <div>
+          <a href="#work" id="vault-explore-project-link" class="vault-view-proj-btn">
+            <span>Explore Project &darr;</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- FOLK-ART REPEATING BORDER STRIP -->
+<!-- FILMSTRIP BOTTOM ACCENT -->
+<div class="filmstrip-strip" aria-hidden="true"></div>
 <div class="folk-border-strip" aria-hidden="true"></div>
 
 <!-- =======================================================================
