@@ -46,6 +46,76 @@
 </head>
 <body>
 
+  <!-- Interactive Atmospheric Studio Canvas Background & Floating Motion Shapes -->
+  <div class="ambient-studio-bg" aria-hidden="true">
+    <div class="ambient-glow-spotlight" id="ambient-spotlight"></div>
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-grid-blueprint"></div>
+
+    <!-- Dynamic Floating Motion Shapes (Studio Edition) -->
+    <div class="ambient-shapes-container" id="ambient-shapes">
+      <!-- Shape 1: Isometric Rotating Wireframe Cube -->
+      <div class="floating-shape shape-cube">
+        <div class="cube-inner">
+          <div class="cube-face front"></div>
+          <div class="cube-face back"></div>
+          <div class="cube-face right"></div>
+          <div class="cube-face left"></div>
+          <div class="cube-face top"></div>
+          <div class="cube-face bottom"></div>
+        </div>
+      </div>
+
+      <!-- Shape 2: Animation Timing Ring / Orbital Dial -->
+      <div class="floating-shape shape-ring">
+        <svg width="110" height="110" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="54" stroke="rgba(255, 92, 53, 0.35)" stroke-width="1.5" stroke-dasharray="6 8" />
+          <circle cx="60" cy="60" r="40" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1" stroke-dasharray="3 6" />
+          <circle cx="60" cy="60" r="18" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1" />
+          <line x1="60" y1="2" x2="60" y2="118" stroke="rgba(255, 92, 53, 0.25)" stroke-width="1" />
+          <line x1="2" y1="60" x2="118" y2="60" stroke="rgba(255, 92, 53, 0.25)" stroke-width="1" />
+        </svg>
+      </div>
+
+      <!-- Shape 3: Precision Crosshair / Pegbar Registration -->
+      <div class="floating-shape shape-crosshair">
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+          <line x1="24" y1="0" x2="24" y2="48" stroke="rgba(56, 189, 248, 0.5)" stroke-width="1.5" />
+          <line x1="0" y1="24" x2="48" y2="24" stroke="rgba(56, 189, 248, 0.5)" stroke-width="1.5" />
+          <circle cx="24" cy="24" r="8" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" />
+        </svg>
+      </div>
+
+      <!-- Shape 4: Kinetic Diamond Wireframe with Glowing Core -->
+      <div class="floating-shape shape-diamond"></div>
+
+      <!-- Shape 5: Camera Viewfinder Framing Brackets -->
+      <div class="floating-shape shape-bracket">
+        <svg width="52" height="52" viewBox="0 0 56 56" fill="none">
+          <path d="M4 22V4H22" stroke="rgba(255, 92, 53, 0.45)" stroke-width="2" stroke-linecap="round" />
+          <path d="M52 34V52H34" stroke="rgba(255, 92, 53, 0.45)" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- Shape 6: Floating Keyframe Play-head Polygon -->
+      <div class="floating-shape shape-triangle">
+        <svg width="56" height="56" viewBox="0 0 60 60" fill="none">
+          <polygon points="30,8 54,50 6,50" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5" fill="rgba(56, 189, 248, 0.04)" />
+        </svg>
+      </div>
+
+      <!-- Shape 7: 24FPS Frame Capsule -->
+      <div class="floating-shape shape-fps-pill">
+        <span>24 FPS &bull; FRAME ACCURATE</span>
+      </div>
+
+      <!-- Shape 8 & 9: Floating Micro Alignment Crosses -->
+      <div class="floating-shape shape-cross shape-pos-8">+</div>
+      <div class="floating-shape shape-cross shape-pos-9">+</div>
+    </div>
+  </div>
+
   <!-- =========================================================================
        1. NAVIGATION BAR
        ========================================================================= -->
@@ -58,11 +128,10 @@
 
       <nav>
         <ul class="nav-links" id="nav-links">
-          <li><a href="index.html#vault" class="nav-link" style="color: var(--rust); font-weight: 800;">🎬 Cinema Vault</a></li>
+          <li><a href="index.html#vault" class="nav-link">Showreel</a></li>
           <li><a href="index.html#work" class="nav-link">Featured Work</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery &amp; PDFs</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="resume.html" class="nav-link">Resume</a></li>
+          <li><a href="resume.html" class="nav-link active">Resume</a></li>
           <li><a href="index.html#contact" class="nav-cta-btn">Contact Me &rarr;</a></li>
         </ul>
       </nav>
@@ -395,5 +464,67 @@
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
   <script src="static/js/bundle.js?v=20261011_3" defer></script>
   
+
+<script>
+// Ambient Mouse Spotlight & Dynamic Parallax for Floating Shapes
+(function() {
+  const spotlight = document.getElementById('ambient-spotlight');
+  const shapesContainer = document.getElementById('ambient-shapes');
+  if ((spotlight || shapesContainer) && window.matchMedia('(pointer: fine)').matches) {
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight * 0.35;
+    let curX = targetX;
+    let curY = targetY;
+
+    window.addEventListener('mousemove', function(e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    }, { passive: true });
+
+    function renderSpotlight() {
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+      if (spotlight) {
+        spotlight.style.setProperty('--mouse-x', curX.toFixed(1) + 'px');
+        spotlight.style.setProperty('--mouse-y', curY.toFixed(1) + 'px');
+      }
+      if (shapesContainer) {
+        const moveX = (curX - window.innerWidth / 2) * 0.022;
+        const moveY = (curY - window.innerHeight / 2) * 0.022;
+        shapesContainer.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0)`;
+      }
+      requestAnimationFrame(renderSpotlight);
+    }
+    requestAnimationFrame(renderSpotlight);
+  }
+
+  // Cinematic Click Wave Ripple & Micro-Particles
+  document.addEventListener('pointerdown', function(e) {
+    const ripple = document.createElement('div');
+    ripple.className = 'studio-click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 560);
+
+    const colors = ['#FF5C35', '#38BDF8', '#FFA384', '#7DD3FC', '#FFFFFF'];
+    for (let i = 0; i < 5; i++) {
+      const spark = document.createElement('div');
+      spark.className = 'studio-click-particle';
+      spark.style.left = e.clientX + 'px';
+      spark.style.top = e.clientY + 'px';
+      spark.style.background = colors[i % colors.length];
+      spark.style.boxShadow = `0 0 8px ${colors[i % colors.length]}`;
+      const angle = (Math.PI * 2 * i) / 5 + (Math.random() - 0.5) * 0.5;
+      const dist = 24 + Math.random() * 26;
+      spark.style.setProperty('--tx', (Math.cos(angle) * dist).toFixed(1) + 'px');
+      spark.style.setProperty('--ty', (Math.sin(angle) * dist).toFixed(1) + 'px');
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 460);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
