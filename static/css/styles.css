@@ -7539,52 +7539,230 @@ button[data-action="go-root"]:hover {
   backdrop-filter: blur(14px) !important;
 }
 
+/* Universal Section Anchor Offset for Floating Glass Navbar */
+html {
+  scroll-behavior: smooth !important;
+}
+
+section[id],
+#contact,
+#vault,
+#work,
+#about,
+#resume {
+  scroll-margin-top: 110px !important;
+}
+
 /* 8. Contact Section (#contact) */
 .contact-section {
-  padding: 90px 0 !important;
+  padding: 100px 0 130px !important;
+  scroll-margin-top: 110px !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
 .contact-card-box {
-  background: radial-gradient(circle at 50% -20%, rgba(255, 92, 53, 0.25) 0%, rgba(14, 18, 28, 0.85) 70%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 24px !important;
-  padding: 60px 32px !important;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 92, 53, 0.12) !important;
-  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  background: linear-gradient(180deg, rgba(16, 21, 33, 0.96) 0%, rgba(10, 13, 22, 0.98) 100%) !important;
+  border: 1px solid rgba(255, 92, 53, 0.3) !important;
+  border-radius: 28px !important;
+  padding: 64px 36px 52px !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 92, 53, 0.15) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
   text-align: center !important;
+  max-width: 960px !important;
+  margin: 0 auto !important;
+  z-index: 10 !important;
+  overflow: hidden !important;
+}
+
+.contact-card-box::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 15% !important;
+  right: 15% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 92, 53, 0.75), transparent) !important;
 }
 
 .contact-title {
   font-family: 'Syne', sans-serif !important;
-  font-size: clamp(2rem, 3.6vw, 2.8rem) !important;
+  font-size: clamp(2.1rem, 4vw, 3rem) !important;
   font-weight: 900 !important;
   color: #FFFFFF !important;
   margin-bottom: 14px !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
 }
 
 .contact-subtitle {
   color: #94A3B8 !important;
   font-size: 1.05rem !important;
-  max-width: 600px !important;
+  max-width: 620px !important;
   margin: 0 auto 32px !important;
+  line-height: 1.6 !important;
+}
+
+.contact-buttons-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  margin: 28px 0 24px !important;
+  flex-wrap: wrap !important;
 }
 
 .contact-main-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
   background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 6px 24px rgba(255, 92, 53, 0.45) !important;
+  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.45) !important;
   border-radius: 999px !important;
-  padding: 12px 28px !important;
+  padding: 13px 28px !important;
   font-weight: 700 !important;
+  font-size: 0.96rem !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+}
+
+.contact-main-btn:hover {
+  background: linear-gradient(135deg, #FF6B45 0%, #E64A19 100%) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 12px 32px rgba(255, 92, 53, 0.6) !important;
+  color: #FFFFFF !important;
+}
+
+.contact-main-btn svg {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  stroke: currentColor !important;
 }
 
 .contact-secondary-btn {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
   color: #FFFFFF !important;
   border-radius: 999px !important;
-  padding: 12px 24px !important;
+  padding: 13px 26px !important;
   font-weight: 600 !important;
+  font-size: 0.96rem !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  line-height: 1 !important;
+}
+
+.contact-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  color: #FFFFFF !important;
+}
+
+.contact-secondary-btn svg {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  stroke: currentColor !important;
+}
+
+.contact-direct-info {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  color: #94A3B8 !important;
+  font-size: 0.92rem !important;
+  margin-top: 18px !important;
+}
+
+.contact-direct-info strong {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.contact-direct-info a {
+  color: #38BDF8 !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease !important;
+}
+
+.contact-direct-info a:hover {
+  color: #FF5C35 !important;
+}
+
+.contact-social-links {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+  flex-wrap: wrap !important;
+}
+
+.contact-social-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 22px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #E2E8F0 !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  text-decoration: none !important;
+  transition: all 0.22s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.contact-social-chip:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 92, 53, 0.5) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+}
+
+.contact-social-chip svg {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 600px) {
+  .contact-card-box {
+    padding: 42px 20px 36px !important;
+    border-radius: 20px !important;
+  }
+  .contact-buttons-wrap {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .contact-main-btn,
+  .contact-secondary-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .contact-direct-info {
+    font-size: 0.85rem !important;
+    gap: 8px !important;
+  }
 }
 
 /* 9. Minimalist Footer */
@@ -7626,6 +7804,48 @@ button[data-action="go-root"]:hover {
 [data-theme="light"] .contact-title,
 [data-theme="light"] .subfolder-header-title {
   color: #0F172A !important;
+}
+
+[data-theme="light"] .contact-card-box {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .contact-subtitle {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .contact-secondary-btn {
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .contact-secondary-btn:hover {
+  background: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .contact-direct-info {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .contact-direct-info strong {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .contact-social-chip {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .contact-social-chip:hover {
+  background: #F1F5F9 !important;
+  border-color: #FF5C35 !important;
+  color: #FF5C35 !important;
 }
 
 [data-theme="light"] .bento-card {
