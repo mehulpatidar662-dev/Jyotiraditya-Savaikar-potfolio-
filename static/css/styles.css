@@ -8208,3 +8208,83 @@ button:active,
   border: 2px solid rgba(255, 92, 53, 0.8) !important;
   box-shadow: 0 0 32px rgba(255, 92, 53, 0.65), inset 0 0 18px rgba(255, 92, 53, 0.3) !important;
 }
+
+
+/* =============================================================================
+   CINEMA LIGHTBOX MODAL BULLETPROOF DISPLAY FIX
+   ============================================================================= */
+#lightbox-modal.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  z-index: 999999 !important;
+}
+
+#lightbox-modal.active .lightbox-media-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#lightbox-img.active-media {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 94vw !important;
+  max-height: 82vh !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 92, 53, 0.25) !important;
+}
+
+#lightbox-video.active-media {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  max-width: 94vw !important;
+  max-height: 82vh !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.95), 0 0 20px rgba(56, 189, 248, 0.25) !important;
+  background: #000 !important;
+  outline: none !important;
+}
+
+.lightbox-nav-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0.85 !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+}
+
+.lightbox-nav-btn:hover {
+  opacity: 1 !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  background: rgba(255, 92, 53, 0.9) !important;
+  color: #fff !important;
+}
+
+.lightbox-pdf-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 20px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  font-weight: 800 !important;
+  font-size: 0.85rem !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.5) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.lightbox-pdf-btn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 24px rgba(255, 92, 53, 0.7) !important;
+}

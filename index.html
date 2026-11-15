@@ -149,6 +149,7 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="#vault" class="nav-link">Showreel</a></li>
           <li><a href="#work" class="nav-link">Featured Work</a></li>
+          <li><a href="gallery.html" class="nav-link">Content Library</a></li>
           <li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="resume.html" class="nav-link">Resume</a></li>
           <li><a href="#contact" class="nav-cta-btn">Contact Me &rarr;</a></li>
@@ -1345,8 +1346,8 @@
 
       <!-- Center Artwork Container (Edge-to-Edge Fullscreen) -->
       <div class="lightbox-media-wrap" id="lightbox-media-container">
-        <img id="lightbox-img" class="lightbox-hidden" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="High-Resolution Production Artwork" style="display: none !important;" />
-        <video id="lightbox-video" class="lightbox-hidden" controls playsinline style="display: none !important; width: 100%; max-width: 98vw; max-height: 90vh; background: #000; border-radius: 6px; outline: none;"></video>
+        <img id="lightbox-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="High-Resolution Production Artwork" style="display: none;" />
+        <video id="lightbox-video" controls playsinline style="display: none;"></video>
       </div>
 
       <!-- Floating Bottom Caption -->
@@ -1379,21 +1380,55 @@
   
 <script>
 // =============================================================================
-// STREAMLINED INSTANT PORTFOLIO CONTROLLER (Zero-Friction UX)
+// STREAMLINED INSTANT PORTFOLIO CONTROLLER & CONTENT LIBRARY LIGHTBOX ENGINE
 // =============================================================================
 (function() {
   const listView = document.getElementById('projects-list-view');
   let activeCatId = 'root';
 
-  const categoryNames = {
-    'root': 'All Works',
-    'all': 'All Works',
-    '2d': '2D Animation',
-    'preprod': 'Pre-Production',
-    '3d': '3D Motion Graphics',
-    'xtra-work': 'Extra Work',
-    'pdf-only': 'Artbooks & PDFs'
+  // Project Multi-Plate Galleries
+  const projectGalleries = {
+    'monkesh': [
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4719.webp', title: 'Monkesh The Wise — Turnaround Sheet', badge: 'CHARACTER DESIGN • MODEL SHEET', desc: 'Full body turnaround model sheet and silhouette studies.' },
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4716.webp', title: 'Monkesh The Wise — Expression Bible', badge: 'FACIAL EXPRESSIONS', desc: 'Key emotional expressions, comedic beats, and acting studies.' },
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4717.webp', title: 'Monkesh The Wise — Costume VisDev', badge: 'COSTUME DESIGN', desc: 'Fabric drapery, mythological ornaments, and color palette.' },
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4718.webp', title: 'Monkesh The Wise — Action Poses', badge: 'ACTION STAGING', desc: 'Dynamic action silhouettes, weight distribution, and balance.' },
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4720.webp', title: 'Monkesh The Wise — Prop & Gear Bible', badge: 'PROP DESIGN', desc: 'Mythological staff, weapon accessories, and character scale guide.' },
+      { type: 'image', src: 'static/aditya_project/Preprod/Monkesh/IMG_4721.webp', title: 'Monkesh The Wise — Final Visual Development', badge: 'KEY VISDEV PLATE', desc: 'Final painted concept artwork and mood lighting exploration.' }
+    ],
+    'illustrations': [
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/FINAL%201.webp', title: 'Digital Artwork & VisDev — Plate 1', badge: 'VISUAL DEVELOPMENT', desc: 'Environment lighting and cinematic atmosphere study.' },
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/FINAL%202.webp', title: 'Digital Artwork & VisDev — Plate 2', badge: 'VISUAL DEVELOPMENT', desc: 'Cinematic worldbuilding visual development study.' },
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/IMG_4722.webp', title: 'Production Illustration — Plate 3', badge: 'DIGITAL ARTWORK', desc: 'Color script and lighting study.' },
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/IMG_4723.webp', title: 'Production Illustration — Plate 4', badge: 'DIGITAL ARTWORK', desc: 'Character exploration and mood painting.' },
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/IMG_4724.webp', title: 'Production Illustration — Plate 5', badge: 'DIGITAL ARTWORK', desc: 'Atmospheric scene layout and depth perspective.' },
+      { type: 'image', src: 'static/aditya_project/Xtra%20work/IMG_4725.webp', title: 'Production Illustration — Plate 6', badge: 'DIGITAL ARTWORK', desc: 'Final key visual production artwork.' }
+    ],
+    'akkad': [
+      { type: 'video', src: 'static/videos/akkad_sequence.mp4', title: 'The Tale of Akkad — Animated Reel', badge: 'PRE-PRODUCTION • 2D REEL', desc: 'Dynamic rooftop chase animation sequence featuring exaggerated keyframe physics and cloth dynamics.', pdfUrl: 'static/aditya_project/Preprod/Akkad/Akkad.pdf' }
+    ],
+    'target-practise': [
+      { type: 'image', src: 'static/images/target_split_blast_rifle.webp', title: 'Target Practise — Action Comic Book', badge: 'COMIC STORYBOARDS', desc: 'Action staging, line-art inking, dynamic character poses, and comedic timing beats in a multi-panel comic storyboard narrative.', pdfUrl: 'static/aditya_project/2D/Target%20Practise/TARGET_PRACTISE.pdf' }
+    ],
+    'jaimini': [
+      { type: 'video', src: 'static/videos/jaimini_title_sequence.mp4', title: 'Jaimini Title Sequence', badge: '2D ANIMATION • TITLE SEQUENCE', desc: 'Mythological sci-fi title sequence set in a post-nuclear citadel. Sanskrit chants, Devanagari typography, and volumetric lighting.' }
+    ],
+    'bot-and-boy': [
+      { type: 'video', src: 'static/videos/bot_and_boy_animatic.mp4', title: 'The Bot and the Boy', badge: 'STORYBOARDS • ANIMATIC', desc: 'Emotional character animatic exploring friendship between an abandoned child and a repurposed automaton.' }
+    ],
+    'beavis': [
+      { type: 'video', src: 'static/videos/rendered_shot.mp4', title: 'Beavis & Butt-head Pan Shot', badge: 'LAYOUT • CLEAN-UP', desc: 'Multiplane horizontal street pan honoring 90s MTV animation language with meticulous architectural clean-up.' }
+    ],
+    '3d-motion-graphics': [
+      { type: 'video', src: 'static/aditya_project/3D/Cyberpunk/Cyberpunk%20Typography%20FINAL.mp4', title: 'Cyberpunk 3D Motion Graphics', badge: '3D MOTION GRAPHICS', desc: 'Experimental 3D typography exploration combining glitch aesthetics, volumetric neon lighting, and rhythm-synchronized text choreography.' }
+    ],
+    'non-narrative': [
+      { type: 'video', src: 'static/aditya_project/2D/Non%20Narrative/Anna%20Dominoes.mp4', title: 'Non Narrative Dominoes', badge: '2D EXPERIMENTAL MOTION', desc: 'Rhythmic frame-by-frame character movement, sound synchronization, and playful kinetic pacing exercise.' }
+    ]
   };
+
+  let activeGalleryItems = [];
+  let currentPlateIndex = 0;
 
   function updatePills(activeId) {
     document.querySelectorAll('.folder-tabs-strip .folder-tab-btn').forEach(btn => {
@@ -1456,6 +1491,7 @@
     // Open project in Lightbox Theater on card click
     const card = e.target.closest('.bento-card');
     if (card) {
+      const projectId = card.dataset.projectId || card.dataset.openSub;
       const mediaType = card.dataset.mediaType || 'video';
       const mediaSrc = card.dataset.mediaSrc;
       const title = card.dataset.title || 'Project';
@@ -1463,31 +1499,30 @@
       const desc = card.dataset.desc || '';
       const pdfUrl = card.dataset.pdfUrl || '';
 
-      window.openLightboxMedia(mediaType, mediaSrc, title, badge, desc, pdfUrl);
+      if (projectId && projectGalleries[projectId] && projectGalleries[projectId].length > 0) {
+        activeGalleryItems = projectGalleries[projectId];
+      } else {
+        activeGalleryItems = [{
+          type: mediaType,
+          src: mediaSrc,
+          title: title,
+          badge: badge,
+          desc: desc,
+          pdfUrl: pdfUrl
+        }];
+      }
+
+      currentPlateIndex = 0;
+      renderCurrentPlate();
       return;
     }
   });
 
-  // Fullscreen video helper
-  function toggleElementFullscreen(el) {
-    if (!el) return;
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-      if (el.requestFullscreen) {
-        el.requestFullscreen().catch(() => {});
-      } else if (el.webkitRequestFullscreen) {
-        el.webkitRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-      }
-    }
-  }
+  function renderCurrentPlate() {
+    if (!activeGalleryItems || activeGalleryItems.length === 0) return;
+    const item = activeGalleryItems[currentPlateIndex];
+    if (!item) return;
 
-  // ===========================================================================
-  // LIGHTBOX THEATER (VIDEOS, ARTWORKS, & PDF LINKS)
-  // ===========================================================================
-  window.openLightboxMedia = function(type, src, title, badge, desc, pdfUrl) {
     const modal = document.getElementById('lightbox-modal');
     if (!modal) return;
     const imgEl = document.getElementById('lightbox-img');
@@ -1496,50 +1531,89 @@
     const badgeEl = document.getElementById('lightbox-badge');
     const descEl = document.getElementById('lightbox-desc');
     const infoBox = document.getElementById('lightbox-info');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
 
-    if (type === 'video') {
+    // Navigation arrows visibility
+    if (activeGalleryItems.length > 1) {
+      if (prevBtn) prevBtn.style.setProperty('display', 'flex', 'important');
+      if (nextBtn) nextBtn.style.setProperty('display', 'flex', 'important');
+    } else {
+      if (prevBtn) prevBtn.style.setProperty('display', 'none', 'important');
+      if (nextBtn) nextBtn.style.setProperty('display', 'none', 'important');
+    }
+
+    if (item.type === 'video') {
       if (imgEl) {
-        imgEl.style.display = 'none';
-        imgEl.classList.add('lightbox-hidden');
+        imgEl.classList.remove('active-media');
+        imgEl.style.setProperty('display', 'none', 'important');
         imgEl.src = '';
       }
       if (videoEl) {
-        videoEl.style.display = 'block';
-        videoEl.classList.remove('lightbox-hidden');
-        videoEl.src = src;
+        videoEl.classList.add('active-media');
+        videoEl.style.setProperty('display', 'block', 'important');
+        videoEl.src = item.src;
         videoEl.load();
         videoEl.play().catch(() => {});
       }
     } else {
       if (videoEl) {
         videoEl.pause();
-        videoEl.style.display = 'none';
-        videoEl.classList.add('lightbox-hidden');
+        videoEl.classList.remove('active-media');
+        videoEl.style.setProperty('display', 'none', 'important');
         videoEl.removeAttribute('src');
       }
       if (imgEl) {
-        imgEl.style.display = 'block';
-        imgEl.classList.remove('lightbox-hidden');
-        imgEl.src = src;
+        imgEl.classList.add('active-media');
+        imgEl.style.setProperty('display', 'block', 'important');
+        imgEl.src = item.src;
       }
     }
 
-    if (titleEl) titleEl.textContent = title;
-    if (badgeEl) badgeEl.textContent = badge;
+    // Set Title & Counter
+    let displayTitle = item.title;
+    if (activeGalleryItems.length > 1) {
+      displayTitle += ` (${currentPlateIndex + 1}/${activeGalleryItems.length})`;
+    }
+    if (titleEl) titleEl.textContent = displayTitle;
+    if (badgeEl) badgeEl.textContent = item.badge;
 
+    // Caption & PDF Action Button
     if (descEl) {
-      let descHtml = desc ? `<span>${desc}</span>` : '';
-      if (pdfUrl) {
-        descHtml += `<a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" style="margin-left: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 999px; background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%); color: #fff; text-decoration: none; font-weight: 800; font-size: 0.85rem; box-shadow: 0 4px 14px rgba(255,92,53,0.45); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'"><span>📖 Open Full PDF Publication &nearr;</span></a>`;
+      let descHtml = item.desc ? `<span>${item.desc}</span>` : '';
+      if (item.pdfUrl) {
+        descHtml += `<a href="${item.pdfUrl}" target="_blank" rel="noopener noreferrer" class="lightbox-pdf-btn" style="margin-left: 14px;"><span>📖 Open Full PDF Publication &nearr;</span></a>`;
       }
       descEl.innerHTML = descHtml;
     }
-    if (infoBox) infoBox.style.display = (desc || pdfUrl) ? 'flex' : 'none';
+    if (infoBox) infoBox.style.setProperty('display', 'flex', 'important');
 
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-  };
+  }
+
+  // Next / Prev Navigation
+  const lbPrev = document.getElementById('lightbox-prev');
+  const lbNext = document.getElementById('lightbox-next');
+  if (lbPrev) {
+    lbPrev.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (activeGalleryItems.length > 1) {
+        currentPlateIndex = (currentPlateIndex - 1 + activeGalleryItems.length) % activeGalleryItems.length;
+        renderCurrentPlate();
+      }
+    });
+  }
+  if (lbNext) {
+    lbNext.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (activeGalleryItems.length > 1) {
+        currentPlateIndex = (currentPlateIndex + 1) % activeGalleryItems.length;
+        renderCurrentPlate();
+      }
+    });
+  }
 
   window.closeLightboxMedia = function() {
     const modal = document.getElementById('lightbox-modal');
@@ -1550,12 +1624,12 @@
       videoEl.pause();
       videoEl.removeAttribute('src');
       videoEl.load();
-      videoEl.style.display = 'none';
-      videoEl.classList.add('lightbox-hidden');
+      videoEl.classList.remove('active-media');
+      videoEl.style.setProperty('display', 'none', 'important');
     }
     if (imgEl) {
-      imgEl.style.display = 'none';
-      imgEl.classList.add('lightbox-hidden');
+      imgEl.classList.remove('active-media');
+      imgEl.style.setProperty('display', 'none', 'important');
       imgEl.src = '';
     }
     modal.classList.remove('active');
@@ -1564,9 +1638,12 @@
   };
 
   // Backwards compatibility alias
-  window.openLightboxVideo = function(src, title, badge) {
-    window.openLightboxMedia('video', src, title, badge, '', '');
+  window.openLightboxMedia = function(type, src, title, badge, desc, pdfUrl) {
+    activeGalleryItems = [{ type, src, title, badge, desc, pdfUrl }];
+    currentPlateIndex = 0;
+    renderCurrentPlate();
   };
+  window.openLightboxVideo = window.openLightboxMedia;
   window.closeLightboxVideo = window.closeLightboxMedia;
 
   const lbCloseBtn = document.getElementById('lightbox-close');
@@ -1574,10 +1651,16 @@
   if (lbCloseBtn) lbCloseBtn.addEventListener('click', window.closeLightboxMedia);
   if (lbBackdropEl) lbBackdropEl.addEventListener('click', window.closeLightboxMedia);
 
-  // Keyboard shortcut: Escape closes lightbox
+  // Keyboard shortcut: Escape closes, Left/Right changes plate
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       window.closeLightboxMedia();
+    } else if (e.key === 'ArrowRight' && activeGalleryItems.length > 1) {
+      currentPlateIndex = (currentPlateIndex + 1) % activeGalleryItems.length;
+      renderCurrentPlate();
+    } else if (e.key === 'ArrowLeft' && activeGalleryItems.length > 1) {
+      currentPlateIndex = (currentPlateIndex - 1 + activeGalleryItems.length) % activeGalleryItems.length;
+      renderCurrentPlate();
     }
   });
 
@@ -1586,7 +1669,10 @@
     heroFsBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const heroVideo = document.getElementById('hero-reel-video');
-      if (heroVideo) toggleElementFullscreen(heroVideo);
+      if (heroVideo) {
+        if (heroVideo.requestFullscreen) heroVideo.requestFullscreen();
+        else if (heroVideo.webkitRequestFullscreen) heroVideo.webkitRequestFullscreen();
+      }
     });
   }
 
