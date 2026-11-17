@@ -7772,44 +7772,258 @@ section[id],
   padding: 60px 0 40px !important;
 }
 
-/* Light Mode Overrides (if toggled) */
+/* =============================================================================
+   LIGHT MODE: 100% WCAG HIGH-CONTRAST & CRYSTAL CLEAR VISIBILITY ASSURANCE
+   ============================================================================= */
 [data-theme="light"] {
   --bg-primary: #F8FAFC !important;
   --bg-surface: #FFFFFF !important;
-  --bg-card: rgba(255, 255, 255, 0.9) !important;
+  --bg-card: #FFFFFF !important;
   --bg-card-hover: #F1F5F9 !important;
-  --border-color: rgba(15, 23, 42, 0.1) !important;
+  --border-color: rgba(15, 23, 42, 0.12) !important;
   --border-hover: rgba(255, 92, 53, 0.5) !important;
   --heading-color: #0F172A !important;
   --text-color: #334155 !important;
   --text-dim: #64748B !important;
+  --border-subtle: rgba(15, 23, 42, 0.1) !important;
+  --bg-cream-card: #FFFFFF !important;
+  --brown: #334155 !important;
+  --brown-dark: #0F172A !important;
+  --brown-light: #64748B !important;
+}
+
+[data-theme="light"] body {
+  background-color: #F8FAFC !important;
+  color: #334155 !important;
 }
 
 [data-theme="light"] body::before {
   background:
-    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.06) 0%, transparent 55%),
-    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.05) 0%, transparent 45%) !important;
+    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.05) 0%, transparent 55%),
+    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.04) 0%, transparent 45%) !important;
 }
 
+/* 1. Navbar In Light Mode - Ultra Sharp High Contrast */
 [data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.07) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
-[data-theme="light"] .nav-logo,
-[data-theme="light"] .bento-card-title,
+[data-theme="light"] .nav-logo {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .nav-link {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .nav-link:hover {
+  color: #0F172A !important;
+  background: rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .nav-link.active {
+  color: #FF5C35 !important;
+  background: rgba(255, 92, 53, 0.1) !important;
+}
+
+[data-theme="light"] .dark-mode-toggle-btn {
+  background: #F1F5F9 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .dark-mode-toggle-btn:hover {
+  background: #E2E8F0 !important;
+  color: #0F172A !important;
+  border-color: #94A3B8 !important;
+}
+
+[data-theme="light"] .nav-mobile-toggle {
+  background: rgba(15, 23, 42, 0.06) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .nav-mobile-toggle span {
+  background-color: #0F172A !important;
+}
+
+/* 2. Headings & Typography */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .section-title,
 [data-theme="light"] .bento-section-title,
+[data-theme="light"] .hero-title,
 [data-theme="light"] .hero-name,
 [data-theme="light"] .contact-title,
 [data-theme="light"] .subfolder-header-title {
   color: #0F172A !important;
 }
 
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .bento-section-subtitle,
+[data-theme="light"] .contact-subtitle {
+  color: #475569 !important;
+}
+
+/* 3. Toolkit & Creative Software Section (#toolkit) */
+[data-theme="light"] .toolkit-grid-layout > div,
+[data-theme="light"] .toolkit-grid-layout > div > div {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+  backdrop-filter: none !important;
+}
+
+[data-theme="light"] .tool-card {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+[data-theme="light"] .tool-card:hover {
+  background: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .tool-name {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .tool-level {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .skills-tags-wrap .skill-tag {
+  background: #F1F5F9 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.1) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .skills-tags-wrap .skill-tag:hover {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 4px 14px rgba(255, 92, 53, 0.3) !important;
+}
+
+/* 4. Experience & Timeline Section (#experience) */
+[data-theme="light"] .timeline-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06) !important;
+  backdrop-filter: none !important;
+}
+
+[data-theme="light"] .exp-role,
+[data-theme="light"] .exp-company {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .exp-desc,
+[data-theme="light"] .exp-period {
+  color: #475569 !important;
+}
+
+/* 5. Bento Project Cards & Portfolio (#work) */
+[data-theme="light"] .bento-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .bento-card:hover {
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12) !important;
+  border-color: rgba(255, 92, 53, 0.4) !important;
+}
+
+[data-theme="light"] .bento-card-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-card-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .bento-chip {
+  background: #F1F5F9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .bento-footer-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .bento-arrow-btn {
+  background: #F1F5F9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-card:hover .bento-arrow-btn {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+}
+
+/* 6. Filter Tabs & Category Pills */
+[data-theme="light"] .folder-tab-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .folder-tab-btn:hover {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+[data-theme="light"] .folder-tab-btn.active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.35) !important;
+}
+
+[data-theme="light"] .folder-crumb-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .folder-crumb-btn.active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+}
+
+/* 7. Contact Card In Light Mode */
 [data-theme="light"] .contact-card-box {
   background: #FFFFFF !important;
-  border-color: rgba(15, 23, 42, 0.12) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .contact-title {
+  color: #0F172A !important;
 }
 
 [data-theme="light"] .contact-subtitle {
@@ -7818,13 +8032,14 @@ section[id],
 
 [data-theme="light"] .contact-secondary-btn {
   background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
   color: #0F172A !important;
 }
 
 [data-theme="light"] .contact-secondary-btn:hover {
   background: #E2E8F0 !important;
   color: #0F172A !important;
+  border-color: #94A3B8 !important;
 }
 
 [data-theme="light"] .contact-direct-info {
@@ -7837,7 +8052,7 @@ section[id],
 
 [data-theme="light"] .contact-social-chip {
   background: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   color: #334155 !important;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
 }
@@ -7848,13 +8063,84 @@ section[id],
   color: #FF5C35 !important;
 }
 
-[data-theme="light"] .bento-card {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
+/* 8. Lightbox Theater In Light Mode */
+[data-theme="light"] .lightbox-info-box {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
 }
 
-[data-theme="light"] .bento-card:hover {
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+[data-theme="light"] .lightbox-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lightbox-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .lightbox-desc span {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .lightbox-nav-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lightbox-close-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+}
+
+/* 9. Footer In Light Mode */
+[data-theme="light"] .footer {
+  background: #F1F5F9 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .footer-brand h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .footer-role,
+[data-theme="light"] .footer-contact-details,
+[data-theme="light"] .footer-nav-col a,
+[data-theme="light"] .footer-bottom {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .footer-nav-col a:hover {
+  color: #FF5C35 !important;
+}
+
+/* 10. Ambient Shapes In Light Mode (Crisp Drafting Aesthetic) */
+[data-theme="light"] .ambient-shapes-container {
+  opacity: 0.65 !important;
+}
+
+[data-theme="light"] .shape-cube-v2 {
+  filter: drop-shadow(0 4px 12px rgba(255, 92, 53, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-dial-v2 {
+  filter: drop-shadow(0 4px 14px rgba(2, 132, 199, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-diamond-v2 {
+  filter: drop-shadow(0 4px 14px rgba(2, 132, 199, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-viewfinder-v2 {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(255, 92, 53, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .vf-footer {
+  color: #475569 !important;
 }
 
 /* Page Spacing for Floating Navbar */

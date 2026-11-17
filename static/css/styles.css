@@ -494,16 +494,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.02em;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2.5px;
-  background-color: var(--rust);
-  transition: width var(--transition-smooth);
-  border-radius: 2px;
+.nav-link::after,
+.nav-link::before {
+  display: none !important;
 }
 
 .nav-link:hover {
@@ -511,7 +504,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link:hover::after, .nav-link.active::after {
-  width: 100%;
+  display: none !important;
 }
 
 .nav-cta-btn {
@@ -6949,19 +6942,19 @@ body::before {
 /* 2. Floating Glassmorphism Pill Navbar */
 .navbar {
   position: fixed !important;
-  top: 16px !important;
+  top: 14px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: min(1180px, calc(100% - 32px)) !important;
-  height: 64px !important;
-  background: rgba(10, 13, 20, 0.78) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  width: min(1200px, calc(100% - 24px)) !important;
+  height: 62px !important;
+  background: rgba(10, 13, 20, 0.94) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 9999px !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7) !important;
   z-index: 1000 !important;
-  padding: 0 20px !important;
+  padding: 0 14px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -6974,34 +6967,38 @@ body::before {
   justify-content: space-between !important;
   width: 100% !important;
   max-width: 100% !important;
+  padding: 0 !important;
 }
 
 .nav-logo {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 10px !important;
   text-decoration: none !important;
   font-family: 'Syne', sans-serif !important;
   font-weight: 800 !important;
-  font-size: 1.05rem !important;
+  font-size: 0.98rem !important;
   color: #FFFFFF !important;
   letter-spacing: -0.01em !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-logo-mark {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 10px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 9px !important;
   background: linear-gradient(135deg, #FF5C35 0%, #D84218 100%) !important;
   color: #FFFFFF !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   font-weight: 900 !important;
-  font-size: 0.95rem !important;
+  font-size: 0.92rem !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 0 4px 14px rgba(255, 92, 53, 0.4) !important;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  flex-shrink: 0 !important;
 }
 
 .nav-logo:hover .nav-logo-mark {
@@ -7011,25 +7008,35 @@ body::before {
 .nav-links {
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 3px !important;
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 .nav-link {
-  font-size: 0.88rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.83rem !important;
   font-weight: 600 !important;
   color: #CBD5E1 !important;
-  padding: 8px 14px !important;
+  padding: 6px 11px !important;
   border-radius: 999px !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  position: relative !important;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-link::before,
+.nav-link::after {
+  display: none !important;
 }
 
 .nav-cta-btn {
@@ -7071,6 +7078,91 @@ body::before {
 .dark-mode-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.12) !important;
   color: #FFFFFF !important;
+}
+
+/* Responsive Floating Capsule Navbar */
+@media (max-width: 900px) {
+  .navbar {
+    top: 10px !important;
+    height: 54px !important;
+    padding: 0 12px !important;
+    width: calc(100% - 20px) !important;
+  }
+
+  .nav-mobile-toggle {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4.5px !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 8px !important;
+    padding: 6px !important;
+    cursor: pointer !important;
+    z-index: 1001 !important;
+  }
+
+  .nav-mobile-toggle span {
+    display: block !important;
+    width: 100% !important;
+    height: 2px !important;
+    background-color: #FFFFFF !important;
+    border-radius: 2px !important;
+    transition: all 0.25s ease !important;
+  }
+
+  .nav-links {
+    display: none !important;
+    position: fixed !important;
+    top: 70px !important;
+    left: 10px !important;
+    right: 10px !important;
+    background: rgba(10, 13, 22, 0.98) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    flex-direction: column !important;
+    padding: 18px 16px !important;
+    gap: 8px !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85) !important;
+    z-index: 999 !important;
+  }
+
+  .nav-links.mobile-open {
+    display: flex !important;
+  }
+
+  .nav-link {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 10px 16px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .nav-cta-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 11px 18px !important;
+    margin-top: 6px !important;
+  }
+
+  .dark-mode-toggle-btn .theme-label-text {
+    display: none !important;
+  }
+
+  .dark-mode-toggle-btn {
+    padding: 6px 10px !important;
+    gap: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-logo span:not(.nav-logo-mark) {
+    display: none !important;
+  }
 }
 
 /* 3. Hero Section Studio Redesign */
@@ -7544,6 +7636,11 @@ html {
   scroll-behavior: smooth !important;
 }
 
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
 section[id],
 #contact,
 #vault,
@@ -7551,6 +7648,13 @@ section[id],
 #about,
 #resume {
   scroll-margin-top: 110px !important;
+}
+
+@media (max-width: 768px) {
+  .toolkit-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
 }
 
 /* 8. Contact Section (#contact) */
@@ -7772,44 +7876,258 @@ section[id],
   padding: 60px 0 40px !important;
 }
 
-/* Light Mode Overrides (if toggled) */
+/* =============================================================================
+   LIGHT MODE: 100% WCAG HIGH-CONTRAST & CRYSTAL CLEAR VISIBILITY ASSURANCE
+   ============================================================================= */
 [data-theme="light"] {
   --bg-primary: #F8FAFC !important;
   --bg-surface: #FFFFFF !important;
-  --bg-card: rgba(255, 255, 255, 0.9) !important;
+  --bg-card: #FFFFFF !important;
   --bg-card-hover: #F1F5F9 !important;
-  --border-color: rgba(15, 23, 42, 0.1) !important;
+  --border-color: rgba(15, 23, 42, 0.12) !important;
   --border-hover: rgba(255, 92, 53, 0.5) !important;
   --heading-color: #0F172A !important;
   --text-color: #334155 !important;
   --text-dim: #64748B !important;
+  --border-subtle: rgba(15, 23, 42, 0.1) !important;
+  --bg-cream-card: #FFFFFF !important;
+  --brown: #334155 !important;
+  --brown-dark: #0F172A !important;
+  --brown-light: #64748B !important;
+}
+
+[data-theme="light"] body {
+  background-color: #F8FAFC !important;
+  color: #334155 !important;
 }
 
 [data-theme="light"] body::before {
   background:
-    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.06) 0%, transparent 55%),
-    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.05) 0%, transparent 45%) !important;
+    radial-gradient(circle at 50% -10%, rgba(255, 92, 53, 0.05) 0%, transparent 55%),
+    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.04) 0%, transparent 45%) !important;
 }
 
+/* 1. Navbar In Light Mode - Ultra Sharp High Contrast */
 [data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.07) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
-[data-theme="light"] .nav-logo,
-[data-theme="light"] .bento-card-title,
+[data-theme="light"] .nav-logo {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .nav-link {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .nav-link:hover {
+  color: #0F172A !important;
+  background: rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .nav-link.active {
+  color: #FF5C35 !important;
+  background: rgba(255, 92, 53, 0.1) !important;
+}
+
+[data-theme="light"] .dark-mode-toggle-btn {
+  background: #F1F5F9 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .dark-mode-toggle-btn:hover {
+  background: #E2E8F0 !important;
+  color: #0F172A !important;
+  border-color: #94A3B8 !important;
+}
+
+[data-theme="light"] .nav-mobile-toggle {
+  background: rgba(15, 23, 42, 0.06) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .nav-mobile-toggle span {
+  background-color: #0F172A !important;
+}
+
+/* 2. Headings & Typography */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .section-title,
 [data-theme="light"] .bento-section-title,
+[data-theme="light"] .hero-title,
 [data-theme="light"] .hero-name,
 [data-theme="light"] .contact-title,
 [data-theme="light"] .subfolder-header-title {
   color: #0F172A !important;
 }
 
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .bento-section-subtitle,
+[data-theme="light"] .contact-subtitle {
+  color: #475569 !important;
+}
+
+/* 3. Toolkit & Creative Software Section (#toolkit) */
+[data-theme="light"] .toolkit-grid-layout > div,
+[data-theme="light"] .toolkit-grid-layout > div > div {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+  backdrop-filter: none !important;
+}
+
+[data-theme="light"] .tool-card {
+  background: #F8FAFC !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+[data-theme="light"] .tool-card:hover {
+  background: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .tool-name {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="light"] .tool-level {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .skills-tags-wrap .skill-tag {
+  background: #F1F5F9 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.1) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .skills-tags-wrap .skill-tag:hover {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 4px 14px rgba(255, 92, 53, 0.3) !important;
+}
+
+/* 4. Experience & Timeline Section (#experience) */
+[data-theme="light"] .timeline-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06) !important;
+  backdrop-filter: none !important;
+}
+
+[data-theme="light"] .exp-role,
+[data-theme="light"] .exp-company {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .exp-desc,
+[data-theme="light"] .exp-period {
+  color: #475569 !important;
+}
+
+/* 5. Bento Project Cards & Portfolio (#work) */
+[data-theme="light"] .bento-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .bento-card:hover {
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12) !important;
+  border-color: rgba(255, 92, 53, 0.4) !important;
+}
+
+[data-theme="light"] .bento-card-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-card-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .bento-chip {
+  background: #F1F5F9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .bento-footer-label {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .bento-arrow-btn {
+  background: #F1F5F9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-card:hover .bento-arrow-btn {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+}
+
+/* 6. Filter Tabs & Category Pills */
+[data-theme="light"] .folder-tab-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .folder-tab-btn:hover {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+[data-theme="light"] .folder-tab-btn.active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.35) !important;
+}
+
+[data-theme="light"] .folder-crumb-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .folder-crumb-btn.active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+}
+
+/* 7. Contact Card In Light Mode */
 [data-theme="light"] .contact-card-box {
   background: #FFFFFF !important;
-  border-color: rgba(15, 23, 42, 0.12) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .contact-title {
+  color: #0F172A !important;
 }
 
 [data-theme="light"] .contact-subtitle {
@@ -7818,13 +8136,14 @@ section[id],
 
 [data-theme="light"] .contact-secondary-btn {
   background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
   color: #0F172A !important;
 }
 
 [data-theme="light"] .contact-secondary-btn:hover {
   background: #E2E8F0 !important;
   color: #0F172A !important;
+  border-color: #94A3B8 !important;
 }
 
 [data-theme="light"] .contact-direct-info {
@@ -7837,7 +8156,7 @@ section[id],
 
 [data-theme="light"] .contact-social-chip {
   background: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   color: #334155 !important;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
 }
@@ -7848,13 +8167,84 @@ section[id],
   color: #FF5C35 !important;
 }
 
-[data-theme="light"] .bento-card {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
+/* 8. Lightbox Theater In Light Mode */
+[data-theme="light"] .lightbox-info-box {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
 }
 
-[data-theme="light"] .bento-card:hover {
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+[data-theme="light"] .lightbox-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lightbox-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .lightbox-desc span {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .lightbox-nav-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .lightbox-close-btn {
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0F172A !important;
+}
+
+/* 9. Footer In Light Mode */
+[data-theme="light"] .footer {
+  background: #F1F5F9 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .footer-brand h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .footer-role,
+[data-theme="light"] .footer-contact-details,
+[data-theme="light"] .footer-nav-col a,
+[data-theme="light"] .footer-bottom {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .footer-nav-col a:hover {
+  color: #FF5C35 !important;
+}
+
+/* 10. Ambient Shapes In Light Mode (Crisp Drafting Aesthetic) */
+[data-theme="light"] .ambient-shapes-container {
+  opacity: 0.65 !important;
+}
+
+[data-theme="light"] .shape-cube-v2 {
+  filter: drop-shadow(0 4px 12px rgba(255, 92, 53, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-dial-v2 {
+  filter: drop-shadow(0 4px 14px rgba(2, 132, 199, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-diamond-v2 {
+  filter: drop-shadow(0 4px 14px rgba(2, 132, 199, 0.35)) !important;
+}
+
+[data-theme="light"] .shape-viewfinder-v2 {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(255, 92, 53, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .vf-footer {
+  color: #475569 !important;
 }
 
 /* Page Spacing for Floating Navbar */
@@ -7899,8 +8289,9 @@ section[id],
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100vw !important;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
