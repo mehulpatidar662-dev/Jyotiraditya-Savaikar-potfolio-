@@ -379,33 +379,19 @@ class PortfolioApp {
   setupThemeSwitcher() {
     let savedTheme = localStorage.getItem('jyoti-theme') || 'dark';
 
-    const applyTheme = (themeName) => {
-      const isDark = (themeName === 'dark' || themeName === 'midnight');
-      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      try { localStorage.setItem('jyoti-theme', isDark ? 'dark' : 'light'); } catch(e){}
+    if (typeof window.updateThemeUI === 'function') {
+      window.updateThemeUI(savedTheme);
+    }
+    if (typeof window.bindThemeEvents === 'function') {
+      window.bindThemeEvents();
+    }
 
-      // Update all toggle buttons in DOM
-      document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn').forEach(btn => {
-        const iconEl = btn.querySelector('.theme-icon');
-        const textEl = btn.querySelector('.theme-label-text, .theme-name');
-        if (iconEl) iconEl.textContent = isDark ? '☀️' : '🌙';
-        if (textEl) textEl.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-        btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
-        btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-      });
-    };
-
-    applyTheme(savedTheme);
-
-    // Bind click handlers
-    document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn').forEach(btn => {
+    // Support any standalone buttons that are not segmented
+    document.querySelectorAll('.dark-mode-toggle-btn:not(.theme-toggle-segmented), .theme-switcher-btn').forEach(btn => {
       btn.onclick = (e) => {
         e.preventDefault();
         if (typeof window.toggleTheme === 'function') {
           window.toggleTheme();
-        } else {
-          const isCurrentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
-          applyTheme(isCurrentlyDark ? 'light' : 'dark');
         }
       };
     });
@@ -414,7 +400,9 @@ class PortfolioApp {
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('jyoti-theme')) {
-          applyTheme(e.matches ? 'dark' : 'light');
+          if (typeof window.setTheme === 'function') {
+            window.setTheme(e.matches ? 'dark' : 'light');
+          }
         }
       });
     }

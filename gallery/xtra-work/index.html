@@ -13,31 +13,77 @@
       try {
         var saved = localStorage.getItem('jyoti-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', saved);
+
+        window.setTheme = function(theme) {
+          var next = (theme === 'light') ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try { localStorage.setItem('jyoti-theme', next); } catch(e){}
+          updateThemeUI(next);
+          try { window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } })); } catch(e){}
+        };
+
         window.toggleTheme = function() {
           var cur = document.documentElement.getAttribute('data-theme') || 'dark';
           var next = (cur === 'dark' || cur === 'midnight') ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', next);
-          try { localStorage.setItem('jyoti-theme', next); } catch(e){}
-          updateThemeButtons(next);
+          window.setTheme(next);
         };
-        function updateThemeButtons(theme) {
+
+        function updateThemeUI(theme) {
           var isDark = (theme === 'dark' || theme === 'midnight');
-          var buttons = document.querySelectorAll('.dark-mode-toggle-btn, .theme-switcher-btn');
-          buttons.forEach(function(btn) {
+          // 1. Update Segmented Controls
+          var segmentedList = document.querySelectorAll('.theme-toggle-segmented');
+          segmentedList.forEach(function(sw) {
+            var lightBtn = sw.querySelector('.theme-seg-light, [data-theme-val="light"]');
+            var darkBtn = sw.querySelector('.theme-seg-dark, [data-theme-val="dark"]');
+            if (lightBtn) {
+              lightBtn.classList.toggle('is-active', !isDark);
+              lightBtn.setAttribute('aria-checked', !isDark ? 'true' : 'false');
+            }
+            if (darkBtn) {
+              darkBtn.classList.toggle('is-active', isDark);
+              darkBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+            }
+          });
+
+          // 2. Backward compatibility for legacy single-button toggles
+          var legacyBtns = document.querySelectorAll('.dark-mode-toggle-btn:not(.theme-toggle-segmented), .theme-switcher-btn');
+          legacyBtns.forEach(function(btn) {
             var icon = btn.querySelector('.theme-icon');
             var text = btn.querySelector('.theme-label-text, .theme-name');
-            if (icon) icon.textContent = isDark ? '☀️' : '🌙';
-            if (text) text.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            if (icon) icon.textContent = isDark ? '🌙' : '☀️';
+            if (text) text.textContent = isDark ? 'Dark Mode' : 'Light Mode';
             btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
-            btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            btn.setAttribute('title', isDark ? 'Current: Dark Mode (Click for Light)' : 'Current: Light Mode (Click for Dark)');
           });
         }
+        window.updateThemeUI = updateThemeUI;
+
+        function bindThemeEvents() {
+          document.querySelectorAll('.theme-toggle-segmented').forEach(function(sw) {
+            if (sw.dataset.themeBound === 'true') return;
+            sw.dataset.themeBound = 'true';
+            sw.addEventListener('click', function(e) {
+              var targetBtn = e.target.closest('.theme-seg-btn');
+              if (targetBtn && targetBtn.dataset.themeVal) {
+                e.stopPropagation();
+                window.setTheme(targetBtn.dataset.themeVal);
+              } else {
+                window.toggleTheme();
+              }
+            });
+          });
+        }
+        window.bindThemeEvents = bindThemeEvents;
+
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', function() {
-            updateThemeButtons(document.documentElement.getAttribute('data-theme') || 'dark');
+            var currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            updateThemeUI(currentTheme);
+            bindThemeEvents();
           });
         } else {
-          updateThemeButtons(saved);
+          updateThemeUI(saved);
+          bindThemeEvents();
         }
       } catch(e) {}
     })();
@@ -66,10 +112,16 @@
         </ul>
       </nav>
       <div style="display: flex; align-items: center; gap: 14px;">
-        <button class="dark-mode-toggle-btn" id="theme-toggle" onclick="window.toggleTheme ? window.toggleTheme() : null" aria-label="Toggle Dark Mode" title="Toggle Dark or Light Mode">
-          <span class="theme-icon">☀️</span>
-          <span class="theme-label-text">Light Mode</span>
-        </button>
+        <div class="theme-toggle-segmented dark-mode-toggle-btn" id="theme-toggle" role="radiogroup" aria-label="Theme mode switcher" title="Switch Theme (Light / Dark)">
+          <button type="button" class="theme-seg-btn theme-seg-light" id="theme-btn-light" data-theme-val="light" role="radio" aria-checked="false" aria-label="Switch to Light Mode">
+            <span class="theme-seg-icon">☀️</span>
+            <span class="theme-seg-label">Light</span>
+          </button>
+          <button type="button" class="theme-seg-btn theme-seg-dark is-active" id="theme-btn-dark" data-theme-val="dark" role="radio" aria-checked="true" aria-label="Switch to Dark Mode">
+            <span class="theme-seg-icon">🌙</span>
+            <span class="theme-seg-label">Dark</span>
+          </button>
+        </div>
 
         <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
           <span></span>

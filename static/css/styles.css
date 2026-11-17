@@ -8899,3 +8899,196 @@ button:active,
   transform: scale(1.05) !important;
   box-shadow: 0 6px 24px rgba(255, 92, 53, 0.7) !important;
 }
+
+
+/* ==========================================================================
+   SEGMENTED DUAL-PILL THEME TOGGLE
+   Unambiguous, High-Contrast [ ☀️ Light | 🌙 Dark ] Control
+   ========================================================================== */
+.theme-toggle-segmented.dark-mode-toggle-btn,
+.theme-toggle-segmented {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  gap: 3px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  height: auto !important;
+}
+
+[data-theme="light"] .theme-toggle-segmented.dark-mode-toggle-btn,
+[data-theme="light"] .theme-toggle-segmented {
+  background: #E2E8F0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.15) !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+}
+
+.theme-seg-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  padding: 5px 12px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #94A3B8 !important;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.theme-seg-btn * {
+  pointer-events: none !important;
+}
+
+.theme-seg-icon {
+  font-size: 0.88rem !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  transition: transform 0.2s ease !important;
+}
+
+.theme-seg-label {
+  font-size: 0.8rem !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 700 !important;
+  display: inline-block !important;
+}
+
+/* Active Segment in Dark Theme */
+.theme-toggle-segmented .theme-seg-dark.is-active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 10px rgba(255, 92, 53, 0.45) !important;
+}
+
+.theme-toggle-segmented .theme-seg-dark.is-active .theme-seg-icon {
+  transform: rotate(-15deg) scale(1.1) !important;
+}
+
+.theme-toggle-segmented .theme-seg-light:not(.is-active):hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Active Segment in Light Theme */
+[data-theme="light"] .theme-toggle-segmented .theme-seg-light.is-active {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.14) !important;
+}
+
+[data-theme="light"] .theme-toggle-segmented .theme-seg-light.is-active .theme-seg-icon {
+  transform: rotate(20deg) scale(1.1) !important;
+}
+
+[data-theme="light"] .theme-toggle-segmented .theme-seg-btn {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .theme-toggle-segmented .theme-seg-dark:not(.is-active):hover {
+  color: #0F172A !important;
+  background: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Responsive Navbar Segmented Switch */
+@media (max-width: 900px) {
+  .theme-toggle-segmented .theme-seg-label {
+    display: none !important;
+  }
+  .theme-seg-btn {
+    padding: 5px 8px !important;
+    gap: 0 !important;
+  }
+  .theme-toggle-segmented {
+    padding: 2px !important;
+    gap: 1px !important;
+  }
+}
+
+/* ==========================================================================
+   GALLERY, ABOUT & RESUME LIGHT MODE PERFECTION
+   ========================================================================== */
+[data-theme="light"] .gallery-filter-btn {
+  background: #FFFFFF !important;
+  color: #334155 !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .gallery-filter-btn:hover {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+[data-theme="light"] .gallery-filter-btn.active {
+  background: #FF5C35 !important;
+  color: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 4px 16px rgba(255, 92, 53, 0.35) !important;
+}
+
+[data-theme="light"] .gallery-card,
+[data-theme="light"] .gallery-item {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .gallery-card-info,
+[data-theme="light"] .gallery-info {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .gallery-title,
+[data-theme="light"] .gallery-item-title {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .gallery-desc,
+[data-theme="light"] .gallery-meta {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .about-card,
+[data-theme="light"] .journey-card,
+[data-theme="light"] .resume-card,
+[data-theme="light"] .about-hero,
+[data-theme="light"] .about-section-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #0F172A !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .about-hero h1,
+[data-theme="light"] .about-hero h2,
+[data-theme="light"] .about-card h2,
+[data-theme="light"] .about-card h3,
+[data-theme="light"] .resume-card h2,
+[data-theme="light"] .resume-card h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bio-text,
+[data-theme="light"] .about-lead,
+[data-theme="light"] .timeline-desc,
+[data-theme="light"] .experience-desc {
+  color: #334155 !important;
+}
