@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio of Jyotiraditya Savaikar – 2D Animator | Motion Designer | Pre-Production Artist based in Pune, Maharashtra, India.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="static/css/styles.css?v=20261118_4">
+  <link rel="stylesheet" href="static/css/styles.css?v=20261118_5">
   <script>
     // Bulletproof Universal Theme Engine
     window.toggleTheme = function(targetMode) {
@@ -33,20 +33,11 @@
 
     window.updateThemeUI = function(theme) {
       var isDark = (theme === 'dark' || theme === 'midnight');
-      document.querySelectorAll('.theme-toggle-switch, .theme-toggle-segmented, #theme-toggle').forEach(function(el) {
+      document.querySelectorAll('.theme-toggle-switch, .theme-toggle-segmented, #theme-toggle, .dark-mode-toggle-btn').forEach(function(el) {
         el.setAttribute('aria-checked', isDark ? 'true' : 'false');
         el.classList.toggle('is-dark', isDark);
         el.classList.toggle('is-light', !isDark);
-        
-        var lightOpt = el.querySelector('.theme-opt-light, .theme-seg-light');
-        var darkOpt = el.querySelector('.theme-opt-dark, .theme-seg-dark');
-        if (lightOpt) lightOpt.classList.toggle('is-active', !isDark);
-        if (darkOpt) darkOpt.classList.toggle('is-active', isDark);
-
-        var icon = el.querySelector('.theme-icon');
-        var text = el.querySelector('.theme-label-text');
-        if (icon) icon.textContent = isDark ? '🌙' : '☀️';
-        if (text) text.textContent = isDark ? 'Dark' : 'Light';
+        el.textContent = isDark ? '☀️ Light' : '🌙 Dark';
       });
     };
 
@@ -185,18 +176,7 @@
         </ul>
       </nav>
       <div style="display: flex; align-items: center; gap: 14px;">
-        <button class="theme-toggle-switch dark-mode-toggle-btn" id="theme-toggle" type="button" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'dark';var n=(c==='light')?'dark':'light';h.setAttribute('data-theme',n);try{localStorage.setItem('jyoti-theme',n)}catch(e){}if(window.updateThemeUI)window.updateThemeUI(n);if(window.toggleTheme)window.toggleTheme(n);" aria-label="Toggle theme mode" title="Toggle Light / Dark Mode">
-          <span class="theme-switch-track" style="pointer-events: none !important;">
-            <span class="theme-switch-option theme-opt-light" style="pointer-events: none !important;">
-              <span class="theme-switch-icon" style="pointer-events: none !important;">☀️</span>
-              <span class="theme-switch-label" style="pointer-events: none !important;">Light</span>
-            </span>
-            <span class="theme-switch-option theme-opt-dark" style="pointer-events: none !important;">
-              <span class="theme-switch-icon" style="pointer-events: none !important;">🌙</span>
-              <span class="theme-switch-label" style="pointer-events: none !important;">Dark</span>
-            </span>
-          </span>
-        </button>
+        <button class="theme-toggle-switch dark-mode-toggle-btn" id="theme-toggle" type="button" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'dark';var n=(c==='light')?'dark':'light';h.setAttribute('data-theme',n);try{localStorage.setItem('jyoti-theme',n)}catch(e){}if(window.updateThemeUI)window.updateThemeUI(n);if(window.toggleTheme)window.toggleTheme(n);" aria-label="Toggle theme mode" title="Toggle Light / Dark Mode">☀️ Light</button>
 
         <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
           <span></span>
@@ -3277,7 +3257,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261118_4" defer></script>
+  <script src="static/js/bundle.js?v=20261118_5" defer></script>
   
 <script>
 // =============================================================================
