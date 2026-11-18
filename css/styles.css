@@ -9127,3 +9127,17 @@ button:active,
     padding: 2px !important;
   }
 }
+
+
+/* High-Priority Pointer & Layer Fix for Theme Switch */
+#theme-toggle,
+.theme-toggle-switch {
+  position: relative !important;
+  z-index: 99999 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.theme-toggle-switch * {
+  pointer-events: none !important;
+}

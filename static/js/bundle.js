@@ -2416,17 +2416,16 @@ class PortfolioApp {
     }
   }
 
-  // Setup Live Category Filters in Gallery
+  // Setup Live Category Filters in Gallery & Work sections
   setupGalleryFilters() {
-    document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+    document.querySelectorAll('.gallery-filter-btn, .folder-tab-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = btn.dataset.filter || 'all';
-        this.filterGallery(filter);
-        if (filter === 'all') {
-          history.replaceState(null, null, '#gallery');
-        } else {
-          history.replaceState(null, null, `#gallery-${filter}`);
+        const filter = btn.dataset.filter || btn.dataset.tabFolder || 'all';
+        if (typeof window.filterProjectsList === 'function') {
+          window.filterProjectsList(filter);
+        }
+        if (typeof this.filterGallery === 'function') {
+          this.filterGallery(filter);
         }
       });
     });
