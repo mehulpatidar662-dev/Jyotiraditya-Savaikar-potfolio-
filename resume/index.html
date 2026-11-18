@@ -9,61 +9,65 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="static/css/styles.css">
   <script>
+    // Bulletproof Universal Theme Engine
+    window.toggleTheme = function(targetMode) {
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme') || 'dark';
+      var next;
+      if (targetMode === 'light' || targetMode === 'dark') {
+        next = targetMode;
+      } else {
+        next = (current === 'light') ? 'dark' : 'light';
+      }
+      html.setAttribute('data-theme', next);
+      try { localStorage.setItem('jyoti-theme', next); } catch(err){}
+      if (typeof window.updateThemeUI === 'function') {
+        window.updateThemeUI(next);
+      }
+      try { window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } })); } catch(err){}
+    };
+
+    window.setTheme = function(mode) {
+      window.toggleTheme(mode);
+    };
+
+    window.updateThemeUI = function(theme) {
+      var isDark = (theme === 'dark' || theme === 'midnight');
+      document.querySelectorAll('.theme-toggle-switch, .theme-toggle-segmented, #theme-toggle').forEach(function(el) {
+        el.setAttribute('aria-checked', isDark ? 'true' : 'false');
+        el.classList.toggle('is-dark', isDark);
+        el.classList.toggle('is-light', !isDark);
+        
+        var lightOpt = el.querySelector('.theme-opt-light, .theme-seg-light');
+        var darkOpt = el.querySelector('.theme-opt-dark, .theme-seg-dark');
+        if (lightOpt) lightOpt.classList.toggle('is-active', !isDark);
+        if (darkOpt) darkOpt.classList.toggle('is-active', isDark);
+
+        var icon = el.querySelector('.theme-icon');
+        var text = el.querySelector('.theme-label-text');
+        if (icon) icon.textContent = isDark ? '🌙' : '☀️';
+        if (text) text.textContent = isDark ? 'Dark' : 'Light';
+      });
+    };
+
+    // Initialize theme immediately on head load
     (function() {
+      var initialTheme = 'dark';
       try {
-        var saved = localStorage.getItem('jyoti-theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', saved);
-
-        window.toggleTheme = function(targetMode) {
-          var html = document.documentElement;
-          var current = html.getAttribute('data-theme') || 'dark';
-          var next;
-          if (targetMode === 'light' || targetMode === 'dark') {
-            next = targetMode;
-          } else {
-            next = (current === 'light') ? 'dark' : 'light';
-          }
-          html.setAttribute('data-theme', next);
-          try { localStorage.setItem('jyoti-theme', next); } catch(e){}
-          if (typeof window.updateThemeUI === 'function') {
-            window.updateThemeUI(next);
-          }
-          try { window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } })); } catch(e){}
-        };
-
-        window.setTheme = function(mode) {
-          window.toggleTheme(mode);
-        };
-
-        function updateThemeUI(theme) {
-          var isDark = (theme === 'dark' || theme === 'midnight');
-          document.querySelectorAll('.theme-toggle-switch, .theme-toggle-segmented, #theme-toggle').forEach(function(el) {
-            el.setAttribute('aria-checked', isDark ? 'true' : 'false');
-            el.classList.toggle('is-dark', isDark);
-            el.classList.toggle('is-light', !isDark);
-            
-            var lightOpt = el.querySelector('.theme-opt-light, .theme-seg-light');
-            var darkOpt = el.querySelector('.theme-opt-dark, .theme-seg-dark');
-            if (lightOpt) lightOpt.classList.toggle('is-active', !isDark);
-            if (darkOpt) darkOpt.classList.toggle('is-active', isDark);
-
-            var icon = el.querySelector('.theme-icon');
-            var text = el.querySelector('.theme-label-text');
-            if (icon) icon.textContent = isDark ? '🌙' : '☀️';
-            if (text) text.textContent = isDark ? 'Dark' : 'Light';
-          });
-        }
-        window.updateThemeUI = updateThemeUI;
-
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', function() {
-            var currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-            updateThemeUI(currentTheme);
-          });
-        } else {
-          updateThemeUI(saved);
+        var saved = localStorage.getItem('jyoti-theme');
+        if (saved === 'light' || saved === 'dark') {
+          initialTheme = saved;
         }
       } catch(e) {}
+      document.documentElement.setAttribute('data-theme', initialTheme);
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          window.updateThemeUI(document.documentElement.getAttribute('data-theme') || initialTheme);
+        });
+      } else {
+        window.updateThemeUI(initialTheme);
+      }
     })();
   </script>
   
@@ -90,7 +94,7 @@
         </ul>
       </nav>
       <div style="display: flex; align-items: center; gap: 14px;">
-        <button class="theme-toggle-switch dark-mode-toggle-btn" id="theme-toggle" type="button" onclick="window.toggleTheme ? window.toggleTheme() : null" aria-label="Toggle theme mode" title="Toggle Light / Dark Mode">
+        <button class="theme-toggle-switch dark-mode-toggle-btn" id="theme-toggle" type="button" onclick="window.toggleTheme();" aria-label="Toggle theme mode" title="Toggle Light / Dark Mode">
           <span class="theme-switch-track">
             <span class="theme-switch-option theme-opt-light">
               <span class="theme-switch-icon">☀️</span>
@@ -412,7 +416,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261011_3" defer></script>
+  <script src="static/js/bundle.js?v=20261118_1" defer></script>
   
 </body>
 </html>

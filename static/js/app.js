@@ -377,32 +377,49 @@ class PortfolioApp {
 
   // First-Class Dark Mode Toggle & System Preference Detection
   setupThemeSwitcher() {
-    let savedTheme = localStorage.getItem('jyoti-theme') || 'dark';
+    let savedTheme = 'dark';
+    try {
+      savedTheme = localStorage.getItem('jyoti-theme') || 'dark';
+    } catch(e) {}
 
-    if (typeof window.setTheme === 'function') {
-      window.setTheme(savedTheme);
-    } else {
-      document.documentElement.setAttribute('data-theme', savedTheme);
+    // 100% Bulletproof: Define window.toggleTheme if not already on window
+    if (typeof window.toggleTheme !== 'function') {
+      window.toggleTheme = function(targetMode) {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme') || 'dark';
+        const next = (targetMode === 'light' || targetMode === 'dark')
+          ? targetMode
+          : ((current === 'light') ? 'dark' : 'light');
+        html.setAttribute('data-theme', next);
+        try { localStorage.setItem('jyoti-theme', next); } catch(err){}
+        if (typeof window.updateThemeUI === 'function') {
+          window.updateThemeUI(next);
+        }
+        try { window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } })); } catch(e){}
+      };
+      window.setTheme = window.toggleTheme;
+    }
+
+    if (typeof window.updateThemeUI === 'function') {
+      window.updateThemeUI(savedTheme);
     }
 
     // Attach click listeners to all theme buttons as backup
     document.querySelectorAll('#theme-toggle, .dark-mode-toggle-btn, .theme-toggle-switch').forEach(btn => {
       btn.onclick = (e) => {
         e.preventDefault();
-        if (typeof window.toggleTheme === 'function') {
-          window.toggleTheme();
-        }
+        window.toggleTheme();
       };
     });
 
     // Listen for OS dark mode changes
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('jyoti-theme')) {
-          if (typeof window.setTheme === 'function') {
-            window.setTheme(e.matches ? 'dark' : 'light');
+        try {
+          if (!localStorage.getItem('jyoti-theme')) {
+            window.toggleTheme(e.matches ? 'dark' : 'light');
           }
-        }
+        } catch(err) {}
       });
     }
   }
