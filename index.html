@@ -186,14 +186,14 @@
 
       <div style="display: flex; align-items: center; gap: 12px;">
         <button class="theme-toggle-switch dark-mode-toggle-btn" id="theme-toggle" type="button" onclick="var h=document.documentElement;var c=h.getAttribute('data-theme')||'dark';var n=(c==='light')?'dark':'light';h.setAttribute('data-theme',n);try{localStorage.setItem('jyoti-theme',n)}catch(e){}if(window.updateThemeUI)window.updateThemeUI(n);if(window.toggleTheme)window.toggleTheme(n);" aria-label="Toggle theme mode" title="Toggle Light / Dark Mode">
-          <span class="theme-switch-track">
-            <span class="theme-switch-option theme-opt-light">
-              <span class="theme-switch-icon">☀️</span>
-              <span class="theme-switch-label">Light</span>
+          <span class="theme-switch-track" style="pointer-events: none !important;">
+            <span class="theme-switch-option theme-opt-light" style="pointer-events: none !important;">
+              <span class="theme-switch-icon" style="pointer-events: none !important;">☀️</span>
+              <span class="theme-switch-label" style="pointer-events: none !important;">Light</span>
             </span>
-            <span class="theme-switch-option theme-opt-dark">
-              <span class="theme-switch-icon">🌙</span>
-              <span class="theme-switch-label">Dark</span>
+            <span class="theme-switch-option theme-opt-dark" style="pointer-events: none !important;">
+              <span class="theme-switch-icon" style="pointer-events: none !important;">🌙</span>
+              <span class="theme-switch-label" style="pointer-events: none !important;">Dark</span>
             </span>
           </span>
         </button>
@@ -399,7 +399,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Jaimini Title Sequence">
+             aria-label="View Jaimini Title Sequence" data-category="2d">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/jaimini_title_sequence.mp4">
             <img src="static/aditya_project/2D/Jaimini%20Title%20Sequence/thumbnail.webp" alt="Jaimini Title Sequence" loading="lazy" decoding="async" />
@@ -443,7 +443,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View The Bot and the Boy">
+             aria-label="View The Bot and the Boy" data-category="preprod">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/bot_and_boy_animatic.mp4">
             <img src="static/aditya_project/Preprod/bot%20and%20boy/IMG_4688.webp" alt="The Bot and the Boy" loading="lazy" decoding="async" />
@@ -487,7 +487,7 @@
              data-has-pdf="true"
              tabindex="0" 
              role="button" 
-             aria-label="View The Tale of Akkad">
+             aria-label="View The Tale of Akkad" data-category="preprod">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/akkad_sequence.mp4">
             <img src="static/images/akkad_thumbnail.webp" alt="The Tale of Akkad" loading="lazy" decoding="async" />
@@ -530,7 +530,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Beavis & Butt-head Pan Shot">
+             aria-label="View Beavis & Butt-head Pan Shot" data-category="preprod">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/videos/rendered_shot.mp4">
             <img src="static/aditya_project/Preprod/Beavis/hori%20pan%20lol.webp" alt="Beavis &amp; Butt-head Pan Shot" loading="lazy" decoding="async" />
@@ -573,7 +573,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Cyberpunk 3D Typography">
+             aria-label="View Cyberpunk 3D Typography" data-category="3d">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/aditya_project/3D/Cyberpunk/Cyberpunk Typography FINAL.mp4">
             <img src="static/aditya_project/3D/Cyberpunk/cyberpunk.webp" alt="Cyberpunk 3D Typography" loading="lazy" decoding="async" />
@@ -616,7 +616,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Non Narrative Animation">
+             aria-label="View Non Narrative Animation" data-category="2d">
           
           <div class="bento-card-media video-hover-thumb" data-hover-video="static/aditya_project/2D/Non%20Narrative/Anna%20Dominoes.mp4">
             <img src="static/aditya_project/2D/Non%20Narrative/nna.webp" alt="Non Narrative Dominoes" loading="lazy" decoding="async" />
@@ -660,7 +660,7 @@
              data-has-pdf="true"
              tabindex="0" 
              role="button" 
-             aria-label="View Target Practise Comic Book">
+             aria-label="View Target Practise Comic Book" data-category="comics">
           
           <div class="bento-card-media">
             <img src="static/images/target_split_blast_rifle.webp" alt="Target Practise" loading="lazy" decoding="async" />
@@ -701,7 +701,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Monkesh The Wise Concept Bible">
+             aria-label="View Monkesh The Wise Concept Bible" data-category="preprod">
           
           <div class="bento-card-media">
             <img src="static/aditya_project/Preprod/Monkesh/IMG_4719.webp" alt="Monkesh The Wise" loading="lazy" decoding="async" />
@@ -743,7 +743,7 @@
              data-has-pdf="false"
              tabindex="0" 
              role="button" 
-             aria-label="View Extra Work & Digital Illustrations">
+             aria-label="View Extra Work & Digital Illustrations" data-category="xtra-work">
           
           <div class="bento-card-media">
             <img src="static/aditya_project/Xtra%20work/FINAL%201.webp" alt="Digital Art &amp; VisDev" loading="lazy" decoding="async" />
@@ -1229,7 +1229,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261118_2" defer></script>
+  <script src="static/js/bundle.js?v=20261118_3" defer></script>
   
 <script>
 // =============================================================================

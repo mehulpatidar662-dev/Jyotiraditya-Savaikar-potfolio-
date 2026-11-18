@@ -2433,10 +2433,45 @@ class PortfolioApp {
 
   // Live filter gallery items by category slug & toggle topic dossiers
   filterGallery(filterCategory) {
+    const catSlug = filterCategory || 'all';
+
+    // 1. Filter project cards in #work (Home Page Bento)
+    const workItems = document.querySelectorAll('#work .project-list-item, #projects-list-view .project-list-item');
+    if (workItems.length > 0) {
+      workItems.forEach(item => {
+        const pCat = item.dataset.parentCat || item.dataset.category || item.dataset.cat || '';
+        const cat = item.dataset.cat || item.dataset.category || '';
+        let match = false;
+        if (catSlug === 'all' || catSlug === 'root') {
+          match = true;
+        } else if (catSlug === '2d') {
+          match = (pCat === '2d' || cat === '2d');
+        } else if (catSlug === 'preprod') {
+          match = (pCat === 'preprod' || cat === 'preprod');
+        } else if (catSlug === '3d') {
+          match = (pCat === '3d' || cat === '3d');
+        } else if (catSlug === 'comics') {
+          match = (pCat === 'comics' || cat === 'comics');
+        } else {
+          match = (pCat === catSlug || cat === catSlug);
+        }
+
+        if (match) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      document.querySelectorAll('.folder-tabs-strip .folder-tab-btn').forEach(btn => {
+        const bCat = btn.dataset.tabFolder || btn.dataset.filter || 'root';
+        btn.classList.toggle('active', bCat === catSlug);
+      });
+    }
+
+    // 2. Filter gallery items in #gallery (Gallery Page)
     const galleryView = document.getElementById('gallery') || document.getElementById('view-gallery');
     if (!galleryView) return;
-
-    const catSlug = filterCategory || 'all';
 
     // Update active filter button styling
     galleryView.querySelectorAll('.gallery-filter-btn').forEach(btn => {
@@ -2454,50 +2489,11 @@ class PortfolioApp {
       }
     });
 
-    // Update dynamic gallery header
-    const titleEl = document.getElementById('gallery-active-title');
-    const descEl = document.getElementById('gallery-active-desc');
-    const categoryInfo = {
-      'all': {
-        title: 'Master Production Gallery & Archives',
-        desc: 'Full high-resolution visual development, beat boards, character model sheets, environment layouts, and complete downloadable production PDF books.'
-      },
-      'comic-storyboards': {
-        title: 'Comic Storyboards — Target Practise',
-        desc: 'Complete 88.2 MB action comic storyboard book, weapon ballistics blueprints, extreme foreshortening and high-contrast inking.'
-      },
-      'storyboarding': {
-        title: 'Storyboarding & Animatics — The Bot and the Boy',
-        desc: 'Full 1-minute 49-second 2D animatic reel, official color key art poster, 9-panel desert chase beat boards, and robot mechanical anatomy.'
-      },
-      'character-design': {
-        title: 'Character Design & Concept Art — Akkad & Monkesh',
-        desc: 'The Tale of Akkad 34.3 MB Production Book PDF, 20-second archery lesson sequence, robot anatomy, and Monkesh 8-expression model sheet.'
-      },
-      'scene-layout': {
-        title: 'Scene Layout & Environment Backgrounds',
-        desc: 'Atmospheric panoramic day vs. night city lighting keys, widescreen 3072x768 nocturnal street painting, and 3-stage camera staging sheets.'
-      },
-      'title-sequences': {
-        title: 'Title Sequences — Jaimini',
-        desc: 'Full 57-second production title sequence video, ornate serpent typography emblem, and lead character visual development.'
-      },
-      '3d-motion': {
-        title: '3D Motion Graphics & Isometric Physics',
-        desc: 'Interactive procedural voxel physics engine, isometric transformations, and dynamic logo reveal mechanics.'
-      }
-    };
-
-    if (categoryInfo[catSlug]) {
-      if (titleEl) titleEl.textContent = categoryInfo[catSlug].title;
-      if (descEl) descEl.textContent = categoryInfo[catSlug].desc;
-    }
-
     // Toggle master showcase vs. topic dossiers
     const masterShowcase = document.getElementById('gallery-master-showcase');
     const dossiers = galleryView.querySelectorAll('.project-topic-dossier');
 
-    if (catSlug === 'all') {
+    if (catSlug === 'all' || catSlug === 'root') {
       if (masterShowcase) masterShowcase.style.display = 'block';
       dossiers.forEach(d => {
         d.style.display = 'none';
