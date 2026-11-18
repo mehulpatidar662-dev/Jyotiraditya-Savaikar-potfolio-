@@ -9270,3 +9270,41 @@ button:active,
   border-color: #FF5C35 !important;
   box-shadow: 0 4px 14px rgba(255, 92, 53, 0.25) !important;
 }
+
+
+/* =============================================================================
+   ABSOLUTE FIX: LIGHTBOX INERT WHEN NOT ACTIVE & NAVBAR TOP STACKING
+   ============================================================================= */
+.navbar {
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+#lightbox-modal:not(.active),
+.lightbox-modal:not(.active),
+#lightbox-modal[aria-hidden="true"],
+.lightbox-modal[aria-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  z-index: -9999 !important;
+}
+
+#lightbox-modal:not(.active) *,
+.lightbox-modal:not(.active) *,
+#lightbox-modal[aria-hidden="true"] *,
+.lightbox-modal[aria-hidden="true"] * {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#lightbox-modal.active,
+.lightbox-modal.active {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 999999 !important;
+}
