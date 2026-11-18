@@ -379,15 +379,14 @@ class PortfolioApp {
   setupThemeSwitcher() {
     let savedTheme = localStorage.getItem('jyoti-theme') || 'dark';
 
-    if (typeof window.updateThemeUI === 'function') {
-      window.updateThemeUI(savedTheme);
-    }
-    if (typeof window.bindThemeEvents === 'function') {
-      window.bindThemeEvents();
+    if (typeof window.setTheme === 'function') {
+      window.setTheme(savedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
-    // Support any standalone buttons that are not segmented
-    document.querySelectorAll('.dark-mode-toggle-btn:not(.theme-toggle-segmented), .theme-switcher-btn').forEach(btn => {
+    // Attach click listeners to all theme buttons as backup
+    document.querySelectorAll('#theme-toggle, .dark-mode-toggle-btn, .theme-toggle-switch').forEach(btn => {
       btn.onclick = (e) => {
         e.preventDefault();
         if (typeof window.toggleTheme === 'function') {
