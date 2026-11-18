@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio of Jyotiraditya Savaikar – 2D Animator | Motion Designer | Pre-Production Artist based in Pune, Maharashtra, India.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="stylesheet" href="static/css/styles.css?v=20261118_4">
   <script>
     // Bulletproof Universal Theme Engine
     window.toggleTheme = function(targetMode) {
@@ -797,7 +797,7 @@
     <div class="toolkit-grid-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
       
       <!-- Software Tools -->
-      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px;">
+      <div class="toolkit-software-box" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px;">
         <h3 style="font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--heading-color); margin-bottom: 22px; display: flex; align-items: center; gap: 10px;">
           <span>💻</span>
           <span>Core Creative Software</span>
@@ -1229,7 +1229,7 @@
   </div>
 
   <!-- Main JavaScript Universal Standalone Bundle (file:/// & http:// compatible) -->
-  <script src="static/js/bundle.js?v=20261118_3" defer></script>
+  <script src="static/js/bundle.js?v=20261118_4" defer></script>
   
 <script>
 // =============================================================================
@@ -1315,9 +1315,11 @@
       }
 
       if (match) {
-        item.style.display = '';
+        item.classList.remove('is-hidden');
+        item.style.removeProperty('display');
       } else {
-        item.style.display = 'none';
+        item.classList.add('is-hidden');
+        item.style.setProperty('display', 'none', 'important');
       }
     });
 

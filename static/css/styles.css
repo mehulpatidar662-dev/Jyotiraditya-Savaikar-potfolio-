@@ -9246,3 +9246,86 @@ button:active,
 .theme-toggle-switch * {
   pointer-events: none !important;
 }
+
+
+/* ==========================================================================
+   HIGH-PRIORITY FIXES: THEME TOGGLE HIT-TESTING & BENTO CARD FILTERING
+   ========================================================================== */
+
+/* Prevent any ambient background shape from intercepting clicks */
+.ambient-studio-bg,
+.ambient-studio-bg *,
+.ambient-shapes-container,
+.ambient-shapes-container *,
+.floating-shape,
+.floating-shape * {
+  pointer-events: none !important;
+}
+
+/* Bulletproof Theme Toggle Hit-Testing */
+#theme-toggle,
+.theme-toggle-switch,
+.dark-mode-toggle-btn {
+  position: relative !important;
+  z-index: 1005 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+#theme-toggle *,
+.theme-toggle-switch *,
+.dark-mode-toggle-btn * {
+  pointer-events: none !important;
+}
+
+/* Bento Card Filter: High Priority is-hidden Override */
+.project-list-item.is-hidden,
+.bento-card.is-hidden,
+#work .project-list-item.is-hidden,
+#projects-list-view .project-list-item.is-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+/* Light Mode Software & Toolkit Perfect Contrast & Visibility */
+[data-theme="light"] .toolkit-software-box,
+[data-theme="light"] .toolkit-grid-layout > div,
+[data-theme="light"] .toolkit-grid-layout > div > div,
+[data-theme="light"] .toolkit-section div[style*="background: var(--bg-card)"] {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .tool-card {
+  background: #F8FAFC !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.1) !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .tool-card:hover {
+  background: #FFFFFF !important;
+  border-color: #FF5C35 !important;
+  box-shadow: 0 8px 24px rgba(255, 92, 53, 0.18) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .tool-name {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="light"] .tool-level {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}

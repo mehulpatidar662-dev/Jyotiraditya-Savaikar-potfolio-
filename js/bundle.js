@@ -2457,9 +2457,11 @@ class PortfolioApp {
         }
 
         if (match) {
-          item.style.display = '';
+          item.classList.remove('is-hidden');
+          item.style.removeProperty('display');
         } else {
-          item.style.display = 'none';
+          item.classList.add('is-hidden');
+          item.style.setProperty('display', 'none', 'important');
         }
       });
 
